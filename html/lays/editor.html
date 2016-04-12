@@ -1,0 +1,42 @@
+<div class="widget-header widget-header-small">
+    <h6 class="widget-title">Editor</h6>
+    <div class="widget-toolbar">
+        <div class="" style="padding-left: 3px">
+            <input class="hidden editor_zoom" type="text" name="speed" data-min="0.8" data-max="1.9" data-step="0.1" value="1" />
+            <div class="editor_zoom_val lighter gray" style="display:inline-block;text-align:center;width:4em">
+                1
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /section:custom/widget-box.options -->
+<div class="widget-body ui_editor_container">
+    <div class="widget-main no-padding ui_editor">
+        <div class="ui_editor_canvas">
+            <div class="ui_editor_mobile um-vp">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".widget-box-ui-editor input[type=text]").each(function() {
+        var $this = $(this);
+        $this.hide().after('<span />');
+        $this.next().addClass('ui-slider-small').addClass("inline ui-slider-dark").css('width', '125px').css('top', '-3px').slider({
+            value : parseInt($this.val()),
+            range : "min",
+            animate : true,
+            min : parseFloat($this.attr('data-min')),
+            max : parseFloat($this.attr('data-max')),
+            step : parseFloat($this.attr('data-step')) || 1,
+            slide : function(event, ui) {
+                $this.val(ui.value);
+                //spinner_update(ui.value);
+                window.desUIEditorViewInstance.scale(ui.value);
+            }
+        });
+    });
+
+</script>

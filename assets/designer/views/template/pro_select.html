@@ -1,0 +1,8 @@
+<small class="lighter white"><%=title%>:</small>
+<div>
+    <select id="pro_<%=name%>" class="white">
+        <%for(var i in options){%>
+        <option value="<%=options[i].val%>"><%=options[i].lab%></option>
+        <%}%>
+    </select>
+</div>
