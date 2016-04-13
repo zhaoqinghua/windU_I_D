@@ -1,6 +1,6 @@
 <div class="widget-header widget-header-small">
     <div class="widget-toolbar widget-toolbar-left">
-        <a href="#" data-action="collapse"> <i class="ace-icon fa fa-chevron-right" data-icon-show="fa-chevron-right" data-icon-hide="fa-chevron-down"></i> </a>
+        <a href="#" data-action="collapse"> <i class="ace-icon fa fa-chevron-down" data-icon-show="fa-chevron-right" data-icon-hide="fa-chevron-down"></i> </a>
     </div>
     <h6 class="widget-title">Properties</h6>
 
@@ -247,7 +247,6 @@
 
         var Template = loadTemplate("./lays/properties/base-css.html");
         var base_css_rules = $("#base_css")[0].sheet.cssRules;
-        debugger;
         var css_container = $("tbody", "#base-css-list");
         for (var i = 0; i < base_css_rules.length; i++) {
             if (base_css_rules[i].type == 1) {

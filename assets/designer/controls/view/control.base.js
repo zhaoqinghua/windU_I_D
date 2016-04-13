@@ -133,6 +133,33 @@ jQuery(function($) {
                 self.$el.removeClass(this.model.previous("css"));
                 self.$el.addClass(data.changed.css);
             })
+            
+            this.listenTo(this.model,"change:style_background_color",function(data){
+                self.$el.css("background-color",data.changed.style_background_color);
+            })
+            this.listenTo(this.model,"change:style_padding",function(data){
+                //self.$el.css("background-color",data.changed.style_background_color);
+                var padding = data.changed.style_padding;
+                var style=padding.top+"px "+padding.right+"px "+padding.bottom+"px "+padding.left+"px";
+                self.$el.css("padding",style);
+            })
+            this.listenTo(this.model,"change:style_margin",function(data){
+                //self.$el.css("background-color",data.changed.style_background_color);
+                var margin = data.changed.style_margin;
+                var style=margin.top+"px "+margin.right+"px "+margin.bottom+"px "+margin.left+"px";
+                self.$el.css("margin",style);
+            }),
+            this.listenTo(this.model,"change:style_border",function(data){
+                //self.$el.css("background-color",data.changed.style_background_color);
+                var border = data.changed.style_border;
+                var style=border.width+"px "+border.type+" "+border.color;
+                self.$el.css("border",style);
+            }),
+            this.listenTo(this.model,"change:style_border_radius",function(data){
+                var border = data.changed.style_border_radius;
+                var style= parseInt(border)+"px";
+                self.$el.css("border-radius",style);
+            })
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -148,6 +175,7 @@ jQuery(function($) {
             $("[data-control='BASE']", self.$focus).show();
             window.desUIEditorMobileViewInstance.$current = self;
             window.desUIControlsPropertiesViewInstance.bind(self);
+            window.desUIControlsStyleViewInstance.bind(self);
             window.desTemplateRootViewInstance.focusItem(self);
         },
         resize : function(ele, zx, zy, lx, ly, cursor) {
@@ -218,6 +246,12 @@ jQuery(function($) {
             this.set("offset_y", undefined);
             
             this.set("css", "");
+            
+            this.set("style_padding",{top:0,left:0,right:0,bottom:0});
+            this.set("style_margin",{top:0,left:0,right:0,bottom:0});
+            this.set("style_border",{width:0,color:"rgb(0,0,0)",type:"solid"});
+            this.set("style_border_radius",0);
+            this.set("style_background_color","");
             //
             this.set("project", "");
             this.set("private", "");
