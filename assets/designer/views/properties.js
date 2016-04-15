@@ -1,11 +1,5 @@
 jQuery(function($) {
 
-    var pro_templates = {
-        "select" : loadTemplate("../assets/designer/views/template/pro_select.html"),
-        "input" : loadTemplate("../assets/designer/views/template/pro_input.html"),
-        "checkbox" : loadTemplate("../assets/designer/views/template/pro_checkbox.html"),
-        "icon" : loadTemplate("../assets/designer/views/template/pro_icon.html"),
-    }
     var desUIControlsPropertiesView = Backbone.View.extend({
         initialize : function() {
         },
@@ -104,7 +98,15 @@ jQuery(function($) {
                 observe : "layout_pack",
                 events : ["change"],
                 initialize : function($el, model, options) {
-                    var obj = $("[value='" + model.get("layout_pack") + "']", this.$el);
+                    var obj = $("[value='" + model.get("layout_pack") + "']", $el);
+                    $(obj.parent()).addClass("active");
+                }
+            },
+            ".align_ver input" : {
+                observe : "layout_align",
+                events : ["change"],
+                initialize : function($el, model, options) {
+                    var obj = $("[value='" + model.get("layout_align") + "']", $el);
                     $(obj.parent()).addClass("active");
                 }
             },
@@ -134,13 +136,13 @@ jQuery(function($) {
                 "update" : function($el, val) {
                     var tag_input = $("#pro_con_css", this.$el);
                     var $tag_obj = tag_input.data('tag');
-                    for(var i= $tag_obj.values.length-1;i>=0;i--){
+                    for (var i = $tag_obj.values.length - 1; i >= 0; i--) {
                         $tag_obj.remove(i);
                     }
                     if (val) {
                         var items = val.split(",");
                         for (var i in items)
-                            $tag_obj.add(items[i]);
+                        $tag_obj.add(items[i]);
                     }
 
                 }
@@ -148,65 +150,9 @@ jQuery(function($) {
         },
         bind : function(control) {
             this.unstickit();
-            var $ext = $("#pro_ext_options", this.$el);
-            $ext.empty();
             this.model = control.model;
             this.stickit();
-            this.custom();
-
         },
-        custom : function() {
-            var options = this.model.extOptions;
-            var $ext = $("#pro_ext_options", this.$el);
-            for (var i in options) {
-                var option = options[i];
-                var template = pro_templates[option.type];
-                var $pro_el = $(template(option));
-                $ext.append($pro_el);
-                switch(option.type) {
-                case "input":
-                    this.addBinding(null, "#pro_" + option.name, {
-                        "observe" : option.name,
-                        "events" : ["blur"]
-                    });
-                    break;
-                case "icon":
-                    this.addBinding(null, "#pro_" + option.name, {
-                        "observe" : option.name,
-                        "events" : ["blur"],
-                        "update" : function($el, val) {
-                            var tag_input = $("#pro_" + option.name);
-                            try {
-                                tag_input.tag({
-                                    placeholder : tag_input.attr('placeholder'),
-                                    //enable typeahead by specifying the source array
-                                    //source : ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
-                                })
-
-                                //programmatically add a new
-                                var $tag_obj = tag_input.data('tag');
-                                var items = val.split(",");
-                                for (var i in items)
-                                $tag_obj.add(items[i]);
-
-                                tag_input.on("added", function() {
-                                    $(this).blur();
-                                })
-                                tag_input.on("removed", function() {
-                                    $(this).blur();
-                                })
-                            } catch(e) {
-                                console.log(e.message)
-                            }
-                        }
-                    });
-                    break;
-                default:
-                    this.addBinding(null, "#pro_" + option.name, option.name);
-                    break;
-                }
-            }
-        }
     });
     window.desUIControlsPropertiesViewInstance = new desUIControlsPropertiesView();
 });

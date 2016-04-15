@@ -58,38 +58,28 @@
                     <label class="btn btn-primary" id="box_align_orient">
                         <input type="checkbox" value="ub-ver">
                         <i class="icon-only ace-icon fa fa-arrows-h fa-1"></i> </label>
-                    <label class="btn btn-primary" id="box_align_dir">
-                        <input type="checkbox" value="ub-rev">
-                        <i class="icon-only ace-icon fa fa-exchange fa-1"></i> </label>
                 </div>
                 <div data-toggle="buttons" class="btn-group align_hor" >
                     <label class="btn btn-primary">
                         <input type="radio" value="" name="box_pack" >
-                        <i class="icon-only ace-icon fa fa-align-left"></i> </label>
-
+                        <i class="icon-only ace-icon iconfont icon-zuoduiqi"></i> </label>
                     <label class="btn btn-primary">
                         <input type="radio" value="ub-pc" name="box_pack">
-                        <i class="icon-only ace-icon fa fa-align-center"></i> </label>
-
+                        <i class="icon-only ace-icon iconfont icon-shuipingjuzhongduiqi"></i> </label>
                     <label class="btn btn-primary">
                         <input type="radio" value="ub-pe" name="box_pack">
-                        <i class="icon-only ace-icon fa fa-align-right"></i> </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" value="ub-pj" name="box_pack">
-                        <i class="icon-only ace-icon fa fa-align-justify"></i> </label>
+                        <i class="icon-only ace-icon iconfont icon-youduiqi"></i> </label>
                 </div>
                 <div data-toggle="buttons" class="btn-group align_ver" >
                     <label class="btn btn-primary">
-                        <input type="radio" value="">
-                        <i class="icon-only ace-icon fa fa-align-left"></i> </label>
-
+                        <input type="radio" value="" name="box_align">
+                        <i class="icon-only ace-icon iconfont icon-shangduiqi"></i> </label>
                     <label class="btn btn-primary">
-                        <input type="radio" value="ub-ac">
-                        <i class="icon-only ace-icon fa fa-align-center"></i> </label>
-
+                        <input type="radio" value="ub-ac"name="box_align">
+                        <i class="icon-only ace-icon iconfont icon-chuizhijuzhongduiqi"></i> </label>
                     <label class="btn btn-primary">
-                        <input type="radio" value="ub-ae">
-                        <i class="icon-only ace-icon fa fa-align-right"></i> </label>
+                        <input type="radio" value="ub-ae"name="box_align">
+                        <i class="icon-only ace-icon iconfont icon-xiaduiqi"></i> </label>
 
                 </div>
             </div>
@@ -253,7 +243,7 @@
                 var s = base_css_rules[i].selectorText;
                 var item = {
                     id : s.split(".")[1],
-                    txt: base_css_rules[i].cssText.replace(s,"").replace("{","").replace("}","")
+                    txt : base_css_rules[i].cssText.replace(s, "").replace("{", "").replace("}", "")
                 };
                 var dom = $(Template(item));
                 css_container.append(dom);

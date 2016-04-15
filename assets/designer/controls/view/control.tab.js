@@ -47,16 +47,18 @@ jQuery(function($) {
     });
 
     var Config = Backbone.Designer.Config.extend({
-        initialize : function() {
+        initialize : function(options) {
             this.set("type", "Tab");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("hasLabel",true);
-            this.set("hasAnim",false);
-            this.set("hasBadge",false);
-            this.set("hasIcon",true);
-            this.set("index",0);
-            this.set("lables","首页,个人,分类,搜索");
-            this.set("icons","fa-home,fa-user,fa-list,fa-search");
+            if (!options) {
+                this.set("hasLabel", true);
+                this.set("hasAnim", false);
+                this.set("hasBadge", false);
+                this.set("hasIcon", true);
+                this.set("index", 0);
+                this.set("lables", "首页,个人,分类,搜索");
+                this.set("icons", "fa-home,fa-user,fa-list,fa-search");
+            }
         },
         extOptions : [{
             type : "checkbox",

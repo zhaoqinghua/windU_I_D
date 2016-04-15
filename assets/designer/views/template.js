@@ -44,7 +44,7 @@ jQuery(function($) {
         bindings : {
         },
         change : function(data) {
-            $("span:first", this.$el).text(data.changed.uuid);
+            $("span:last", this.$el).text("["+data.changed.uuid+"]");
         },
         add : function(model) {
             var view = model.templateItemView || new desTemplateItemView({
@@ -60,6 +60,7 @@ jQuery(function($) {
         },
         collection : new Backbone.Designer.Items(),
         events : {
+           
         },
         focusView : this,
         bindings : {

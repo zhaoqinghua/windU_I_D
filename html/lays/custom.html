@@ -1,0 +1,174 @@
+<div class="widget-header widget-header-small">
+    <div class="widget-toolbar widget-toolbar-left">
+        <a href="#" data-action="collapse"> <i class="ace-icon fa fa-chevron-down" data-icon-show="fa-chevron-right" data-icon-hide="fa-chevron-down"></i> </a>
+    </div>
+    <h6 class="widget-title">Custom Properties</h6>
+
+    <div class="widget-toolbar">
+        <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a>
+    </div>
+</div>
+
+<!-- /section:custom/widget-box.options -->
+<div class="widget-body">
+    <div class="widget-main control_pro " id="desUIControlsCustomProperties">
+        <div class="row custom_properties">
+            <div class="col-xs-12" id="pro_ext_options"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="fa-select-form" class="modal" tabindex="-1">
+    <div class="modal-dialog" style="width:700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="blue bigger">Please Select the Font Icon</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row" id="fa-icon-list">
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="css-select-form" class="modal dark" tabindex="-1">
+    <div class="modal-dialog" style="width:700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="blue bigger">Please Select the Base CSS</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row " id="base-css-list" style="">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    jQuery(function($) {
+        var tag_input = $("#pro_con_css");
+        try {
+            tag_input.tag({
+                placeholder : tag_input.attr('placeholder'),
+            })
+            tag_input.on("added", function() {
+                $(this).blur();
+            })
+            tag_input.on("removed", function() {
+                $(this).blur();
+            })
+        } catch(e) {
+            console.log(e.message)
+        }
+
+        var Template = loadTemplate("./lays/properties/base-css.html");
+        var base_css_rules = $("#base_css")[0].sheet.cssRules;
+        var css_container = $("tbody", "#base-css-list");
+        for (var i = 0; i < base_css_rules.length; i++) {
+            if (base_css_rules[i].type == 1) {
+                var s = base_css_rules[i].selectorText;
+                var item = {
+                    id : s.split(".")[1],
+                    txt: base_css_rules[i].cssText.replace(s,"").replace("{","").replace("}","")
+                };
+                var dom = $(Template(item));
+                css_container.append(dom);
+            }
+        }
+
+        $("#css-select-form").on("show.bs.modal", function(e) {
+            $("input", this).attr("checked", false);
+        })
+        $(".btn-primary", "#css-select-form").on("click", function() {
+            var options = $("#css-select-form")[0].options;
+            var checked = $("input:checked", "#css-select-form");
+            var res = "";
+            var $tag_obj = $(options.input).data('tag');
+            for (var i = 0; i < checked.length; i++) {
+                var item = $(checked[i]);
+                $tag_obj.add(item.val());
+            }
+
+            $(options.input).blur();
+            console.log(res);
+            $("#css-select-form").modal("toggle");
+        })
+    });
+    jQuery(function($) {
+        var Template = loadTemplate("./lays/properties/fa-icon.html");
+        var fa_rules = $("#fa_css")[0].sheet.cssRules;
+        var icon_container = $("#fa-icon-list");
+        for (var i = 0; i < fa_rules.length; i++) {
+            if (fa_rules[i].type == 1) {
+                var s = fa_rules[i].selectorText.split("::before");
+                if (s.length > 1) {
+                    var c = fa_rules[i].selectorText.split("::before")[0];
+
+                    var item = {
+                        id : c.split(".")[1]
+                    };
+                    var dom = $(Template(item));
+                    icon_container.append(dom);
+                }
+            }
+        }
+        $("#fa-select-form").on("show.bs.modal", function(e) {
+            $("input", this).attr("checked", false);
+        })
+        $(".btn-primary", "#fa-select-form").on("click", function() {
+            var options = $("#fa-select-form")[0].options;
+            var checked = $("input:checked", "#fa-select-form");
+            var res = "";
+            var $tag_obj = $(options.input).data('tag');
+            for (var i = 0; i < checked.length; i++) {
+                var item = $(checked[i]);
+                $tag_obj.add(item.val());
+            }
+
+            $(options.input).blur();
+            console.log(res);
+            $("#fa-select-form").modal("toggle");
+        })
+    }); 
+</script>

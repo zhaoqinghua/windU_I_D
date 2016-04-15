@@ -89,6 +89,13 @@ body {
     cursor: default
 }
 
+.taggle_border div[data-control="BASE-BORDER"]{
+    border-width: 0px !important;
+}
+
+.taggle_border div[data-pos="tip"]{
+    display: none !important;
+}
 .ace-thumbnails {
     padding: 3px;
 }
@@ -104,10 +111,10 @@ body {
 
 .ace-thumbnails > li > div {
     background-color: #373737;
-    min-width: 80px;
-    min-height: 80px;
-    max-width: 80px;
-    max-height: 80px;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 70px;
+    max-height: 70px;
     display: -webkit-box !important;
     display: box !important;
     position: relative;
@@ -230,12 +237,11 @@ body {
 }
 
 .box_layout .align_dir label, .box_layout .align_hor label {
-    zoom: 0.4;
+    zoom: 0.8;
 }
 
 .box_layout .align_ver label {
-    zoom: 0.4;
-    transform: rotate(90deg);
+    zoom: 0.8;
 }
 
 .box_layout .btn-primary {

@@ -22,10 +22,10 @@ jQuery(function($) {
     });
     
     var Config = Backbone.Designer.Config.extend({
-        initialize:function(){
+        initialize:function(options){
             this.set("type","Box");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("size_h",70);
+            !options && this.set("size_h",70);
         }
     })
     

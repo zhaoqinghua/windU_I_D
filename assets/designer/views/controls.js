@@ -53,6 +53,9 @@ jQuery(function($) {
                 model : model
             });
             $(this.$el).append(view.$el);
+        },
+        getUIControl:function(type){
+            return this.collection.findWhere({name:type});
         }
     });
     window.desUIControlsListViewInstance = new desUIControlsListView();
