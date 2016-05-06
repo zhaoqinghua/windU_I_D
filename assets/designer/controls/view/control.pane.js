@@ -1,36 +1,32 @@
 //加载并初始化模板对象
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/button.html");
+    var Template = loadTemplate("../assets/designer/controls/template/pane.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
-            Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            Backbone.Designer.View.prototype.initialize.apply(this, arguments); 
         },
         template : Template, //VIEW对应的模板
         render : function() {
             var self = this;
             if (this.template) {
                 this.$el = $(this.template(this.model.attributes));
-                Backbone.Designer.View.prototype.render.apply(this, arguments);
+                Backbone.Designer.View.prototype.render.apply(this, arguments); 
             }
             return this;
         }
     });
-
+    
     var Config = Backbone.Designer.Config.extend({
-        initialize : function() {
-            this.set("type", "Button");
+        initialize:function(options){
+            this.set("type","Pane");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
         }
     })
-
+    
     window.desUIControlsListViewInstance.register({
-        uuid : "5287fad8-f593-11e5-9ce9-5e5517507c66",
-        name : "Button",
-        tip : ""
-    }, {
-        View : View,
-        Template : Template,
-        Config : Config
-    })
+                uuid : "433ef517-22a8-40ce-bfa1-fbe69682e55d",
+                name : "Pane",
+                tip:"容器，用于部署于FixSizeBox实现界面内滚动。也可用于界面内多界面切换"
+            },{View:View,Template:Template,Config:Config})
 });

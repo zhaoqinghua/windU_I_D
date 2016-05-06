@@ -34,7 +34,8 @@ jQuery(function($) {
 
     window.desUIControlsListViewInstance.register({
         uuid: "fed5f05f-70dc-4a0a-b072-658640df6c18",
-        name: "Page"
+        name: "Page",
+        tip : ""
     }, {
             View: View,
             Template: Template,

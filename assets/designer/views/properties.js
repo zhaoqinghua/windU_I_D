@@ -35,8 +35,7 @@ jQuery(function($) {
             },
             "click .del-controls" : function(e) {
                 if (window.desUIEditorMobileViewInstance.$current != window.desUIEditorMobileViewInstance) {
-                    window.desUIEditorMobileViewInstance.$current.model.templateItemView.remove();
-                    window.desUIEditorMobileViewInstance.$current.remove();
+                    window.desUIEditorMobileViewInstance.removeItem();
                     window.desUIEditorMobileViewInstance.$current = window.desUIEditorMobileViewInstance;
                 }
             },
@@ -98,7 +97,8 @@ jQuery(function($) {
                 observe : "layout_pack",
                 events : ["change"],
                 initialize : function($el, model, options) {
-                    var obj = $("[value='" + model.get("layout_pack") + "']", $el);
+                    $(".box_layout .align_hor > label").removeClass("active");
+                    var obj = $(".box_layout [name='box_pack'][value='" + model.get("layout_pack") + "']", this.$el);
                     $(obj.parent()).addClass("active");
                 }
             },
@@ -106,7 +106,8 @@ jQuery(function($) {
                 observe : "layout_align",
                 events : ["change"],
                 initialize : function($el, model, options) {
-                    var obj = $("[value='" + model.get("layout_align") + "']", $el);
+                    $(".box_layout .align_ver > label").removeClass("active");
+                    var obj = $(".box_layout [name='box_align'][value='" + model.get("layout_align") + "']", this.$el);
                     $(obj.parent()).addClass("active");
                 }
             },
@@ -114,12 +115,10 @@ jQuery(function($) {
                 observe : "layout_orient",
                 events : ["change"],
                 initialize : function($el, model, options) {
-                    model.get("layout_orient") == "ub-ver" ? $el.parent().addClass("active") : $el.parent().removeClass("");
-                    model.get("layout_orient") == "ub-ver" ? $("i", $el.parent()).addClass("fa-rotate-90") : ($el.parent()).removeClass("fa-rotate-90");
-
+                    $(".box_layout",this.$el).attr("data-layout-orient",model.get("layout_orient"));
                 },
                 updateModel : function(val, event, options) {
-                    val == "ub-ver" ? $("#box_align_orient i", this.$el).addClass("fa-rotate-90") : $("#box_align_orient i", this.$el).removeClass("fa-rotate-90");
+                    $(".box_layout",this.$el).attr("data-layout-orient",val);
                     return true;
                 }
             },

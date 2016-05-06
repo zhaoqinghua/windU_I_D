@@ -52,10 +52,11 @@ jQuery(function($) {
 
                                 //programmatically add a new
                                 var $tag_obj = tag_input.data('tag');
-                                var items = val.split(",");
-                                for (var i in items)
-                                $tag_obj.add(items[i]);
-
+                                if (val) {
+                                    var items = val.split(",");
+                                    for (var i in items)
+                                    $tag_obj.add(items[i]);
+                                }
                                 tag_input.on("added", function() {
                                     $(this).blur();
                                 })

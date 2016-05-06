@@ -18,7 +18,7 @@ jQuery(function($) {
         },
         update : function() {
             var extOptions = this.model.toJSON();
-            var $tab = $("#" + extOptions.uuid, this.$el);
+            var $tab = $(this.$el);
             try {
                 if (this.tabview)
                     this.tabview.ele.empty();
@@ -93,7 +93,8 @@ jQuery(function($) {
 
     window.desUIControlsListViewInstance.register({
         uuid : "6e3fb9c5-b3dd-44aa-b0e2-3ba94973c2cd",
-        name : "Tab"
+        name : "Tab",
+        tip : ""
     }, {
         View : View,
         Template : Template,

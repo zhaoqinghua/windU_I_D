@@ -21,6 +21,27 @@
             </div>
         </div>
         <div class="row">
+            <small class="lighter white">背景图:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
+            <div class="ub ub-ac ub-pj">
+                <div class="ub-f1">
+                    <input id="pro_con_bg_img"/>
+                </div>
+            </div>
+            <br>
+            <div class="ub ub-ac ub-pj">
+                <div class="lighter white ub ub-pc" style="min-width:5em">
+                    <span>背景图效果:</span>
+                </div>
+                <div class="ub-f1">
+                    <select id="pro_con_bg_img_type" class="white">
+                        <option value="">默认</option> 
+                        <option value="ub-img1">覆盖</option> 
+                        <option value="ub-img">包含</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <small class="lighter white">Padding:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
             <div class="ub ub-ac ub-pj">
                 <div class="lighter white ub ub-pc" style="min-width:5em">
@@ -154,12 +175,14 @@
 </div>
 <script>
     jQuery(function($) {
-        $('#pro_con_style_bgcolor,#pro_con_border_color').colorpicker({format:"rgb"});
-        $("#pro_con_style_bgcolor,#pro_con_border_color").on("changeColor",function(e){
-            var c=e.color.toRGB();
-            $(this).css("background-color","rgb("+c.r+","+c.g+","+c.b+")");
-            $(this).val("rgb("+c.r+","+c.g+","+c.b+")");
-            $(this).css("color","rgb("+(255-c.r)+","+(255-c.g)+","+(255-c.b)+")")
+        $('#pro_con_style_bgcolor,#pro_con_border_color').colorpicker({
+            format : "rgb"
+        });
+        $("#pro_con_style_bgcolor,#pro_con_border_color").on("changeColor", function(e) {
+            var c = e.color.toRGB();
+            $(this).css("background-color", "rgb(" + c.r + "," + c.g + "," + c.b + ")");
+            $(this).val("rgb(" + c.r + "," + c.g + "," + c.b + ")");
+            $(this).css("color", "rgb(" + (255 - c.r) + "," + (255 - c.g) + "," + (255 - c.b) + ")")
         })
     })
 </script>

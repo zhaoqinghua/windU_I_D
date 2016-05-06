@@ -15,8 +15,7 @@ jQuery(function($) {
         },
         events : {
             "click .del-controls" : function(e) {
-                this.model.templateItemView.remove();
-                this.model.view.remove();
+                window.desUIEditorMobileViewInstance.removeItem(this.model.view);
                 e.stopPropagation();
             },
             "click .top-controls" : function(e) {

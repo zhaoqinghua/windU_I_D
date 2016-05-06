@@ -20,6 +20,7 @@ jQuery(function($) {
     
     window.desUIControlsListViewInstance.register({
                 uuid : "60399a48-419b-4d0c-bbbe-9b404ed6339f",
-                name : "Slider"
+                name : "Slider",
+        tip : ""
             },{View:View,Template:Template,Config:Config})
 });

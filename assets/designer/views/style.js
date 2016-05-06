@@ -157,6 +157,12 @@ jQuery(function($) {
                     return border;
                 }
             },
+            "#pro_con_bg_img" : {
+                events : ["blur"],
+                observe : "style_background_image"
+            },
+            "#pro_con_bg_img_type" : "style_background_size"
+
         },
         bind : function(control) {
             this.unstickit();

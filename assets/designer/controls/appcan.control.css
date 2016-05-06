@@ -1,4 +1,4 @@
-.btn {
+.button {
     padding: .2em 0.9em;
     min-height: 2.2em;
     font-size: 1em;
@@ -170,7 +170,7 @@
 }
 
 .tab_m {
-    height: 3em;
+    height: 2.3em;
 }
 
 .tab_l {
