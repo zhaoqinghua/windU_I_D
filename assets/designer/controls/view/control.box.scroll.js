@@ -12,11 +12,26 @@ jQuery(function($) {
             if (this.template) {
                 this.$el = $(this.template(this.model.attributes));
                 Backbone.Designer.View.prototype.render.apply(this, arguments);
-                this.$el.on("scroll", function(e) {
-                    console.log(self.$el.scrollTop());
-                })
+                $.scrollbox(this.$el).on("releaseToReload", function() {//After Release,we reset the bounce
+                    var self = this;
+                    console.log("releaseToReload");
+                    setTimeout(function() {
+                        self.reset();
+                    }, 2000);
+                }).on("onReloading", function(a) {//if onreloading status, drag will trigger this event
+                    console.log("onReloading", a);
+                }).on("dragToReload", function() {//drag over 30% of bounce height,will trigger this event
+                    console.log("dragToReload");
+                }).on("draging", function(percent) {//on draging, this event will be triggered.
+                    console.log("draging",percent);
+                }).on("scrollbottom", function() {//on scroll bottom,this event will be triggered.you should get data from server
+                    console.log("scrollbottom");
+                }).reload();
             }
             return this;
+        },
+        appendChild : function(el) {
+            $('[data-control="BounceBox"]', this.$el).append(el);
         }
     });
 

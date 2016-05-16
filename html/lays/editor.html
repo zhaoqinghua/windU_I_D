@@ -47,9 +47,9 @@
     });
         $("#borderSwitchBtn").change(function(e){
             if(this.checked)
-                $(".ui_editor_mobile").addClass("taggle_border");
+                window.desUIEditorMobileViewInstance.design(true);//$(".ui_editor_mobile").addClass("taggle_border");
             else
-                $(".ui_editor_mobile").removeClass("taggle_border");
+                window.desUIEditorMobileViewInstance.design(false);//$(".ui_editor_mobile").removeClass("taggle_border");
         })
     })
     

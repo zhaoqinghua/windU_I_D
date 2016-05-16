@@ -24,8 +24,7 @@ jQuery(function($) {
                 col.unshift(this.model,{silent:true});
                 var view = this.model.templateItemView;
                 $("ul:first", this.model.parentView.$el).prepend(view.$el);
-                this.model.view.$el.insertAfter($("div:first",this.model.view.$el.parent()));
-                        
+                this.model.view.$el.parent().prepend(this.model.view.$el);
             },
             "click .bottom-controls" : function(e) {
                 var col = this.model.collection;

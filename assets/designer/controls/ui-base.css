@@ -1,5 +1,4 @@
-
-.uc-tl{
+.uc-tl {
     -webkit-border-top-left-radius: .6em;
     border-top-left-radius: .6em
 }
@@ -118,7 +117,6 @@
     border-radius: 1.2em
 }
 
-
 .us {
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
@@ -135,7 +133,6 @@
 .uts {
     text-shadow: 0px 2px 2px #000;
 }
-
 
 .ulev2 {
     font-size: 1.5em !important;
@@ -319,6 +316,10 @@
     overflow-y: hidden;
 }
 
+.uof-sy {
+    overflow-y: scroll;
+}
+
 .uab {
     position: absolute;
 }
@@ -333,4 +334,24 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.box_bounce {
+    position: absolute;
+    height: 10em;
+    width: 100%;
+    top: -10em;
+    text-align: center;
+}
+
+.box_bounce .bounce_status {
+    display: none;
+}
+
+.active {
+    display: block !important;
+}
+
+.tab_pane {
+    display: none;
 }

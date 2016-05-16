@@ -152,6 +152,7 @@
         <script src="../assets/js/template.import.js"></script>
         <script src="../assets/designer/controls/deps/appcan.js"></script>
         <script src="../assets/designer/controls/deps/appcan.tab.js"></script>
+        <script src="../assets/designer/controls/deps/appcan.scrollbox.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.base.js"></script>
 
         <script type="text/javascript" src="../assets/designer/views/controls.js"></script>
@@ -163,17 +164,20 @@
         <script type="text/javascript" src="../assets/designer/views/style.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.page.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.box.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.frame.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.button.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.input.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.list.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.search.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.slider.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.tab.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control.input.icon.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.box.ver.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.box.scroll.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.pane.js"></script>
+
+        <script type="text/javascript" src="../assets/designer/controls/view/control.input.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.search.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.input.icon.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.button.js"></script>
+
+        <script type="text/javascript" src="../assets/designer/controls/view/control.header.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.list.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.slider.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control.tab.js"></script>
+        
         <script type="text/javascript" src="../assets/designer/file.js"></script>
         
         <!-- inline scripts related to this page -->
@@ -271,13 +275,20 @@
                 });
 
             });
-
+            $(document).on("mousedown",function(e){
+                console.log("eee");
+            })
             $(document).keydown(function(e) {
                 if (e.target.localName == "input")
                     return;
                 if (e.keyCode == 46)
                     window.desUIEditorMobileViewInstance.removeItem();
             });
+            
+            jQuery(function($){
+                debugger;
+                window.desUIEditorMobileViewInstance.load();
+            })
 
         </script>
         <script>

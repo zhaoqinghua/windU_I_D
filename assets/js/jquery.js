@@ -4371,7 +4371,8 @@ jQuery.event = {
 
 		// Make a writable jQuery.Event from the native event object
 		event = jQuery.event.fix( event );
-
+        // if(event.type == "mousedown")
+            // debugger;
 		var i, j, ret, matched, handleObj,
 			handlerQueue = [],
 			args = slice.call( arguments ),

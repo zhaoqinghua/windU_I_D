@@ -1,14 +1,25 @@
-appcan.ready(function(){
+jQuery(function($) {
     window.FileMgr = {
-        load:function(callback){
-            appcan.file.read("D:/Server/html/Out/layout.m",-1,function(err,data,dataType,optId){
-                callback && callback(err,data);
-            })
+        load : function(path, callback) {
+            window.cefQuery({
+                request : 'readFile:' + path,
+                onSuccess : function(response) {
+                    callback && callback(0, response);
+                },
+                onFailure : function(error_code, error_message) {
+                    callback && callback(error_code, error_message);
+                }
+            });
         },
-        save:function(content,callback,path){
-            appcan.file.write(path || "D:/Server/html/Out/layout.m",content,function(err,data,dataType,optId){
-                callback && callback(err,data);
-            })
+        save : function(f,content, callback, path) {
+            window.cefQuery({
+                request : 'writeFile:' + f + '####' + content,
+                onSuccess : function(response) {
+                     callback && callback(err, data);
+                },
+                onFailure : function(error_code, error_message) {
+                }
+            });
         }
     }
 })

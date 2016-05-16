@@ -10,7 +10,8 @@ jQuery(function($) {
                 self.focus();
             })
             this.$el.on("mousedown", function(e) {
-                e.stopPropagation();
+                if(!self.model.get("viewState")) return;
+                    e.stopPropagation();
                 // self.focus();
             })
             this.model.get("on/off_dropable") && this.$el.droppable({
@@ -31,7 +32,10 @@ jQuery(function($) {
                         view.model.collection.remove(view.model);
                         self.model.items.add(view.model);
                         var offset = ui.offset;
-                        self.$el.append(ui.draggable);
+                        if (self.appendChild)
+                            self.appendChild(ui.draggable);
+                        else
+                            self.$el.append(ui.draggable);
                         $(ui.draggable).offset(offset);
                     }
 
@@ -48,13 +52,15 @@ jQuery(function($) {
                     $(ui.helper).css("z-index", "");
                 },
                 drag : function(event, ui) {
-                    if (self.model.get("on/off_offset")) {
-                        self.$el.css('cursor', 'move');
+                    if (!self.model.get("on/off_offset") || !self.model.get("viewState")) {
+                        return false;
                         //self.model.set("offset_x", ui.position.left,{silent: true});
                         //self.model.set("offset_y", ui.position.top,{silent: true});
                     }
+                    self.$el.css('cursor', 'move');
                     event.stopPropagation();
-                }
+                },
+                snap:true
             });
             this.$el.draggable(this.model.get("on/off_offset") ? "enable" : "disable");
             //this.resize(this.$el,0,0,1,1,"move");
@@ -68,18 +74,21 @@ jQuery(function($) {
             // this.resize($("[data-pos='rt']", this.$focus), -1, 1, 0, 1, "ne-resize");
             // this.resize($("[data-pos='rc']", this.$focus), -1, 0, 0, 0, "e-resize");
             // this.resize($("[data-pos='rb']", this.$focus), -1, -1, 0, 0, "se-resize");
-
+            this.listenTo(this.model,"change:viewState",function(data){
+                this.$el.draggable(data.changed.viewState ? "enable" : "disable");
+                this.model.items.design(data.changed.viewState);
+            })
             this.listenTo(this.model, "change:uuid", function(data) {
                 this.$el.attr("id", data.changed.uuid);
             });
             this.listenTo(this.model, "change:size_w", function(data) {
                 _.isNumber(data.changed.size_w) && this.$el.css("width", (data.changed.size_w ) / 24 + "em");
-                _.isString(data.changed.size_w) && this.$el.css("width",data.changed.size_w); 
+                _.isString(data.changed.size_w) && this.$el.css("width", data.changed.size_w);
                 data.changed.size_w === undefined && this.$el.css("width", "");
             })
             this.listenTo(this.model, "change:size_h", function(data) {
                 _.isNumber(data.changed.size_h) && this.$el.css("height", (data.changed.size_h ) / 24 + "em");
-                _.isString(data.changed.size_h) && this.$el.css("height",data.changed.size_h);
+                _.isString(data.changed.size_h) && this.$el.css("height", data.changed.size_h);
                 data.changed.size_h === undefined && this.$el.css("height", "");
             })
             this.listenTo(this.model, "change:offset_x", function(data) {
@@ -229,6 +238,7 @@ jQuery(function($) {
                 self.$el.css('cursor', 'default');
             }).click(function() {
             }).mousedown(function(e) {
+                if(!self.model.get("viewState")) return;
                 if (zx != 0 || zy != 0 || lx != 0 || ly != 0) {
                     _move = true;
                     _x = e.pageX;
@@ -239,6 +249,7 @@ jQuery(function($) {
                     self.$el.css('cursor', 'move');
             });
             $(document).mousemove(function(e) {
+                if(!self.model.get("viewState")) return;
                 if (_move) {
                     var dx = e.pageX - _x;
                     var dy = e.pageY - _y;
@@ -355,6 +366,7 @@ jQuery(function($) {
                     }
                 }
             }).mouseup(function() {
+                if(!self.model.get("viewState")) return;
                 self.$el.css('cursor', 'default');
                 _move = false;
                 this._resizing = false;
@@ -366,6 +378,7 @@ jQuery(function($) {
         initialize : function() {
             var uuid = this.get("uuid");
             uuid || this.set("uuid", this.get("type") + "_" + getUUID());
+            this.set("viewState",true);
             this.set("flex", "");
             //flex0-7
             this.set("position", "");
@@ -482,6 +495,11 @@ jQuery(function($) {
                 css.push(m.buildCSS());
             }
             return css.join("\r\n");
+        },
+        design:function(state){
+            for (var i = 0; i < this.length; i++) {
+                this.at(i).set("viewState",state);
+            }
         }
     })
     Backbone.Designer = {
