@@ -10,8 +10,9 @@ jQuery(function($) {
                 self.focus();
             })
             this.$el.on("mousedown", function(e) {
-                if(!self.model.get("viewState")) return;
-                    e.stopPropagation();
+                if (!self.model.get("viewState"))
+                    return;
+                e.stopPropagation();
                 // self.focus();
             })
             this.model.get("on/off_dropable") && this.$el.droppable({
@@ -44,7 +45,7 @@ jQuery(function($) {
                     e.stopPropagation();
                 }
             });
-            this.$el.draggable({
+            this.model.get("on/off_draggable") && this.$el.draggable({
                 start : function(event, ui) {
                     $(ui.helper).css("z-index", 10000);
                 },
@@ -60,9 +61,9 @@ jQuery(function($) {
                     self.$el.css('cursor', 'move');
                     event.stopPropagation();
                 },
-                snap:true
+                snap : true
             });
-            this.$el.draggable(this.model.get("on/off_offset") ? "enable" : "disable");
+            this.model.get("on/off_draggable") && this.$el.draggable(this.model.get("on/off_offset") ? "enable" : "disable");
             //this.resize(this.$el,0,0,1,1,"move");
             this.resize();
 
@@ -74,8 +75,10 @@ jQuery(function($) {
             // this.resize($("[data-pos='rt']", this.$focus), -1, 1, 0, 1, "ne-resize");
             // this.resize($("[data-pos='rc']", this.$focus), -1, 0, 0, 0, "e-resize");
             // this.resize($("[data-pos='rb']", this.$focus), -1, -1, 0, 0, "se-resize");
-            this.listenTo(this.model,"change:viewState",function(data){
-                this.$el.draggable(data.changed.viewState ? "enable" : "disable");
+            this.listenTo(this.model, "change:viewState", function(data) {
+                if (this.model.get("on/off_draggable")) {
+                    this.$el.draggable(data.changed.viewState ? "enable" : "disable");
+                }
                 this.model.items.design(data.changed.viewState);
             })
             this.listenTo(this.model, "change:uuid", function(data) {
@@ -131,7 +134,7 @@ jQuery(function($) {
                 self.$el.addClass(data.changed.flex);
             });
             this.listenTo(this.model, "change:on/off_offset", function(data) {
-                self.$el.draggable(data.changed["on/off_offset"] ? "enable" : "disable");
+                this.model.get("on/off_draggable") && self.$el.draggable(data.changed["on/off_offset"] ? "enable" : "disable");
             });
             this.listenTo(this.model, "change:layout_pack", function(data) {
                 self.$el.removeClass("ub-pc ub-pe ub-pj");
@@ -160,13 +163,13 @@ jQuery(function($) {
             this.listenTo(this.model, "change:style_padding", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var padding = data.changed.style_padding;
-                var style = padding.top + "px " + padding.right + "px " + padding.bottom + "px " + padding.left + "px";
+                var style = padding.top / 24 + "em " + padding.right  / 24 + "em " + padding.bottom  / 24 + "em "  + padding.left  / 24 + "em " ;
                 self.$el.css("padding", style);
             })
             this.listenTo(this.model, "change:style_margin", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var margin = data.changed.style_margin;
-                var style = margin.top + "px " + margin.right + "px " + margin.bottom + "px " + margin.left + "px";
+                var style = margin.top  / 24 + "em "  + margin.right  / 24 + "em "  + margin.bottom  / 24 + "em "  + margin.left  / 24 + "em " ;
                 self.$el.css("margin", style);
             })
             this.listenTo(this.model, "change:style_border", function(data) {
@@ -233,12 +236,15 @@ jQuery(function($) {
 
             self.$el.hover(function(e) {
                 _hover = true;
+                
             }, function(e) {
                 _hover = false;
                 self.$el.css('cursor', 'default');
             }).click(function() {
+                $(".control_info").text("w:"+self.$el.width()+"px"+" h:"+self.$el.height()+"px")
             }).mousedown(function(e) {
-                if(!self.model.get("viewState")) return;
+                if (!self.model.get("viewState"))
+                    return;
                 if (zx != 0 || zy != 0 || lx != 0 || ly != 0) {
                     _move = true;
                     _x = e.pageX;
@@ -249,7 +255,8 @@ jQuery(function($) {
                     self.$el.css('cursor', 'move');
             });
             $(document).mousemove(function(e) {
-                if(!self.model.get("viewState")) return;
+                if (!self.model.get("viewState"))
+                    return;
                 if (_move) {
                     var dx = e.pageX - _x;
                     var dy = e.pageY - _y;
@@ -280,7 +287,7 @@ jQuery(function($) {
                     var h = self.$el.height();
                     offset.right = offset.left + w;
                     offset.bottom = offset.top + h;
-                    self.$el.draggable("disable");
+                    self.model.get("on/off_draggable") && self.$el.draggable("disable");
                     if (e.pageX >= offset.left && e.pageX <= offset.left + 10) {
                         if (e.pageY >= offset.top && e.pageY <= offset.top + 10) {
                             self.$el.css('cursor', 'nw-resize');
@@ -306,7 +313,7 @@ jQuery(function($) {
                             zy = 0;
                             lx = 0;
                             ly = 0;
-                            self.$el.draggable("enable");
+                            self.model.get("on/off_draggable") && self.$el.draggable("enable");
                         }
                     } else if (e.pageX > offset.left + 10 && e.pageX <= offset.right - 10) {
                         if (e.pageY >= offset.top && e.pageY <= offset.top + 10) {
@@ -321,7 +328,7 @@ jQuery(function($) {
                             zy = 0;
                             lx = 0;
                             ly = 0;
-                            self.$el.draggable("enable");
+                            self.model.get("on/off_draggable") && self.$el.draggable("enable");
                         } else if (e.pageY >= offset.bottom - 10 && e.pageY <= offset.bottom) {
                             self.$el.css('cursor', 's-resize');
                             zx = 0;
@@ -334,7 +341,7 @@ jQuery(function($) {
                             zy = 0;
                             lx = 0;
                             ly = 0;
-                            self.$el.draggable("enable");
+                            self.model.get("on/off_draggable") && self.$el.draggable("enable");
                         }
                     } else if (e.pageX >= offset.right - 10 && e.pageX <= offset.right) {
                         if (e.pageY >= offset.top && e.pageY <= offset.top + 10) {
@@ -361,12 +368,13 @@ jQuery(function($) {
                             zy = 0;
                             lx = 0;
                             ly = 0;
-                            self.$el.draggable("enable");
+                            self.model.get("on/off_draggable") && self.$el.draggable("enable");
                         }
                     }
                 }
             }).mouseup(function() {
-                if(!self.model.get("viewState")) return;
+                if (!self.model.get("viewState"))
+                    return;
                 self.$el.css('cursor', 'default');
                 _move = false;
                 this._resizing = false;
@@ -378,7 +386,7 @@ jQuery(function($) {
         initialize : function() {
             var uuid = this.get("uuid");
             uuid || this.set("uuid", this.get("type") + "_" + getUUID());
-            this.set("viewState",true);
+            this.set("viewState", true);
             this.set("flex", "");
             //flex0-7
             this.set("position", "");
@@ -427,6 +435,7 @@ jQuery(function($) {
             this.set("on/off_offset", true);
             this.set("on/off_size", true);
             this.set("on/off_dropable", true);
+            this.set("on/off_draggable", true);
             this.set("on/off_effect", true);
             this.set("on/off_project", true);
             this.set("on/off_private", true);
@@ -496,9 +505,9 @@ jQuery(function($) {
             }
             return css.join("\r\n");
         },
-        design:function(state){
+        design : function(state) {
             for (var i = 0; i < this.length; i++) {
-                this.at(i).set("viewState",state);
+                this.at(i).set("viewState", state);
             }
         }
     })

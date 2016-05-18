@@ -18,7 +18,7 @@
     <div class="widget-main padding-8 scrollable ace-scroll" id="control_tree">
         <div class="white">
             <div class="control-item">
-                <span class="lighter">Body</span>
+                <span class="lighter root-item">Body</span>
             </div>
             <ul class="content"></ul>
         </div>
@@ -35,6 +35,10 @@
         })
         $("#desUICssBtn").click(function(){
             window.desUIEditorMobileViewInstance.buildCSS();
+        })
+        
+        $(".root-item",$("#control_tree")).click(function(){
+            
         })
     })
     

@@ -3,6 +3,10 @@ jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/pane.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
+            this.listenTo(this.model, "change:active", function(data) {
+                !data.changed.active && this.$el.removeClass("active");
+                data.changed.active && this.$el.addClass("active");
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments); 
         },
@@ -21,7 +25,12 @@ jQuery(function($) {
         initialize:function(options){
             this.set("type","Pane");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-        }
+            this.set("active",false);
+        },extOptions : [{
+            type : "checkbox",
+            title : "Active",
+            name : "active"
+        }]
     })
     
     window.desUIControlsListViewInstance.register({

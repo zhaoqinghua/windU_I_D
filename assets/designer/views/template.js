@@ -58,7 +58,10 @@ jQuery(function($) {
         },
         collection : new Backbone.Designer.Items(),
         events : {
-           
+           "click .root-item":function(){
+               window.desUIEditorMobileViewInstance.focus();
+               $(".root-item",this.$el).addClass("control-item-focus");
+           }
         },
         focusView : this,
         bindings : {
@@ -72,6 +75,7 @@ jQuery(function($) {
         },
         focusItem : function(view) {
             $("li>div", this.$el).removeClass("control-item-focus");
+            $(".root-item",this.$el).removeClass("control-item-focus");
             if (view.model.templateItemView) {
                 $("div:first", view.model.templateItemView.$el).addClass("control-item-focus");
             } else {

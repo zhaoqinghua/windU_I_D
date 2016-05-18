@@ -17,6 +17,11 @@ jQuery(function($) {
             h:0
         },
         wheel : function(e) {
+            if(window.desUIEditorMobileViewInstance.onwheel)
+            {
+                window.desUIEditorMobileViewInstance.onwheel = false;
+                return true;
+            }    
             var self=this;
             self.offset.x = self.offset.x - e.originalEvent.deltaX;
             self.offset.y = self.offset.y - e.originalEvent.deltaY;

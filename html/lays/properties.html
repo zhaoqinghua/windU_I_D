@@ -41,6 +41,7 @@
                 <select id="pro_con_position" class="white">
                     <option value="">relative</option>
                     <option value="absolute">absolute</option>
+                    <option value="fixed">fixed</option>
                 </select>
             </div>
         </div>
@@ -301,7 +302,7 @@
 
             $(options.input).blur();
             console.log(res);
-            $("#fa-select-form").modal("toggle");
+            $("#fa-select-form").hide();
         })
     }); 
 </script>

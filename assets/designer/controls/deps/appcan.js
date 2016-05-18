@@ -11587,7 +11587,7 @@ appcan.define('widgetOne', function($, exports, module) {
       .on(touchStart, function(e){
         if((_isPointerType = isPointerEventType(e, 'down')) &&
           !isPrimaryTouch(e)) return
-        firstTouch = _isPointerType ? e : e.touches[0]
+        firstTouch = _isPointerType ? e : e.touches[0];
         if (e.touches && e.touches.length === 1 && touch.x2) {
           // Clear out touch movement data if we have it sticking around
           // This can occur if touchcancel doesn't fire due to preventDefault, etc.

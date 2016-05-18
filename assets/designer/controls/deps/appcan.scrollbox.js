@@ -5,7 +5,7 @@
     }
 
     var touchEnd = isWindows() ? 'MSPointerUp pointerup mouseup' : 'touchend MSPointerUp pointerup';
-    var scrollBox = $("[data-control='ScrollBOX']");
+    
     var scrollBoxConfig = Backbone.Model.extend({
         defaults : {
             "bounce" : 1
@@ -14,7 +14,7 @@
     var scrollView = Backbone.View.extend({//options...
         initialize : function(option) {
             var $el = this.$el = option.$el;
-            this.bounceBox = $("[data-control='BounceBox']", this.$el);
+            this.bounceBox = $("[data-control='ScrollBOX']",this.$el);
             this.bounceHeight = $(".box_bounce", this.bounceBox).height();
             this.bounceStatus = $(".bounce_status", this.bounceBox);
             $el.scrollView = this;
@@ -72,7 +72,7 @@
             if (this.model.get("bounce") != 1) {
                 this.bounceStatus.removeClass("active");
             }
-            $el.on("swipeMoveDown", function(e,_args) {
+            self.$el.on("swipeMoveDown", function(e,_args) {
                 self.bounceHeight = $(".box_bounce", self.bounceBox).height();
                 if(!e._args) e._args = _args;
                 if ($el.scrollTop() == 0) {
@@ -91,7 +91,7 @@
                     self.model.set("percent", percent);
                 }
             })
-            $el.on(touchEnd, function(e) {
+            self.$el.on(touchEnd, function(e) {
                 if ($el.scrollTop() == 0) {
                     if (self.bounceBox) {
                         !self.bounceBox.hasClass("utra") && self.bounceBox.addClass("utra");
@@ -104,7 +104,7 @@
                     }
                 }
             })
-            $el.on("scroll", function() {
+            self.$el.on("scroll", function() {
                 if (self.bounceBox) {
                     var h = self.bounceBox.height();
                     var ch = $el.height();

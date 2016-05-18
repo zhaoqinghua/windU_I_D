@@ -46,7 +46,7 @@ jQuery(function($) {
         },
         buildCSS : function(f) {
             var out = this.items.buildCSS();
-            f = path.dirname(f) + "\\css\\"+path.basename(f)+".css"
+            f = path.dirname(f) + "\\css\\" + path.basename(f) + ".css"
             console.log(out);
             window.FileMgr.save(f, out);
         }
@@ -82,7 +82,7 @@ jQuery(function($) {
             this.model.items = window.desTemplateRootViewInstance.collection;
             this.model.view = this;
             this.render();
-            this.listenTo(this.model,"change:viewState",function(data){
+            this.listenTo(this.model, "change:viewState", function(data) {
                 self.model.items.design(data.changed.viewState);
             })
         },
@@ -94,11 +94,16 @@ jQuery(function($) {
             "mousedown" : function(e) {
                 this.focus();
                 e.stopPropagation();
-            }
+            },
+            "mousewheel" : "wheel"
+        },
+        wheel : function(e) {
+            this.onwheel = true;
+            return true;
         },
         insert : function(view) {
             if (this.$current) {
-                if(this.$current.appendChild)
+                if (this.$current.appendChild)
                     this.$current.appendChild(view.$el);
                 else
                     this.$current.$el.append(view.$el);
@@ -118,10 +123,10 @@ jQuery(function($) {
                 item.remove();
             }
         },
-        design:function(state){
+        design : function(state) {
             state && $(".ui_editor_mobile").addClass("taggle_border");
             !state && $(".ui_editor_mobile").removeClass("taggle_border");
-            this.model.set("viewState",state);
+            this.model.set("viewState", state);
         },
         save : function() {
             var f = $.getUrlParam("path");

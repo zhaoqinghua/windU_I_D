@@ -355,3 +355,38 @@
 .tab_pane {
     display: none;
 }
+
+[data-control="PAGE"] {
+    min-height: 100%;
+    max-height: 100%;
+    
+}
+
+[data-control="HEADER"] {
+    position: absolute !important;
+    top: 0;
+    z-index: 1000
+}
+
+[data-control="CONTENT"]{
+    height:100%;
+    position: absolute !important;
+    width:100%;
+    overflow-y: scroll;
+}
+
+[data-control="FOOTER"] {
+    position: absolute !important;
+    bottom: 0;
+    z-index: 1000;
+    min-height:1em;
+}
+
+[data-control="PANE"] {
+    min-height:200px;
+}
+
+.nav-btn>div{
+    min-width: 1em;
+    min-height:1em;
+}

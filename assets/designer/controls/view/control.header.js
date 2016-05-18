@@ -17,6 +17,9 @@ jQuery(function($) {
                 }
                 $("#nav-right > div",this.$el).addClass(data.changed.nav_right_icon);
             })
+            this.listenTo(this.model,"change:title",function(data){
+                $(".ut",this.$el).text(data.changed.title || "标题");
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -35,23 +38,39 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "Header");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
+            this.set("on/off_draggable", false);
         },
         extOptions : [{
             type : "icon",
-            title : "左导航按钮",
+            title : "左导航按钮图标",
             name : "nav_left_icon"
         },
         {
             type : "icon",
-            title : "右导航按钮",
+            title : "左导航按钮图片",
+            name : "nav_left_pic"
+        },
+        {
+            type : "icon",
+            title : "右导航按钮图标",
             name : "nav_right_icon"
+        },
+        {
+            type : "icon",
+            title : "右导航按钮图片",
+            name : "nav_right_pic"
+        },{
+            type : "input",
+            title : "Title",
+            name : "title"
         }]
     })
 
     window.desUIControlsListViewInstance.register({
         uuid : "c80a41cc-c26b-454e-99bc-680a11c496d7",
         name : "Header",
-        tip : ""
+        tip : "",
+        type: "frame"
     }, {
         View : View,
         Template : Template,

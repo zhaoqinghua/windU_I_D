@@ -52,7 +52,10 @@ jQuery(function($) {
             var view = new desUIControlView({
                 model : model
             });
-            $(this.$el).append(view.$el);
+            if(model.get("type") == "frame")
+                $(".frame",this.$el).append(view.$el);
+            else
+                $(".controls",this.$el).append(view.$el);
         },
         getUIControl:function(type){
             return this.collection.findWhere({name:type});
