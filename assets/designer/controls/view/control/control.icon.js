@@ -1,7 +1,14 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/search.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/icon.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
+            this.listenTo(this.model, "change:icon", function(data) {
+                var prev = this.model.previous("icon");
+                if (prev) {
+                    $("i",this.$el).removeClass(prev);
+                }
+                $("i",this.$el).addClass(data.changed.icon);
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -13,23 +20,31 @@ jQuery(function($) {
                 Backbone.Designer.View.prototype.render.apply(this, arguments);
             }
             return this;
+        },
+        appendChild : function(el) {
+            $(this.$el).append(el);
         }
     });
 
     var Config = Backbone.Designer.Config.extend({
         initialize : function() {
-            this.set("type", "Search");
+            this.set("type", "Icon");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-        }
+        },
+        extOptions : [{
+            type : "icon",
+            title : "Icon",
+            name : "icon"
+        }]
     })
 
     window.desUIControlsListViewInstance.register({
-        uuid : "021c646d-17c9-40ae-a351-08aa146c2714",
-        name : "Search",
+        uuid : "06c2a3fa-4448-4a27-8b66-ae4d0469e52c",
+        name : "Icon",
         tip : ""
     }, {
         View : View,
         Template : Template,
         Config : Config
     })
-}); 
+});

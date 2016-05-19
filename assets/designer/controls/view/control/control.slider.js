@@ -1,5 +1,5 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/base.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/base.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);  

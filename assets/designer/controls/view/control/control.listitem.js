@@ -1,14 +1,7 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/iconinput.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/listitem.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
-            this.listenTo(this.model, "change:icons", function(data) {
-                var prev = this.model.previous("icons");
-                if(prev){
-                    $("[data-control-icon]",this.$el).removeClass(prev);
-                }
-                $("[data-control-icon]",this.$el).addClass(data.changed.icons);
-            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -21,25 +14,26 @@ jQuery(function($) {
             }
             return this;
         },
-
+        appendChild : function(el) {
+            $(this.$el).append(el);
+        },
+        verifyParent:function(view){
+            var res = view.$el.attr("data-control") == "LISTVIEW";
+            !res && bootbox.alert({message: 'ListItem只能嵌入在ListView控件中！'})
+            return res; 
+        }
     });
 
     var Config = Backbone.Designer.Config.extend({
         initialize : function() {
-            this.set("type", "iconInput");
+            this.set("type", "ListItem");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("icons", "fa-qrcode");
-        },
-        extOptions : [{
-            type : "icon",
-            title : "Icons",
-            name : "icons"
-        }]
+        }
     })
 
     window.desUIControlsListViewInstance.register({
-        uuid : "82d4b778-872a-4819-bf73-4e7c27be5474",
-        name : "带图标Input",
+        uuid : "7b28b501-ed90-49ca-8799-c2dd38736cc6",
+        name : "ListItem",
         tip : ""
     }, {
         View : View,

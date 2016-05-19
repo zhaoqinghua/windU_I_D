@@ -1,6 +1,6 @@
 //加载并初始化模板对象
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/header.html");
+    var Template = loadTemplate("../assets/designer/controls/template/frame/header.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.listenTo(this.model, "change:nav_left_icon", function(data) {

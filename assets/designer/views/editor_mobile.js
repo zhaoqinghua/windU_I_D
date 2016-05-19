@@ -102,6 +102,10 @@ jQuery(function($) {
             return true;
         },
         insert : function(view) {
+            if (view.verifyParent && !view.verifyParent(this.$current)) {
+                
+                return;
+            }
             if (this.$current) {
                 if (this.$current.appendChild)
                     this.$current.appendChild(view.$el);

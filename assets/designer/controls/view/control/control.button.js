@@ -1,5 +1,6 @@
+//加载并初始化模板对象
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/search.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/button.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
@@ -18,18 +19,18 @@ jQuery(function($) {
 
     var Config = Backbone.Designer.Config.extend({
         initialize : function() {
-            this.set("type", "Search");
+            this.set("type", "Button");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
         }
     })
 
     window.desUIControlsListViewInstance.register({
-        uuid : "021c646d-17c9-40ae-a351-08aa146c2714",
-        name : "Search",
+        uuid : "5287fad8-f593-11e5-9ce9-5e5517507c66",
+        name : "Button",
         tip : ""
     }, {
         View : View,
         Template : Template,
         Config : Config
     })
-}); 
+});

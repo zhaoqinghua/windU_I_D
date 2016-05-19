@@ -7,6 +7,10 @@ jQuery(function($) {
 
         },
         bindings : {
+            "#pro_con_style_color" : {
+                observe : "style_color",
+                events : ["blur"],
+            },
             "#pro_con_style_bgcolor" : {
                 observe : "style_background_color",
                 events : ["blur"],
@@ -119,50 +123,21 @@ jQuery(function($) {
                     return margin;
                 }
             },
-            "#pro_con_border_width" : {
-                observe : "style_border",
-                events : ["blur"],
-                onGet : function(vals) {
-                    var border = this.model.get("style_border");
-                    return border.width;
-                },
-                onSet : function(vals) {
-                    var border = _.clone(this.model.get("style_border"));
-                    border.width = parseInt(vals);
-                    return border;
-                }
-            },
+            "#pro_con_border_top_width" : "style_border_top",
+            "#pro_con_border_right_width" : "style_border_right",
+            "#pro_con_border_bottom_width" : "style_border_bottom",
+            "#pro_con_border_left_width" : "style_border_left",
             "#pro_con_border_color" : {
-                observe : "style_border",
+                observe : "style_border_color",
                 events : ["blur"],
-                onGet : function(vals) {
-                    var border = this.model.get("style_border");
-                    return border.color;
-                },
-                onSet : function(vals) {
-                    var border = _.clone(this.model.get("style_border"));
-                    border.color = vals;
-                    return border;
-                }
             },
-            "#pro_con_border_type" : {
-                observe : "style_border",
-                onGet : function(vals) {
-                    var border = this.model.get("style_border");
-                    return border.type;
-                },
-                onSet : function(vals) {
-                    var border = _.clone(this.model.get("style_border"));
-                    border.type = vals;
-                    return border;
-                }
-            },
+            "#pro_con_border_type" : "style_border_style",
             "#pro_con_bg_img" : {
                 events : ["blur"],
                 observe : "style_background_image"
             },
-            "#pro_con_bg_img_type" : "style_background_size"
-
+            "#pro_con_bg_img_type" : "style_background_size",
+            "#pro_con_style_font_size" : "style_font_size"
         },
         bind : function(control) {
             this.unstickit();

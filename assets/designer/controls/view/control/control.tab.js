@@ -1,5 +1,5 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/tab.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/tab.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.listenTo(this.model, "change", function(data) {

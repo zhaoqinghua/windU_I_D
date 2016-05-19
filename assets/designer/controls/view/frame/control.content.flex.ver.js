@@ -1,6 +1,6 @@
 //加载并初始化模板对象
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/contentflexver.html");
+    var Template = loadTemplate("../assets/designer/controls/template/frame/contentflexver.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
@@ -35,7 +35,7 @@ jQuery(function($) {
 
     window.desUIControlsListViewInstance.register({
         uuid : "2b7d0eac-5af9-4ad2-b231-4b78152a9ed9",
-        name : "Flex Content Ver",
+        name : "ContentFlexVer",
         tip : "弹性纵向排布容器，内部元素按照比率或大小纵向按顺序排列",
         type : "frame"
     }, {

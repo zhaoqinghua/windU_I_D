@@ -13,6 +13,14 @@
 <div class="widget-body">
     <div class="widget-main control_pro " id="desUIControlsStyle">
         <div class="row">
+            <small class="lighter white">前景色:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
+            <div class="bootstrap-colorpicker">
+                <!-- #section:plugins/misc.colorpicker -->
+                <input id="pro_con_style_color" type="text" class="input-small" />
+                <!-- /section:plugins/misc.colorpicker -->
+            </div>
+        </div>
+        <div class="row">
             <small class="lighter white">背景色:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
             <div class="bootstrap-colorpicker">
                 <!-- #section:plugins/misc.colorpicker -->
@@ -133,14 +141,47 @@
             <small class="lighter white">边框:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
             <div class="ub ub-ac ub-pj">
                 <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>宽:</span>
+                    <span>上:</span>
                 </div>
                 <div class="ub-f1">
-                    <input id="pro_con_border_width"/>
+                    <input id="pro_con_border_top_width"/>
                 </div>
                 <div class="lighter white ub ub-pc">
                     <span class="tx-c">px</span>
                 </div>
+                <div class="lighter white ub ub-pc" style="min-width:2em">
+                    <span>右:</span>
+                </div>
+                <div class="ub-f1">
+                    <input id="pro_con_border_right_width"/>
+                </div>
+                <div class="lighter white ub ub-pc">
+                    <span class="tx-c">px</span>
+                </div>
+            </div>
+            <br>
+            <div class="ub ub-ac ub-pj">
+                <div class="lighter white ub ub-pc" style="min-width:2em">
+                    <span>底:</span>
+                </div>
+                <div class="ub-f1">
+                    <input id="pro_con_border_bottom_width"/>
+                </div>
+                <div class="lighter white ub ub-pc">
+                    <span class="tx-c">px</span>
+                </div>
+                <div class="lighter white ub ub-pc" style="min-width:2em">
+                    <span>左:</span>
+                </div>
+                <div class="ub-f1">
+                    <input id="pro_con_border_left_width"/>
+                </div>
+                <div class="lighter white ub ub-pc">
+                    <span class="tx-c">px</span>
+                </div>
+            </div>
+            <br>
+            <div class="ub ub-ac ub-pj">
                 <div class="lighter white ub ub-pc" style="min-width:2em">
                     <span class="tx-c"> 　色彩:</span>
                 </div>
@@ -174,14 +215,20 @@
                 <input id="pro_con_style_border_radius"/>
             </div>
         </div>
+        <div class="row">
+            <small class="lighter white">字体大小:(em)</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
+            <div class="" style="padding-bottom: 4px">
+                <input id="pro_con_style_font_size"/>
+            </div>
+        </div>
     </div>
 </div>
 <script>
     jQuery(function($) {
-        $('#pro_con_style_bgcolor,#pro_con_border_color').colorpicker({
+        $('#pro_con_style_bgcolor,#pro_con_style_color,#pro_con_border_color').colorpicker({
             format : "rgb"
         });
-        $("#pro_con_style_bgcolor,#pro_con_border_color").on("changeColor", function(e) {
+        $("#pro_con_style_bgcolor,#pro_con_style_color,#pro_con_border_color").on("changeColor", function(e) {
             var c = e.color.toRGB();
             $(this).css("background-color", "rgb(" + c.r + "," + c.g + "," + c.b + ")");
             $(this).val("rgb(" + c.r + "," + c.g + "," + c.b + ")");

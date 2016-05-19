@@ -249,21 +249,22 @@ body {
 }
 
 [data-control-focus]:after {
-    content: attr(id);
+    /*content: attr(id);
     position: absolute;
     font-size: 8px;
-    top: -25px;
+    top: 0px;
     left: 0px;
     height: 25px;
     border: 1px dashed blue;
     border-radius: 3px;
     background-color: orange;
     padding: 2px 5px;
-    z-index: 100000;
+    z-index: 100000;*/
 }
 
 [data-control-focus]:before {
-    background-color: rgba(0,0,190,0.2);
+    /*background-color: rgba(0,0,190,0.2);*/
+   border: 1px dashed rgba(0,0,255,0.4) !important;
 }
 
 .taggle_border [data-control]:before {
