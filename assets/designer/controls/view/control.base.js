@@ -1,11 +1,12 @@
 //加载并初始化模板对象
 jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/base.html");
-    function isNum(val){
+    function isNum(val) {
         var a = parseInt(val) != Number.NaN;
         var b = (parseInt(val).toString() == val);
         return a && b;
     }
+
     var View = Backbone.View.extend({//options...
         initialize : function(option) {
             var self = this;
@@ -92,23 +93,26 @@ jQuery(function($) {
                 this.$el.attr("id", data.changed.uuid);
             });
             this.listenTo(this.model, "change:size_w", function(data) {
-                isNum(data.changed.size_w) && this.$el.css("width", (data.changed.size_w ) / 24 + "em");
-                !isNum(data.changed.size_w) && this.$el.css("width", data.changed.size_w);
+                isNum(data.changed.size_w) && (this.$el.css("width", (data.changed.size_w ) / 24 + "em"),this.model.css["width"] = (data.changed.size_w ) / 24 + "em");
+                !isNum(data.changed.size_w) && (this.$el.css("width", data.changed.size_w),this.model.css["width"] = data.changed.size_w);
                 data.changed.size_w === undefined && this.$el.css("width", "");
+
+                
+
             })
             this.listenTo(this.model, "change:size_h", function(data) {
-                isNum(data.changed.size_h) && this.$el.css("height", (data.changed.size_h ) / 24 + "em");
-                !isNum(data.changed.size_h) && this.$el.css("height", data.changed.size_h);
+                isNum(data.changed.size_h) && (this.$el.css("height", (data.changed.size_h ) / 24 + "em"),this.model.css["height"]=(data.changed.size_h ) / 24 + "em");
+                !isNum(data.changed.size_h) && (this.$el.css("height", data.changed.size_h),this.model.css["height"]=data.changed.size_h);
                 data.changed.size_h === undefined && this.$el.css("height", "");
             })
             this.listenTo(this.model, "change:offset_x", function(data) {
-                isNum(data.changed.offset_x) && this.$el.css("left", (data.changed.offset_x ) / 24 + "em");
-                !isNum(data.changed.offset_x) && this.$el.css("left", (data.changed.offset_x ));
+                isNum(data.changed.offset_x) && (this.$el.css("left", (data.changed.offset_x ) / 24 + "em"),this.model.css["left"]=(data.changed.offset_x ) / 24 + "em");
+                !isNum(data.changed.offset_x) && (this.$el.css("left", (data.changed.offset_x )),this.model.css["left"]=data.changed.offset_x);
                 data.changed.offset_x === undefined && this.$el.css("left", "");
             })
             this.listenTo(this.model, "change:offset_y", function(data) {
-                isNum(data.changed.offset_y) && this.$el.css("top", (data.changed.offset_y ) / 24 + "em");
-                !isNum(data.changed.offset_y) && this.$el.css("top", (data.changed.offset_y ));
+                isNum(data.changed.offset_y) && (this.$el.css("top", (data.changed.offset_y ) / 24 + "em"),this.model.css["top"]=(data.changed.offset_y ) / 24 + "em");
+                !isNum(data.changed.offset_y) && (this.$el.css("top", (data.changed.offset_y )),this.model.css["top"]=data.changed.offset_y);
                 data.changed.offset_y === undefined && this.$el.css("top", "");
             })
 
@@ -117,119 +121,145 @@ jQuery(function($) {
                 case "absolute":
                     self.$el.css("position", "");
                     self.$el.addClass("uab");
+                    this.model.cla["uab"] = true;
                     break;
                 default:
                     self.$el.css("position", "");
                     self.$el.removeClass("uab");
+                    this.model.cla["uab"] = false;
                     break;
                 }
             });
             this.listenTo(this.model, "change:layout", function(data) {
-                var $el = $(".vector",self.$el);
-                $el = $el.length?$el:self.$el;
+                var $el = $(".vector", self.$el);
+                $el = $el.length ? $el : self.$el;
                 switch (data.changed.layout) {
                 case "box":
                     $el.css("display", "");
                     $el.addClass("ub");
+                    this.model.cla["ub"] = true;
                     break;
                 default:
                     $el.css("display", "");
                     $el.removeClass("ub");
+                    this.model.cla["ub"] = false;
                     break;
                 }
             });
             this.listenTo(this.model, "change:flex", function(data) {
                 self.$el.removeClass("ub-f1 ub-f2 ub-f3 ub-f4 ub-f5 ub-f6 ub-f7");
                 self.$el.addClass(data.changed.flex);
+                this.model.cla["ub-f1"] = this.model.cla["ub-f2"] = this.model.cla["ub-f3"] = this.model.cla["ub-f4"] = this.model.cla["ub-f5"] = this.model.cla["ub-f6"] = $this.model.cla["ub-f7"] = false;
+                this.model.cla[data.changed.flex] = true;
             });
             this.listenTo(this.model, "change:on/off_offset", function(data) {
                 this.model.get("on/off_draggable") && self.$el.draggable(data.changed["on/off_offset"] ? "enable" : "disable");
             });
             this.listenTo(this.model, "change:layout_pack", function(data) {
-                var $el = $(".vector",self.$el);
-                $el = $el.length?$el:self.$el;
+                var $el = $(".vector", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-pc ub-pe ub-pj");
                 $el.addClass(data.changed.layout_pack);
+                this.model.cla["ub-pc"] = this.model.cla["ub-pe"] = this.model.cla["ub-pj"] = false;
+                this.model.cla[data.changed.layout_pack] = true;
             });
             this.listenTo(this.model, "change:layout_align", function(data) {
-                var $el = $(".vector",self.$el);
-                $el = $el.length?$el:self.$el;
+                var $el = $(".vector", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-ac ub-ae");
                 $el.addClass(data.changed.layout_align);
+
+                this.model.cla["ub-ac"] = this.model.cla["ub-ae"] = false;
+                this.model.cla[data.changed.layout_align] = true;
             });
             this.listenTo(this.model, "change:layout_orient", function(data) {
-                var $el = $(".vector",self.$el);
-                $el = $el.length?$el:self.$el;
+                var $el = $(".vector", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-ver");
                 $el.addClass(!data.changed.layout_orient ? "" : "ub-ver");
+                this.model.cla["ub-ver"] = !(!data.changed.layout_orient);
             })
             this.listenTo(this.model, "change:layout_dir", function(data) {
-                var $el = $(".vector",self.$el);
-                $el = $el.length?$el:self.$el;
+                var $el = $(".vector", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-rev");
                 $el.addClass(!data.changed.layout_dir ? "" : "ub-rev");
+                this.model.cla["ub-rev"] = !(!data.changed.layout_dir);
             })
             this.listenTo(this.model, "change:css", function(data) {
                 self.$el.removeClass(this.model.previous("css"));
                 self.$el.addClass(data.changed.css);
+                this.model.cla[this.model.previous("css")] = false;
+                this.model.cla[data.changed.css] = true;
             })
 
             this.listenTo(this.model, "change:style_background_color", function(data) {
                 self.$el.css("background-color", data.changed.style_background_color);
+                this.model.css["background-color"] = data.changed.style_background_color;
             })
             this.listenTo(this.model, "change:style_color", function(data) {
                 self.$el.css("color", data.changed.style_color);
+                this.model.css["color"] = data.changed.style_color;
             })
             this.listenTo(this.model, "change:style_padding", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var padding = data.changed.style_padding;
                 var style = padding.top / 24 + "em " + padding.right / 24 + "em " + padding.bottom / 24 + "em " + padding.left / 24 + "em ";
                 self.$el.css("padding", style);
+                this.model.css["padding"] = style;
             })
             this.listenTo(this.model, "change:style_margin", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var margin = data.changed.style_margin;
                 var style = margin.top / 24 + "em " + margin.right / 24 + "em " + margin.bottom / 24 + "em " + margin.left / 24 + "em ";
                 self.$el.css("margin", style);
+                this.model.css["margin"] = style;
             })
             this.listenTo(this.model, "change:style_border_top", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_top;
                 var style = border + "px ";
                 self.$el.css("border-top-width", style);
+                this.model.css["border-top-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_right", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_right;
                 var style = border + "px ";
                 self.$el.css("border-right-width", style);
+                this.model.css["border-right-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_bottom", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_bottom;
                 var style = border + "px ";
                 self.$el.css("border-bottom-width", style);
+                this.model.css["border-bottom-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_left", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_left;
                 var style = border + "px ";
                 self.$el.css("border-left-width", style);
+                this.model.css["border-left-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_color", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var color = data.changed.style_border_color;
                 self.$el.css("border-color", color);
+                this.model.css["border-color"] = color;
             })
             this.listenTo(this.model, "change:style_border_style", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var style = data.changed.style_border_style;
                 self.$el.css("border-style", style);
+                this.model.css["border-style"] = style;
             })
             this.listenTo(this.model, "change:style_border_radius", function(data) {
                 var border = data.changed.style_border_radius;
                 var style = parseInt(border) + "px";
                 self.$el.css("border-radius", style);
+                this.model.css["border-radius"] = style;
             })
             this.listenTo(this.model, "change:style_background_image", function(data) {
                 var img = data.changed.style_background_image;
@@ -238,20 +268,26 @@ jQuery(function($) {
                 } else {
                     self.$el.css("background-image", "");
                 }
+                this.model.css["background-image"] = self.$el.css("background-image");
             })
             this.listenTo(this.model, "change:style_background_size", function(data) {
                 var imgSize = data.changed.style_background_size;
                 self.$el.removeClass("ub-img ub-img1");
+                this.model.cla["ub-img"] = this.model.cla["ub-img1"] = false;
                 if (imgSize) {
                     self.$el.addClass(imgSize);
+                    this.model.cla[imgSize] = true;
                 }
             })
             this.listenTo(this.model, "change:style_font_size", function(data) {
                 var fontSize = data.changed.style_font_size;
                 self.$el.css("font-size", "");
+                this.model.css["font-size"] = "";
                 if (fontSize) {
                     self.$el.css("font-size", fontSize + "em");
+                    this.model.css["font-size"] = fontSize + "em";
                 }
+                
             })
         },
         template : Template, //VIEW对应的模板
@@ -439,6 +475,8 @@ jQuery(function($) {
 
     var Config = Backbone.Model.extend({
         initialize : function() {
+            this.css = {};
+            this.cla =  {};
             var uuid = this.get("uuid");
             uuid || this.set("uuid", this.get("type") + "_" + getUUID());
             this.set("viewState", true);
@@ -514,17 +552,16 @@ jQuery(function($) {
             return control;
         },
         buildCSS : function() {
-            var css = [];
-            css.push("#" + this.get("uuid") + "{");
-            var padding = this.get("style_padding");
-            (padding.left || padding.top || padding.right || padding.bottom) && (css.push("\tpadding:" + padding.top + "px " + padding.right + "px " + padding.bottom + "px " + padding.left + "px;"));
-            var margin = this.get("style_margin");
-            (margin.left || margin.top || margin.right || margin.bottom) && (css.push("\tmargin:" + margin.top + "px " + margin.right + "px " + margin.bottom + "px " + margin.left + "px;"));
-            css.push("}");
-            if (css.length == 2)
-                css = [];
-            css.push(this.items.buildCSS());
-            return css.join("\r\n");
+            var out = [];
+            out.push("#" + this.get("uuid") + "{");
+            for(var i in this.css){
+                this.css[i] && out.push(i+":"+this.css[i]);
+            }
+            out.push("}");
+            if (out.length == 2)
+                out = [];
+            out.push(this.items.buildCSS());
+            return out.join("\r\n");
 
         }
     })

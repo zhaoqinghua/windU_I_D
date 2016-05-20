@@ -42,7 +42,7 @@ jQuery(function($) {
         bindings : {
         },
         change : function(data) {
-            $("span:last", this.$el).text("["+data.changed.uuid+"]");
+            $(".control-item-name:first", this.$el).text(data.changed.uuid);
         },
         add : function(model) {
             var view = model.templateItemView || new desTemplateItemView({
