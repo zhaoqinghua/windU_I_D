@@ -5,20 +5,20 @@ jQuery(function($) {
         initialize : function(option) {
             this.listenTo(this.model, "change:nav_left_icon", function(data) {
                 var prev = this.model.previous("nav_left_icon");
-                if(prev){
-                    $("#nav-left> div",this.$el).removeClass(prev);
+                if (prev) {
+                    $("#nav-left> div", this.$el).removeClass(prev);
                 }
-                $("#nav-left > div",this.$el).addClass(data.changed.nav_left_icon);
+                $("#nav-left > div", this.$el).addClass(data.changed.nav_left_icon);
             })
             this.listenTo(this.model, "change:nav_right_icon", function(data) {
                 var prev = this.model.previous("nav_right_icon");
-                if(prev){
-                    $("#nav-right > div",this.$el).removeClass(prev);
+                if (prev) {
+                    $("#nav-right > div", this.$el).removeClass(prev);
                 }
-                $("#nav-right > div",this.$el).addClass(data.changed.nav_right_icon);
+                $("#nav-right > div", this.$el).addClass(data.changed.nav_right_icon);
             })
-            this.listenTo(this.model,"change:title",function(data){
-                $(".ut",this.$el).text(data.changed.title || "标题");
+            this.listenTo(this.model, "change:title", function(data) {
+                $(".ut", this.$el).text(data.changed.title || "标题");
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
@@ -31,6 +31,11 @@ jQuery(function($) {
                 Backbone.Designer.View.prototype.render.apply(this, arguments);
             }
             return this;
+        },
+        buildHTML:function(dom){
+            this.model.get("nav_left_icon") && $("#nav-left > div", dom).addClass(this.model.get("nav_left_icon"));
+            this.model.get("nav_right_icon") && $("#nav-left > div", dom).addClass(this.model.get("nav_right_icon"));
+            this.model.get("title") && $(".ut", dom).text(this.model.get("title"));
         }
     });
 
@@ -44,22 +49,19 @@ jQuery(function($) {
             type : "icon",
             title : "左导航按钮图标",
             name : "nav_left_icon"
-        },
-        {
+        }, {
             type : "icon",
             title : "左导航按钮图片",
             name : "nav_left_pic"
-        },
-        {
+        }, {
             type : "icon",
             title : "右导航按钮图标",
             name : "nav_right_icon"
-        },
-        {
+        }, {
             type : "icon",
             title : "右导航按钮图片",
             name : "nav_right_pic"
-        },{
+        }, {
             type : "input",
             title : "Title",
             name : "title"
@@ -70,7 +72,7 @@ jQuery(function($) {
         uuid : "c80a41cc-c26b-454e-99bc-680a11c496d7",
         name : "Header",
         tip : "",
-        type: "frame"
+        type : "frame"
     }, {
         View : View,
         Template : Template,

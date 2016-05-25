@@ -152,7 +152,10 @@
         <script src="../assets/js/global.js"></script>
         <script src="../assets/js/template.import.js"></script>
         <script src="../assets/designer/controls/deps/appcan.js"></script>
+        <script src="../assets/designer/controls/deps/appcan.control.js"></script>
         <script src="../assets/designer/controls/deps/appcan.tab.js"></script>
+        <script src="../assets/designer/controls/deps/appcan.listview.js"></script>
+        <script src="../assets/designer/controls/deps/appcan.treeview.js"></script>
         <script src="../assets/designer/controls/deps/appcan.scrollbox.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.base.js"></script>
 
@@ -163,7 +166,7 @@
         <script type="text/javascript" src="../assets/designer/views/properties.js"></script>
         <script type="text/javascript" src="../assets/designer/views/custom.js"></script>
         <script type="text/javascript" src="../assets/designer/views/style.js"></script>
-        
+
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.page.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.header.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.footer.js"></script>
@@ -171,7 +174,7 @@
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.content.flex.ver.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.pane.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.outsidebar.js"></script>
-        
+
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.box.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.squarebox.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.input.js"></script>
@@ -183,10 +186,12 @@
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.tab.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.text.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.icon.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control/control.custom.listview.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control/control.custom.listitem.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.listview.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control/control.listitem.js"></script>
         <script type="text/javascript" src="../assets/designer/file.js"></script>
-        
+        <script type="text/javascript" src="../assets/designer/htmlformat.js"></script>
+        <script type="text/javascript" src="../assets/designer/jsonformat.js"></script>
         <!-- inline scripts related to this page -->
         <script type="text/javascript">
             jQuery(function($) {
@@ -282,7 +287,7 @@
                 });
 
             });
-            $(document).on("mousedown",function(e){
+            $(document).on("mousedown", function(e) {
                 console.log("eee");
             })
             $(document).keydown(function(e) {
@@ -291,9 +296,8 @@
                 if (e.keyCode == 46)
                     window.desUIEditorMobileViewInstance.removeItem();
             });
-            
-            jQuery(function($){
-                debugger;
+
+            jQuery(function($) {
                 window.desUIEditorMobileViewInstance.load();
             })
 

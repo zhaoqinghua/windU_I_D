@@ -6,6 +6,7 @@ jQuery(function($) {
             this.listenTo(this.model, "change:active", function(data) {
                 !data.changed.active && this.$el.removeClass("active");
                 data.changed.active && this.$el.addClass("active");
+                this.model.cla["active"] = data.changed.active;
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);

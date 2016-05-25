@@ -393,10 +393,10 @@
     min-height: 10px
 }
 
-[data-control="LISTVIEW"] {
+[data-control="CUSTOMLISTVIEW"] {
 
 }
-[data-control="LISTITEM"] {
+[data-control="CUSTOMLISTITEM"] {
     min-height: 10px;
     position: relative;
 }

@@ -1,5 +1,5 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/control/listitem.html");
+    var Template = loadTemplate("../assets/designer/controls/template/control/customlistitem.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
@@ -18,7 +18,7 @@ jQuery(function($) {
             $(this.$el).append(el);
         },
         verifyParent:function(view){
-            var res = view.$el.attr("data-control") == "LISTVIEW";
+            var res = view.$el.attr("data-control") == "CUSTOMLISTVIEW";
             !res && bootbox.alert({message: 'ListItem只能嵌入在ListView控件中！'})
             return res; 
         }
@@ -26,14 +26,14 @@ jQuery(function($) {
 
     var Config = Backbone.Designer.Config.extend({
         initialize : function() {
-            this.set("type", "ListItem");
+            this.set("type", "CustomListItem");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
         }
     })
 
     window.desUIControlsListViewInstance.register({
         uuid : "7b28b501-ed90-49ca-8799-c2dd38736cc6",
-        name : "ListItem",
+        name : "CustomListItem",
         tip : ""
     }, {
         View : View,

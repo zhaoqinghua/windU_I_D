@@ -5,6 +5,7 @@ jQuery(function($) {
         "input" : loadTemplate("../assets/designer/views/template/pro_input.html"),
         "checkbox" : loadTemplate("../assets/designer/views/template/pro_checkbox.html"),
         "icon" : loadTemplate("../assets/designer/views/template/pro_icon.html"),
+        "textarea" : loadTemplate("../assets/designer/views/template/pro_textarea.html")
     }
     var desUIControlsCustomPropertiesView = Backbone.View.extend({
         initialize : function() {
@@ -32,6 +33,12 @@ jQuery(function($) {
                 $ext.append($pro_el);
                 switch(option.type) {
                 case "input":
+                    this.addBinding(null, "#pro_" + option.name, {
+                        "observe" : option.name,
+                        "events" : ["blur"]
+                    });
+                    break;
+                case "textarea":
                     this.addBinding(null, "#pro_" + option.name, {
                         "observe" : option.name,
                         "events" : ["blur"]

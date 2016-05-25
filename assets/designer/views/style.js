@@ -135,6 +135,14 @@ jQuery(function($) {
             "#pro_con_bg_img" : {
                 events : ["blur"],
                 observe : "style_background_image"
+                // onGet : function(vals) {
+                    // if (vals.indexOf("http") != 0 && vals.indexOf("file://") != 0) {
+                        // var f = $.getUrlParam("workspace");
+                        // var p = (("file:///" + f + "\\" + vals).replace(/\\/g, "/"));
+                        // return p;
+                    // }
+                    // return f;
+                // }
             },
             "#pro_con_bg_img_type" : "style_background_size",
             "#pro_con_style_font_size" : "style_font_size"

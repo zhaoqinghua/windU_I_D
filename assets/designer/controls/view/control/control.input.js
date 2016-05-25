@@ -2,6 +2,9 @@ jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/control/input.html");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
+            this.listenTo(this.model, "change:placeholder", function(data) {
+                $("input", this.$el).attr("placeholder", data.changed.placeholder);
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -13,6 +16,9 @@ jQuery(function($) {
                 Backbone.Designer.View.prototype.render.apply(this, arguments);
             }
             return this;
+        },
+        buildHTML : function(dom) {
+            this.model.get("placeholder") && $("input", dom).addClass(this.model.get("placeholder"));
         }
     });
 
@@ -20,7 +26,13 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "Input");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-        }
+        },
+        extOptions : [{
+            type : "input",
+            title : "PlaceHolder",
+            name : "placeholder"
+        }]
+
     })
 
     window.desUIControlsListViewInstance.register({
@@ -32,4 +44,4 @@ jQuery(function($) {
         Template : Template,
         Config : Config
     })
-}); 
+});

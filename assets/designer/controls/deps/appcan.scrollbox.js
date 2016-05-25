@@ -14,7 +14,7 @@
     var scrollView = Backbone.View.extend({//options...
         initialize : function(option) {
             var $el = this.$el = option.$el;
-            this.bounceBox = $("[data-control='ScrollBOX']",this.$el);
+            this.bounceBox = $(".scrollbox",this.$el);
             this.bounceHeight = $(".box_bounce", this.bounceBox).height();
             this.bounceStatus = $(".bounce_status", this.bounceBox);
             $el.scrollView = this;
@@ -75,7 +75,7 @@
             self.$el.on("swipeMoveDown", function(e,_args) {
                 self.bounceHeight = $(".box_bounce", self.bounceBox).height();
                 if(!e._args) e._args = _args;
-                if ($el.scrollTop() == 0) {
+                if ($(document).scrollTop() == 0) {
                     self.bounceBox.hasClass("utra") && self.bounceBox.removeClass("utra");
                     var bounceStatus = self.model.get("bounceStatus");
                     if (bounceStatus == 2) {
@@ -92,11 +92,12 @@
                 }
             })
             self.$el.on(touchEnd, function(e) {
-                if ($el.scrollTop() == 0) {
+                if ($(document).scrollTop() == 0) {
                     if (self.bounceBox) {
                         !self.bounceBox.hasClass("utra") && self.bounceBox.addClass("utra");
                         var status = self.model.get("bounceStatus");
                         if (!status || status == 0) {
+                            self.trigger("release", {});
                             self.reset();
                         } else if (status == 1) {
                             self.reload();

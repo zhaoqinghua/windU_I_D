@@ -1,34 +1,6 @@
 jQuery(function($) {
-    var path = {
-        basename : function(p, ext) {
-            var arr = p.split("\\")
-            filename = (arr.length && arr[arr.length - 1]) || "";
-            if (filename.indexOf(".") != -1) {
-                var arr = filename.split(".");
-                return (arr.length && arr[arr.length - 2]) || ""
-            }
-            return filename;
-        },
-        dirname : function(p) {
-            var arr = p.split("\\");
-            arr.pop();
-            return arr.join("\\");
-        },
-        filename : function(p) {
-            var arr = p.split("\\")
-            return (arr.length && arr[arr.length - 1]) || "";
-        },
-        extname : function(p) {
-            var arr = p.split("\\")
-            filename = (arr.length && arr[arr.length - 1]) || "";
-            if (filename.indexOf(".") != -1) {
-                var arr = filename.split(".");
-                return (arr.length && arr[arr.length - 1]) || ""
-            }
-            return "";
-
-        }
-    };
+    var Template = loadTemplate("../assets/designer/views/template/output/out.html");
+    
     var desRootControl = Backbone.Model.extend({
         initialize : function() {
 
@@ -46,9 +18,40 @@ jQuery(function($) {
         },
         buildCSS : function(f) {
             var out = this.items.buildCSS();
-            f = path.dirname(f) + "\\css\\" + path.basename(f) + ".css"
+            f = PathModule.dirname(f) + "\\css\\" + PathModule.basename(f) + ".css"
             console.log(out);
-            window.FileMgr.save(f, out);
+            
+            window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
+            window.FileMgr.save(f, css_format(out));
+        },
+        buildJS : function(f) {
+            var start = "(function($) {";
+            var out = this.items.buildJS();
+            var end = "})($);";
+            f = PathModule.dirname(f) + "\\js\\" + PathModule.basename(f) + ".js";
+            window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
+            window.FileMgr.save(f, js_beautify(start + out + end, 4, " ", 0));
+        },
+        buildHTML : function(f) {
+            var work = $.getUrlParam("workspace");
+            var relative = PathModule.relative(f,work);
+            var out = this.items.buildHTML();
+            var jspath = "./js/" + PathModule.basename(f) + ".js";
+            var csspath = "./css/" + PathModule.basename(f) + ".css";
+            var jsdep = {};
+            this.items.getDeps(jsdep);
+            out = Template({
+                relative : relative,
+                html : out.prop("outerHTML"),
+                css : csspath,
+                js : jspath,
+                jsdep:jsdep
+            });
+            html = PathModule.dirname(f) + "\\" + PathModule.basename(f) + ".html"
+            out = style_html(out, 4, " ", 1024);
+            console.log(out);
+            window.FileMgr.rename(html,"{path}.{date}".format({path:html,date:new Date().format("yyyyMMddhhmmss")}));
+            window.FileMgr.save(html, out);
         }
     });
     var desUIEditorMobileView = Backbone.View.extend({
@@ -103,7 +106,6 @@ jQuery(function($) {
         },
         insert : function(view) {
             if (view.verifyParent && !view.verifyParent(this.$current)) {
-                
                 return;
             }
             if (this.$current) {
@@ -140,9 +142,11 @@ jQuery(function($) {
             var f = $.getUrlParam("path");
             this.model.load(f);
         },
-        buildCSS : function() {
+        build : function() {
             var f = $.getUrlParam("path");
             this.model.buildCSS(f);
+            this.model.buildJS(f);
+            this.model.buildHTML(f);
         }
     });
     window.desUIEditorMobileViewInstance = new desUIEditorMobileView();

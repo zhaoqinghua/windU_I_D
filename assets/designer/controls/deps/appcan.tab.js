@@ -1,7 +1,7 @@
 appcan.define("tab", function($, exports, module) {
     var model_tab = '<div class="ulev-1 ub ub-f1" data-index="<%=index%>">\
     <div class="ub-f1 ub ub-ver item ub-ac sc-text-tab">\
-    <%if(option.hasIcon){%><div class="ub-f1 fa fa-lg <%=data.icon%>  tx-c"></div><%}%>\
+    <%if(option.hasIcon){%><div class="ub-f1 fa fa-2x <%=data.icon%>  tx-c"></div><%}%>\
     <%if(option.hasLabel){%><div class="ulev-2 tx-c"><%=data.label%></div><%}%>\
     </div>\
     <%if(option.hasBadge && data.badge){%><div class="ulev bc-text-head sc-bg-alert tab_badge" id="<%="badge_"+index%>"><%=data.badge%></div><%}%>\

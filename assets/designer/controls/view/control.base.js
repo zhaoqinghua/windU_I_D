@@ -8,7 +8,17 @@ jQuery(function($) {
     }
 
     var View = Backbone.View.extend({//options...
+        getParent:function(ele){
+            if($(ele).parent().attr("data-control"))
+                return $(ele).parent();
+            else
+                return this.getParent($(ele).parent());
+        },
         initialize : function(option) {
+            function toFixed(num) {
+                return num ? (num / 24).toFixed(2) + "em " : "0em ";
+            }
+
             var self = this;
             this.model.view = this;
             this.$el.on("click", function(e) {
@@ -30,7 +40,7 @@ jQuery(function($) {
                         var view = ui.draggable[0].view;
                         if (view.verifyParent && !view.verifyParent(self))
                             return;
-                        if (self.$el[0] == $(ui.draggable).parent()[0]) {
+                        if (self.$el[0] == view.getParent($(ui.draggable))[0]) {
                             var pos = ui.position;
                             if (view.model.get("on/off_offset")) {
                                 view.model.set("offset_x", pos.left);
@@ -45,6 +55,7 @@ jQuery(function($) {
                             self.appendChild(ui.draggable);
                         else
                             self.$el.append(ui.draggable);
+                        
                         $(ui.draggable).offset(offset);
                     }
 
@@ -93,26 +104,23 @@ jQuery(function($) {
                 this.$el.attr("id", data.changed.uuid);
             });
             this.listenTo(this.model, "change:size_w", function(data) {
-                isNum(data.changed.size_w) && (this.$el.css("width", (data.changed.size_w ) / 24 + "em"),this.model.css["width"] = (data.changed.size_w ) / 24 + "em");
-                !isNum(data.changed.size_w) && (this.$el.css("width", data.changed.size_w),this.model.css["width"] = data.changed.size_w);
+                isNum(data.changed.size_w) && (this.$el.css("width", toFixed(data.changed.size_w)), this.model.css["width"] = toFixed(data.changed.size_w));
+                !isNum(data.changed.size_w) && (this.$el.css("width", data.changed.size_w), this.model.css["width"] = data.changed.size_w);
                 data.changed.size_w === undefined && this.$el.css("width", "");
-
-                
-
             })
             this.listenTo(this.model, "change:size_h", function(data) {
-                isNum(data.changed.size_h) && (this.$el.css("height", (data.changed.size_h ) / 24 + "em"),this.model.css["height"]=(data.changed.size_h ) / 24 + "em");
-                !isNum(data.changed.size_h) && (this.$el.css("height", data.changed.size_h),this.model.css["height"]=data.changed.size_h);
+                isNum(data.changed.size_h) && (this.$el.css("height", toFixed(data.changed.size_h)), this.model.css["height"] = toFixed(data.changed.size_h));
+                !isNum(data.changed.size_h) && (this.$el.css("height", data.changed.size_h), this.model.css["height"] = data.changed.size_h);
                 data.changed.size_h === undefined && this.$el.css("height", "");
             })
             this.listenTo(this.model, "change:offset_x", function(data) {
-                isNum(data.changed.offset_x) && (this.$el.css("left", (data.changed.offset_x ) / 24 + "em"),this.model.css["left"]=(data.changed.offset_x ) / 24 + "em");
-                !isNum(data.changed.offset_x) && (this.$el.css("left", (data.changed.offset_x )),this.model.css["left"]=data.changed.offset_x);
+                isNum(data.changed.offset_x) && (this.$el.css("left", toFixed(data.changed.offset_x)), this.model.css["left"] = toFixed(data.changed.offset_x));
+                !isNum(data.changed.offset_x) && (this.$el.css("left", (data.changed.offset_x )), this.model.css["left"] = data.changed.offset_x);
                 data.changed.offset_x === undefined && this.$el.css("left", "");
             })
             this.listenTo(this.model, "change:offset_y", function(data) {
-                isNum(data.changed.offset_y) && (this.$el.css("top", (data.changed.offset_y ) / 24 + "em"),this.model.css["top"]=(data.changed.offset_y ) / 24 + "em");
-                !isNum(data.changed.offset_y) && (this.$el.css("top", (data.changed.offset_y )),this.model.css["top"]=data.changed.offset_y);
+                isNum(data.changed.offset_y) && (this.$el.css("top", toFixed(data.changed.offset_y)), this.model.css["top"] = toFixed(data.changed.offset_y));
+                !isNum(data.changed.offset_y) && (this.$el.css("top", (data.changed.offset_y )), this.model.css["top"] = data.changed.offset_y);
                 data.changed.offset_y === undefined && this.$el.css("top", "");
             })
 
@@ -204,14 +212,14 @@ jQuery(function($) {
             this.listenTo(this.model, "change:style_padding", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var padding = data.changed.style_padding;
-                var style = padding.top / 24 + "em " + padding.right / 24 + "em " + padding.bottom / 24 + "em " + padding.left / 24 + "em ";
+                var style = toFixed(padding.top) + toFixed(padding.right) + toFixed(padding.bottom) + toFixed(padding.left);
                 self.$el.css("padding", style);
                 this.model.css["padding"] = style;
             })
             this.listenTo(this.model, "change:style_margin", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var margin = data.changed.style_margin;
-                var style = margin.top / 24 + "em " + margin.right / 24 + "em " + margin.bottom / 24 + "em " + margin.left / 24 + "em ";
+                var style = toFixed(margin.top) + toFixed(margin.right) + toFixed(margin.bottom) + toFixed(margin.left);
                 self.$el.css("margin", style);
                 this.model.css["margin"] = style;
             })
@@ -264,11 +272,22 @@ jQuery(function($) {
             this.listenTo(this.model, "change:style_background_image", function(data) {
                 var img = data.changed.style_background_image;
                 if (img) {
+                    if (img.indexOf("http") != 0 && img.indexOf("file://") != 0) {
+                        var work = $.getUrlParam("workspace");
+                        var f = $.getUrlParam("path");
+                        var relative = PathModule.relative(f,work);
+                        this.model.css["background-image"] = "url(" + relative+"../"+img + ")";//because dest css file in next level directory. so that,we should add ../
+                        img = (("file:///" + work + "\\" + img).replace(/\\/g, "/"));
+                    }
+                    else
+                        this.model.css["background-image"] = "url(" + img + ")";
                     self.$el.css("background-image", "url(" + img + ")");
+                    
                 } else {
                     self.$el.css("background-image", "");
+                    this.model.css["background-image"] = self.$el.css("background-image");
                 }
-                this.model.css["background-image"] = self.$el.css("background-image");
+                
             })
             this.listenTo(this.model, "change:style_background_size", function(data) {
                 var imgSize = data.changed.style_background_size;
@@ -287,7 +306,7 @@ jQuery(function($) {
                     self.$el.css("font-size", fontSize + "em");
                     this.model.css["font-size"] = fontSize + "em";
                 }
-                
+
             })
         },
         template : Template, //VIEW对应的模板
@@ -476,7 +495,7 @@ jQuery(function($) {
     var Config = Backbone.Model.extend({
         initialize : function() {
             this.css = {};
-            this.cla =  {};
+            this.cla = {};
             var uuid = this.get("uuid");
             uuid || this.set("uuid", this.get("type") + "_" + getUUID());
             this.set("viewState", true);
@@ -554,8 +573,8 @@ jQuery(function($) {
         buildCSS : function() {
             var out = [];
             out.push("#" + this.get("uuid") + "{");
-            for(var i in this.css){
-                this.css[i] && out.push(i+":"+this.css[i]);
+            for (var i in this.css) {
+                this.css[i] && out.push(i + ":" + this.css[i] + ";");
             }
             out.push("}");
             if (out.length == 2)
@@ -563,6 +582,31 @@ jQuery(function($) {
             out.push(this.items.buildCSS());
             return out.join("\r\n");
 
+        },
+        buildJS : function() {
+            var out = [];
+            if (this.view.buildJS) {
+                out.push(this.view.buildJS());
+            } else if (this.view.jsTemplate) {
+                out.push(this.view.jsTemplate(this.attributes));
+            }
+            out.push(this.items.buildJS());
+            return out.join("\r\n");
+        },
+        buildHTML : function() {
+            var dom = $(this.view.template({}));
+            dom.attr("id", this.get("uuid"));
+            for (var i in this.cla) {
+                this.cla[i] && dom.addClass(i);
+            }
+            this.view.appendChild ? this.view.appendChild(this.items.buildHTML(), dom) : dom.append(this.items.buildHTML());
+            this.view.buildHTML && this.view.buildHTML(dom);
+            return dom;
+        },
+        getDep : function(deps) {
+            if (this.get("dep"))
+                deps[this.get("dep")] = true;
+            this.items.getDeps(deps);
         }
     })
 
@@ -604,6 +648,28 @@ jQuery(function($) {
                 css.push(m.buildCSS());
             }
             return css.join("\r\n");
+        },
+        buildJS : function() {
+            var js = [];
+            for (var i = 0; i < this.length; i++) {
+                var m = this.at(i);
+                js.push(m.buildJS());
+            }
+            return js.join("\r\n");
+        },
+        buildHTML : function() {
+            var con = $("<div></div>");
+            for (var i = 0; i < this.length; i++) {
+                var m = this.at(i);
+                con.append(m.buildHTML());
+            }
+            return con.children();
+        },
+        getDeps : function(deps) {
+            for (var i = 0; i < this.length; i++) {
+                var m = this.at(i);
+                m.getDep(deps);
+            }
         },
         design : function(state) {
             for (var i = 0; i < this.length; i++) {

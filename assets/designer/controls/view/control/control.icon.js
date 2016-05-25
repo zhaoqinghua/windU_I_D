@@ -23,6 +23,9 @@ jQuery(function($) {
         },
         appendChild : function(el) {
             $(this.$el).append(el);
+        },
+        buildHTML:function(dom){
+            this.model.get("icon") && $("i",dom).addClass(this.model.get("icon"));
         }
     });
 

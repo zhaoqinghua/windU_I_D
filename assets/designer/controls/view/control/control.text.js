@@ -7,6 +7,7 @@ jQuery(function($) {
             })
             this.listenTo(this.model,"change:line",function(data){
                 data.changed.line && this.$el.css("-webkit-line-clamp",data.changed.line);
+                this.model.css["-webkit-line-clamp"]=data.changed.line;
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
@@ -22,6 +23,9 @@ jQuery(function($) {
         },
         appendChild : function(el) {
             $(this.$el).append(el);
+        },
+        buildHTML:function(dom){
+            this.model.get("text") && dom.text(this.model.get("text"));
         }
     });
 

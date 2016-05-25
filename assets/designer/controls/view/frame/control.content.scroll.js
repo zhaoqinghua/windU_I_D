@@ -1,12 +1,14 @@
 //加载并初始化模板对象
 jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/frame/contentscroll.html");
+    var jsTemplate = loadTemplate("../assets/designer/controls/template/frame/contentscroll.js");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
         template : Template, //VIEW对应的模板
+        jsTemplate:jsTemplate,
         render : function() {
             var self = this;
             if (this.template) {
@@ -23,15 +25,15 @@ jQuery(function($) {
                 }).on("dragToReload", function() {//drag over 30% of bounce height,will trigger this event
                     console.log("dragToReload");
                 }).on("draging", function(percent) {//on draging, this event will be triggered.
-                    console.log("draging",percent);
+                    console.log("draging", percent);
                 }).on("scrollbottom", function() {//on scroll bottom,this event will be triggered.you should get data from server
                     console.log("scrollbottom");
                 }).reload();
             }
             return this;
         },
-        appendChild : function(el) {
-            $("[data-control='ScrollBOX']",this.$el).append(el);
+        appendChild : function(el, dom) {
+            $(".scrollbox", dom || this.$el).append(el);
         }
     });
 
@@ -46,7 +48,7 @@ jQuery(function($) {
         uuid : "4f929ff8-ab75-475d-81ec-4f01b4c21805",
         name : "ScrollContent",
         tip : "支持纵向滚动的容器，可以承载其他控件，并且内部元素变化不会对容器外产生影响。",
-        type: "frame"
+        type : "frame"
     }, {
         View : View,
         Template : Template,

@@ -170,11 +170,11 @@
 }
 
 .tab_m {
-    height: 2.3em;
+    height: 3em;
 }
 
 .tab_l {
-    height: 1.3em;
+    height: 2em;
 }
 
 .tab_i {
@@ -196,7 +196,7 @@
     padding: 0.3em 0
 }
 .tab_l .item {
-    padding: 0.3em 0
+    padding: 0.7em 0
 }
 .tab_i .item {
     padding: 0.4em 0

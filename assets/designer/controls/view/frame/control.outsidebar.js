@@ -6,13 +6,16 @@ jQuery(function($) {
             this.listenTo(this.model, "change:active", function(data) {
                 !data.changed.active && this.$el.removeClass("active");
                 data.changed.active && this.$el.addClass("active");
+                this.model.cla["active"] = data.changed.active;
             })
             this.listenTo(this.model, "change:position", function(data) {
                 var prev = this.model.previous("position");
                 if (prev) {
                     this.$el.removeClass(prev);
+                    this.model.cla[prev]=false;
                 }
                 this.$el.addClass(data.changed.position);
+                this.model.cla[data.changed.position] = true;
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);

@@ -9,6 +9,9 @@ jQuery(function($) {
                 }
                 $("[data-control-icon]",this.$el).addClass(data.changed.icons);
             })
+            this.listenTo(this.model, "change:placeholder", function(data) {
+                $("input", this.$el).attr("placeholder", data.changed.placeholder);
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -21,6 +24,10 @@ jQuery(function($) {
             }
             return this;
         },
+        buildHTML:function(dom){
+            this.model.get("icons") && $("[data-control-icon]",dom).addClass(this.model.get("icons"));
+            this.model.get("placeholder") && $("input", dom).addClass(this.model.get("placeholder"));
+        }
 
     });
 
@@ -34,12 +41,16 @@ jQuery(function($) {
             type : "icon",
             title : "Icons",
             name : "icons"
+        },{
+            type : "input",
+            title : "PlaceHolder",
+            name : "placeholder"
         }]
     })
 
     window.desUIControlsListViewInstance.register({
         uuid : "82d4b778-872a-4819-bf73-4e7c27be5474",
-        name : "带图标Input",
+        name : "iconInput",
         tip : ""
     }, {
         View : View,

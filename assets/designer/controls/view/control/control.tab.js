@@ -1,5 +1,6 @@
 jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/control/tab.html");
+    var jsTemplate = loadTemplate("../assets/designer/controls/template/control/tab.js");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.listenTo(this.model, "change", function(data) {
@@ -25,7 +26,7 @@ jQuery(function($) {
                 var labels = (extOptions.lables || "").split(",");
                 var icons = (extOptions.icons || "").split(",");
                 var data = [];
-                for (var i = 0; i < labels.length ; i++) {
+                for (var i = 0; i < labels.length; i++) {
                     data.push({
                         label : labels[i],
                         icon : icons[i]
@@ -43,6 +44,20 @@ jQuery(function($) {
             } catch(e) {
 
             }
+        },
+        buildJS : function() {
+            var extOptions = this.model.toJSON();
+            var labels = (extOptions.lables || "").split(",");
+            var icons = (extOptions.icons || "").split(",");
+            var data = [];
+            for (var i = 0; i < labels.length; i++) {
+                data.push({
+                    label : labels[i],
+                    icon : icons[i]
+                });
+            }
+            extOptions.data = JSON.stringify(data);
+            return jsTemplate(extOptions);
         }
     });
 
@@ -59,6 +74,7 @@ jQuery(function($) {
                 this.set("lables", "首页,个人,分类,搜索");
                 this.set("icons", "fa-home,fa-user,fa-list,fa-search");
             }
+            this.set("dep","appcan.tab.js");
         },
         extOptions : [{
             type : "checkbox",
