@@ -293,8 +293,13 @@
                 console.log("eee");
             })
             $(document).keydown(function(e) {
-                if (e.target.localName == "input")
+                console.log(e.keyCode);
+                if (e.target.localName == "input" || e.target.localName == "textarea") 
                     return;
+                if(e.keyCode == 83 && e.ctrlKey)
+                    window.desUIEditorMobileViewInstance.save();
+                if(e.keyCode == 79 && e.ctrlKey)
+                    window.desUIEditorMobileViewInstance.build();                    
                 if (e.keyCode == 46)
                     window.desUIEditorMobileViewInstance.removeItem();
             });
