@@ -413,6 +413,7 @@
 [data-control="OUTSIDEBAR"] {
     min-width: 70%;
     height: 100%;
+    top:0px;
     position: absolute !important;
 }
 

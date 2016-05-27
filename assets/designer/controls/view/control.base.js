@@ -43,8 +43,8 @@ jQuery(function($) {
                         if (self.$el[0] == view.getParent($(ui.draggable))[0]) {
                             var pos = ui.position;
                             if (view.model.get("on/off_offset")) {
-                                view.model.set("offset_x", pos.left);
-                                view.model.set("offset_y", pos.top);
+                                view.model.set("offset_x", parseInt(pos.left));
+                                view.model.set("offset_y", parseInt(pos.top));
                             }
                             return;
                         }
@@ -57,6 +57,9 @@ jQuery(function($) {
                             self.$el.append(ui.draggable);
                         
                         $(ui.draggable).offset(offset);
+                        var pos = view.$el.position();
+                        view.model.set("offset_x", parseInt(pos.left),{silent:true});
+                        view.model.set("offset_y", parseInt(pos.top),{silent:true});
                     }
 
                 },

@@ -46,7 +46,7 @@ var model_thickLine = '<li <%if(data.id){%>id="<%=data.id%>"<%}%> class="ubb ub 
 <%if(option.hasIcon && data.icon){%>\
 <ul class="ub ub ub-ver">\
 <li class="">\
-<div class="lazy lis-icon ub-img" data-original="<%=data.icon%>" style="background-image:url(<%=data.icon%>)""></div>\
+<div class="lazy lis-icon ub-img" data-original="<%=data.icon%>" style="background-image:url(<%=data.icon%>)"></div>\
 <div class="ulev-1 bc-text umar-t"><%=data.icontitle%></div>\
 </li>\
 </ul>\

@@ -1,6 +1,6 @@
 jQuery(function($) {
-    var Template = loadTemplate("../assets/designer/controls/template/control/listview.html");
-    var jsTemplate = loadTemplate("../assets/designer/controls/template/control/listview.js");
+    var Template = loadTemplate("../assets/designer/controls/template/control/grouplistview.html");
+    var jsTemplate = loadTemplate("../assets/designer/controls/template/control/grouplistview.js");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
@@ -9,10 +9,15 @@ jQuery(function($) {
             })
             this.listenTo(this.model, "change:listdata", function() {
                 var data = JSON.parse(JSONProcess(this.model.get("listdata")));
-                var f = $.getUrlParam("workspace");
+                var f = PathModule.dirname($.getUrlParam("path"));
                 for (var i in data) {
-                    if (data[i].icon.indexOf("http") != 0 && data[i].icon.indexOf("file://") != 0)
-                        data[i].icon = (("file:///" + f + "\\" + data[i].icon).replace(/\\/g, "/"));
+                    if (_.isArray(data[i].items)) {
+                        var items = data[i].items;
+                        for (var j in items) {
+                            if (items[j].icon.indexOf("http") != 0 && items[j].icon.indexOf("file://") != 0)
+                                items[j].icon = (("file:///" + f + "\\" + items[j].icon).replace(/\\/g, "/"));
+                        }
+                    }
                 }
                 this.$lv.set(data);
             })
@@ -47,12 +52,18 @@ jQuery(function($) {
                     hasCheckbox : extOptions.hasCheckbox || false,
                     hasSubTitle : extOptions.hasSubTitle || false,
                     multiLine : extOptions.multiLine || 1,
+                    hasGroup : true
                 });
                 var data = JSON.parse(JSONProcess(this.model.get("listdata")));
-                var f = $.getUrlParam("workspace");
+                var f = PathModule.dirname($.getUrlParam("path"));
                 for (var i in data) {
-                    if (data[i].icon.indexOf("http") != 0 && data[i].icon.indexOf("file://") != 0)
-                        data[i].icon = (("file:///" + f + "\\" + data[i].icon).replace(/\\/g, "/"));
+                    if (_.isArray(data[i].items)) {
+                        var items = data[i].items;
+                        for (var j in items) {
+                            if (items[j].icon.indexOf("http") != 0 && items[j].icon.indexOf("file://") != 0)
+                                items[j].icon = (("file:///" + f + "\\" + items[j].icon).replace(/\\/g, "/"));
+                        }
+                    }
                 }
                 this.$lv.set(data);
             } catch(e) {
@@ -66,7 +77,7 @@ jQuery(function($) {
 
     var Config = Backbone.Designer.Config.extend({
         initialize : function() {
-            this.set("type", "ListView");
+            this.set("type", "GroupListView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
             this.set("size_h", "70");
             this.set("hasAngle", false);
@@ -77,15 +88,33 @@ jQuery(function($) {
             this.set("hasSubTitle", false);
             this.set("multiLine", 1);
             this.set("listdata", JSONProcess(JSON.stringify([{
-                title : "临时数据",
-                icon : "",
-                subTitle : "12:05",
-                id : "1"
+                groupId : 1,
+                title : "A",
+                items : [{
+                    title : "临时数据",
+                    icon : "/css/res/appcan_s.png",
+                    subTitle : "12:05",
+                    id : "1"
+                }, {
+                    title : "临时数据",
+                    icon : "/css/res/appcan_s.png",
+                    subTitle : "12:05",
+                    id : "2"
+                }]
             }, {
-                title : "临时数据",
-                icon : "",
-                subTitle : "12:05",
-                id : "2"
+                groupId : 2,
+                title : "B",
+                items : [{
+                    title : "临时数据",
+                    icon : "/css/res/appcan_s.png",
+                    subTitle : "12:05",
+                    id : "1"
+                }, {
+                    title : "临时数据",
+                    icon : "/css/res/appcan_s.png",
+                    subTitle : "12:05",
+                    id : "2"
+                }]
             }])))
             this.set("dep", "appcan.listview.js");
         },
@@ -132,8 +161,8 @@ jQuery(function($) {
     })
 
     window.desUIControlsListViewInstance.register({
-        uuid : "49912f07-7588-4d3c-9d69-312c57d85430",
-        name : "ListView",
+        uuid : "9bed6a5e-0e4e-4774-8f55-95c926fa3512",
+        name : "GroupListView",
         tip : ""
     }, {
         View : View,
