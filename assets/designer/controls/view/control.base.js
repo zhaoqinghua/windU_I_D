@@ -597,7 +597,7 @@ jQuery(function($) {
             return out.join("\r\n");
         },
         buildHTML : function() {
-            var dom = $(this.view.template({}));
+            var dom = $(this.view.template(this.attributes));
             dom.attr("id", this.get("uuid"));
             for (var i in this.cla) {
                 this.cla[i] && dom.addClass(i);

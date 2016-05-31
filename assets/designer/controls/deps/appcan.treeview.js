@@ -66,7 +66,7 @@ appcan.define("treeview", function($, exports, module) {
             var self = this;
             var index = 0;
             if (!settings.type) {
-                if ((appcan.isArray(contentData) || appcan.isPlainObject(contentData)) && !$.zepto.isZ(contentData)) {
+                if ((appcan.isArray(contentData) || appcan.isPlainObject(contentData))) {
                     var warper = $('<div class="listview"></div>');
                     settings.option.selector = warper;
                     var lv = appcan.listview(settings.option);
@@ -118,7 +118,7 @@ appcan.define("treeview", function($, exports, module) {
                 } else {
                     ele[0]['plugin'] = content;
                 }
-                tvHeader.on('tap', function(evt) {
+                tvHeader.on('click', function(evt) {
                     self.itemClick(evt);
                 });
                 tvHeader.on(touchEvent.start, function(evt) {

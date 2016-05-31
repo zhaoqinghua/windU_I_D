@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="../assets/designer/controls/ui-base.css" id="base_css"/>
         <link rel="stylesheet" href="../assets/designer/controls/ui-color.css" />
         <link rel="stylesheet" href="../assets/designer/controls/appcan.control.css" />
+        <link rel="stylesheet" href="../assets/css/built-editor.css" />
         <!-- ace settings handler -->
         <script src="../assets/js/ace-extra.js"></script>
 
@@ -126,6 +127,7 @@
         <script src="../assets/js/jquery.ui.touch-punch.js"></script>
         <script src="../assets/js/bootstrap-tag.js"></script>
         <script src="../assets/js/bootbox.js"></script>
+        <script src="../assets/js/editor/built-editor.js"></script>
         <!-- ace scripts -->
         <script src="../assets/js/ace/elements.scroller.js"></script>
         <script src="../assets/js/ace/elements.colorpicker.js"></script>
@@ -156,6 +158,7 @@
         <script src="../assets/designer/controls/deps/appcan.tab.js"></script>
         <script src="../assets/designer/controls/deps/appcan.listview.js"></script>
         <script src="../assets/designer/controls/deps/appcan.treeview.js"></script>
+        <script src="../assets/designer/controls/deps/appcan.slider.js"></script>
         <script src="../assets/designer/controls/deps/appcan.scrollbox.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control.base.js"></script>
 
@@ -181,7 +184,8 @@
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.search.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.input.icon.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.button.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control/control.list.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control/control.switchbtn.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control/control.select.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.slider.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.tab.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.text.js"></script>
@@ -191,10 +195,15 @@
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.listview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.multilistview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.grouplistview.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/control/control.treeview.js"></script>
         <script type="text/javascript" src="../assets/designer/file.js"></script>
         <script type="text/javascript" src="../assets/designer/htmlformat.js"></script>
         <script type="text/javascript" src="../assets/designer/jsonformat.js"></script>
         <!-- inline scripts related to this page -->
+        <script>
+            /*global require*/
+            
+        </script>
         <script type="text/javascript">
             jQuery(function($) {
 
@@ -294,12 +303,12 @@
             })
             $(document).keydown(function(e) {
                 console.log(e.keyCode);
-                if (e.target.localName == "input" || e.target.localName == "textarea") 
+                if (e.target.localName == "input" || e.target.localName == "textarea")
                     return;
-                if(e.keyCode == 83 && e.ctrlKey)
+                if (e.keyCode == 83 && e.ctrlKey)
                     window.desUIEditorMobileViewInstance.save();
-                if(e.keyCode == 79 && e.ctrlKey)
-                    window.desUIEditorMobileViewInstance.build();                    
+                if (e.keyCode == 79 && e.ctrlKey)
+                    window.desUIEditorMobileViewInstance.build();
                 if (e.keyCode == 46)
                     window.desUIEditorMobileViewInstance.removeItem();
             });
@@ -315,8 +324,8 @@
             });
         </script>
         <!-- the following scripts are used in demo only for onpage help and you don't need them -->
-        <link rel="stylesheet" href="../assets/css/ace.onpage-help.css" />
-        <link rel="stylesheet" href="../docs/assets/js/themes/sunburst.css" />
+        <!-- <link rel="stylesheet" href="../assets/css/ace.onpage-help.css" /> -->
+        <!-- <link rel="stylesheet" href="../docs/assets/js/themes/sunburst.css" /> -->
 
         <script type="text/javascript">
             ace.vars['base'] = '..';

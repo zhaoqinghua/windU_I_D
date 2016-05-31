@@ -41,7 +41,11 @@ jQuery(function($) {
                 case "textarea":
                     this.addBinding(null, "#pro_" + option.name, {
                         "observe" : option.name,
-                        "events" : ["blur"]
+                        "events" : ["blur"],
+                        "getVal" : function($el, event, options) {
+                            options.updateModel = true;
+                            return editor[0].getText();
+                        }
                     });
                     break;
                 case "icon":

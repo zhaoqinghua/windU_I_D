@@ -35,14 +35,14 @@ jQuery(function($) {
         buildHTML : function(f) {
             var work = $.getUrlParam("workspace");
             var relative = PathModule.relative(f,work);
-            var out = this.items.buildHTML();
+            var out = $("<div></div>").append(this.items.buildHTML());
             var jspath = "./js/" + PathModule.basename(f) + ".js";
             var csspath = "./css/" + PathModule.basename(f) + ".css";
             var jsdep = {};
             this.items.getDeps(jsdep);
             out = Template({
                 relative : relative,
-                html : out.prop("outerHTML"),
+                html : out.prop("innerHTML"),
                 css : csspath,
                 js : jspath,
                 jsdep:jsdep

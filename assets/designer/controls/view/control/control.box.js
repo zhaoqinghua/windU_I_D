@@ -4,7 +4,8 @@ jQuery(function($) {
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
-            Backbone.Designer.View.prototype.initialize.apply(this, arguments); 
+            Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            this.model.set("size_h",70); 
         },
         template : Template, //VIEW对应的模板
         render : function() {

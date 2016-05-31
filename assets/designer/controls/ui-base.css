@@ -409,6 +409,7 @@
     overflow: hidden;
     white-space: pre-wrap;
     outline: 0 !important;
+    min-height: 1.5em;
 }
 [data-control="OUTSIDEBAR"] {
     min-width: 70%;

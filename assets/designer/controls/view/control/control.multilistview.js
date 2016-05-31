@@ -9,7 +9,7 @@ jQuery(function($) {
             })
             this.listenTo(this.model, "change:listdata", function() {
                 var data = JSON.parse(JSONProcess(this.model.get("listdata")));
-                var f = $.getUrlParam("workspace");
+                var f = PathModule.dirname($.getUrlParam("path"));
                 for (var i in data) {
                     if (data[i].icon.indexOf("http") != 0 && data[i].icon.indexOf("file://") != 0)
                         data[i].icon = (("file:///" + f + "\\" + data[i].icon).replace(/\\/g, "/"));
@@ -49,7 +49,7 @@ jQuery(function($) {
                     multiLine : extOptions.multiLine || 1,
                 });
                 var data = JSON.parse(JSONProcess(this.model.get("listdata")));
-                var f = $.getUrlParam("workspace");
+                var f = PathModule.dirname($.getUrlParam("path"));
                 for (var i in data) {
                     if (data[i].icon.indexOf("http") != 0 && data[i].icon.indexOf("file://") != 0)
                         data[i].icon = (("file:///" + f + "\\" + data[i].icon).replace(/\\/g, "/"));

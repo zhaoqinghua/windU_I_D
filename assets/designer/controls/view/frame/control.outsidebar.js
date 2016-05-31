@@ -37,7 +37,6 @@ jQuery(function($) {
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
             this.set("on/off_draggable", false);
             this.set("position", "float_left");
-
         },
         extOptions : [{
             type : "select",

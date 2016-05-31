@@ -1,4 +1,15 @@
 <small class="lighter white"><%=title%>:</small>
 <div class="" style="padding-bottom: 4px">
-    <textarea id="pro_<%=name%>" rows="20" style="width:100%"/>
+    <pre class="editor" data-editor-lang="js" data-editor-show-lines-ruler="false"  id="pro_<%=name%>" 
+        style="height:300px;width:100%;">
+     </pre>
 </div>
+<script>
+var editor = null;
+    require(["orion/editor/edit"], function(edit) {
+        editor = edit({
+            className : "editor"
+        });
+        
+    }); 
+</script>

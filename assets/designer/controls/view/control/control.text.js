@@ -11,6 +11,7 @@ jQuery(function($) {
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            this.model.set("text","text")
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -33,7 +34,7 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "Text");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("text","text")
+            
         },
         extOptions : [{
             type : "input",

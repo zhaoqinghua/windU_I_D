@@ -268,7 +268,6 @@
             var work = $.getUrlParam("workspace");
             var res = work + "\\css\\res";
             window.FileMgr.list(res, function(err,list) {
-                debugger;
                 console.log(list);
                 var files = JSON.parse(list);
                 var relative = [];
@@ -279,7 +278,6 @@
                 var img_container = $("ul", "#base-img-list");
                 img_container.html(html);
                 $("li",img_container).on("click",function(e){
-                    debugger;
                     $("#pro_con_bg_img").val($(e.target).attr("rela"));
                     $("#pro_con_bg_img").blur();
                     $("#res-select-form").hide();

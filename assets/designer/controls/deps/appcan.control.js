@@ -50,7 +50,7 @@ appcan.extend(function(app, exports, module) {
             var value = $(obj[i]).attr("data-checked") || 'false';
             value == 'false' ? $(obj[i]).removeClass( css ? css : "bc-head") : $(obj[i]).addClass( css ? css : "bc-head");
         }
-        $(selector).on("tap", function(evt) {
+        $(selector).on("click", function(evt) {
             var obj = $(evt.currentTarget);
             var value = obj.attr("data-checked") || 'false';
             value = (value == 'false' ? 'true' : 'false');
