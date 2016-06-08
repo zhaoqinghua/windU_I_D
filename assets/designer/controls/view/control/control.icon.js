@@ -5,12 +5,14 @@ jQuery(function($) {
             this.listenTo(this.model, "change:icon", function(data) {
                 var prev = this.model.previous("icon");
                 if (prev) {
-                    $("i",this.$el).removeClass(prev);
+                    $("[data-control-icon]",this.$el).removeClass(prev);
                 }
-                $("i",this.$el).addClass(data.changed.icon);
+                $("[data-control-icon]",this.$el).addClass(data.changed.icon);
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            this.model.set("size_w",30);
+            this.model.set("size_h",30);
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -44,7 +46,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "06c2a3fa-4448-4a27-8b66-ae4d0469e52c",
         name : "Icon",
-        tip : ""
+        tip : "图标组件，用于展示图标",
+        icon : "Icon.png"
     }, {
         View : View,
         Template : Template,

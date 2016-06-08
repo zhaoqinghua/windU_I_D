@@ -35,7 +35,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "7b28b501-ed90-49ca-8799-c2dd38736cc6",
         name : "CustomListItem",
-        tip : ""
+        tip : "用户自定义列表条目控件，开发者可自行设计内部元素排布",
+        icon : "CustomLi.png"
     }, {
         View : View,
         Template : Template,

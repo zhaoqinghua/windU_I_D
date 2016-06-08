@@ -134,7 +134,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "49912f07-7588-4d3c-9d69-312c57d85430",
         name : "ListView",
-        tip : ""
+        tip : "标准单行列表控件，不支持UI自定义配置",
+        icon : "Listview.png"
     }, {
         View : View,
         Template : Template,

@@ -51,7 +51,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "82d4b778-872a-4819-bf73-4e7c27be5474",
         name : "iconInput",
-        tip : ""
+        tip : "带图标的输入框控件，可自定义配置图标",
+        icon : "IconInput.png"
     }, {
         View : View,
         Template : Template,

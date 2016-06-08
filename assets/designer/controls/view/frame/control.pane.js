@@ -38,8 +38,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "433ef517-22a8-40ce-bfa1-fbe69682e55d",
         name : "Pane",
-        tip : "容器，用于部署于FixSizeBox实现界面内滚动。也可用于界面内多界面切换",
-        type : "frame"
+        tip : "控件容器，主要用于界面内多子界面切换，可插入任何容器内。",
+        type : "frame",
+        icon:"Pane.png"
     }, {
         View : View,
         Template : Template,

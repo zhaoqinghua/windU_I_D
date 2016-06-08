@@ -32,7 +32,6 @@ jQuery(function($) {
                     this.$tv.ele.empty();
                     delete this.$tv;
                 }
-                debugger;
                 this.$tv = appcan.treeview({
                     selector : $treeview,
                     defaultOpen : 1//默认打开第几项，必须包含数据
@@ -84,7 +83,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "4316c818-6417-47bf-a370-c58cac0b13d4",
         name : "TreeView",
-        tip : ""
+        tip : "二级树控件，支持二级列表折叠",
+        icon : "Treeview.png"
     }, {
         View : View,
         Template : Template,

@@ -163,7 +163,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "9bed6a5e-0e4e-4774-8f55-95c926fa3512",
         name : "GroupListView",
-        tip : ""
+        tip : "分组列表控件，标准实现的列表组件，UI不可自定义配置",
+        icon : "GListview.png"
     }, {
         View : View,
         Template : Template,

@@ -78,31 +78,31 @@ jQuery(function($) {
         },
         extOptions : [{
             type : "checkbox",
-            title : "Has Icon",
+            title : "是否有图标",
             name : "hasIcon"
         }, {
             type : "checkbox",
-            title : "Has Animiation",
+            title : "是否有焦点变更动画",
             name : "hasAnim"
         }, {
             type : "checkbox",
-            title : "Has Label",
+            title : "是否有文子标签",
             name : "hasLabel"
         }, {
             type : "checkbox",
-            title : "Has Badge",
+            title : "是否有角标",
             name : "hasBadge"
         }, {
             type : "input",
-            title : "Index of Focus",
+            title : "焦点索引",
             name : "index"
         }, {
             type : "input",
-            title : "Labels(例如:信息,通讯录,会话,个人)",
+            title : "标签",
             name : "lables"
         }, {
             type : "icon",
-            title : "Icons",
+            title : "图标",
             name : "icons"
         }]
     })
@@ -110,7 +110,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "6e3fb9c5-b3dd-44aa-b0e2-3ba94973c2cd",
         name : "Tab",
-        tip : ""
+        tip : "多页标签控件，用于界面内分页导航。常与Pane控件联动",
+        icon : "Tab.png"
     }, {
         View : View,
         Template : Template,

@@ -1,6 +1,7 @@
 //加载并初始化模板对象
 jQuery(function($) {
     var Template = loadTemplate("../assets/designer/controls/template/frame/outsidebar.html");
+    var jsTemplate = loadTemplate("../assets/designer/controls/template/frame/outsidebar.js");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.listenTo(this.model, "change:active", function(data) {
@@ -12,7 +13,7 @@ jQuery(function($) {
                 var prev = this.model.previous("position");
                 if (prev) {
                     this.$el.removeClass(prev);
-                    this.model.cla[prev]=false;
+                    this.model.cla[prev] = false;
                 }
                 this.$el.addClass(data.changed.position);
                 this.model.cla[data.changed.position] = true;
@@ -21,6 +22,7 @@ jQuery(function($) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
         template : Template, //VIEW对应的模板
+        jsTemplate:jsTemplate,
         render : function() {
             var self = this;
             if (this.template) {
@@ -51,7 +53,8 @@ jQuery(function($) {
             }, {
                 val : "float_bottom",
                 lab : "下侧"
-            }]}, {
+            }]
+        }, {
             type : "checkbox",
             title : "Active",
             name : "active"
@@ -61,8 +64,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "c1981d5b-e996-4262-a114-ade26abcebbd",
         name : "OutsideBar",
-        tip : "",
-        type : "frame"
+        tip : "侧边栏容器，用于实现从两侧向窗口内滑动。通常情况直接插入到的BODY下",
+        type : "frame",
+        icon : "Side.png"
     }, {
         View : View,
         Template : Template,

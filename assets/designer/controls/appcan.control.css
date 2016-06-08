@@ -50,9 +50,10 @@
     outline: 0 !important;
     border: 0;
     font-size: 1em !important;
+    margin:0px;
 }
 
-.um-vp.checkbox input[type=checkbox]:before, .um-vp .radiobox input[type=radio]:before {
+.um-vp .checkbox input[type=checkbox]:before, .um-vp .radiobox input[type=radio]:before {
     display: inline-block;
     text-align: center;
     font: normal normal normal 14px/1 FontAwesome;

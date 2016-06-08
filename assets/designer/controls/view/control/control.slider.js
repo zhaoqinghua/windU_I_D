@@ -90,7 +90,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "38bf8456-83ed-42a2-b35f-72f3e395c748",
         name : "Slider",
-        tip : ""
+        tip : "图片多页滑块控件",
+        icon : "Slider.png"
     }, {
         View : View,
         Template : Template,

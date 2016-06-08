@@ -47,8 +47,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "4f929ff8-ab75-475d-81ec-4f01b4c21805",
         name : "ScrollContent",
-        tip : "支持纵向滚动的容器，可以承载其他控件，并且内部元素变化不会对容器外产生影响。",
-        type : "frame"
+        tip : "支持纵向滚动的容器，需要部署于Page组件中。",
+        type : "frame",
+        icon:"Scroll.png"
     }, {
         View : View,
         Template : Template,

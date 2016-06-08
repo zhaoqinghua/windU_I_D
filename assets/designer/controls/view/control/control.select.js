@@ -62,7 +62,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "2b2a979b-efbe-48dd-af37-f4bc750ca2d3",
         name : "Select",
-        tip : ""
+        tip : "下拉列表选择控件",
+        icon : "Select.png"
     }, {
         View : View,
         Template : Template,

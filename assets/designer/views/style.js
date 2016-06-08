@@ -4,7 +4,13 @@ jQuery(function($) {
         },
         el : '#desUIControlsStyle',
         events : {
-
+            "click .reset":function(e) {
+                var bind = $(e.target).data("bind");
+                var arr = bind.split(",");
+                for(var i in arr){
+                    this.model.unset(arr[i]);
+                }
+            }
         },
         bindings : {
             "#pro_con_style_color" : {
@@ -24,10 +30,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var padding = this.model.get("style_padding");
-                    return padding.top;
+                    return padding?padding.top:0;
                 },
                 onSet : function(vals) {
-                    var padding = _.clone(this.model.get("style_padding"));
+                    var padding = _.clone(this.model.get("style_padding")) || {};
                     padding.top = parseInt(vals);
                     return padding;
                 }
@@ -37,10 +43,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var padding = this.model.get("style_padding");
-                    return padding.right;
+                    return padding?padding.right:0;
                 },
                 onSet : function(vals) {
-                    var padding = _.clone(this.model.get("style_padding"));
+                    var padding = _.clone(this.model.get("style_padding")) || {};
                     padding.right = parseInt(vals);
                     return padding;
                 }
@@ -50,10 +56,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var padding = this.model.get("style_padding");
-                    return padding.bottom;
+                    return padding?padding.bottom:0;
                 },
                 onSet : function(vals) {
-                    var padding = _.clone(this.model.get("style_padding"));
+                    var padding = _.clone(this.model.get("style_padding")) || {};
                     padding.bottom = parseInt(vals);
                     return padding;
                 }
@@ -63,10 +69,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var padding = this.model.get("style_padding");
-                    return padding.left;
+                    return padding?padding.left:0;
                 },
                 onSet : function(vals) {
-                    var padding = _.clone(this.model.get("style_padding"));
+                    var padding = _.clone(this.model.get("style_padding")) || {};
                     padding.left = parseInt(vals);
                     return padding;
                 }
@@ -76,10 +82,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var margin = this.model.get("style_margin");
-                    return margin.top;
+                    return margin?margin.top:0;
                 },
                 onSet : function(vals) {
-                    var margin = _.clone(this.model.get("style_margin"));
+                    var margin = _.clone(this.model.get("style_margin")) || {};
                     margin.top = parseInt(vals);
                     return margin;
                 }
@@ -89,10 +95,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var margin = this.model.get("style_margin");
-                    return margin.right;
+                    return margin?margin.right:0;
                 },
                 onSet : function(vals) {
-                    var margin = _.clone(this.model.get("style_margin"));
+                    var margin = _.clone(this.model.get("style_margin")) || {};
                     margin.right = parseInt(vals);
                     return margin;
                 }
@@ -102,10 +108,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var margin = this.model.get("style_margin");
-                    return margin.bottom;
+                    return margin?margin.bottom:0;
                 },
                 onSet : function(vals) {
-                    var margin = _.clone(this.model.get("style_margin"));
+                    var margin = _.clone(this.model.get("style_margin")) || {};
                     margin.bottom = parseInt(vals);
                     return margin;
                 }
@@ -115,10 +121,10 @@ jQuery(function($) {
                 events : ["blur"],
                 onGet : function(vals) {
                     var margin = this.model.get("style_margin");
-                    return margin.left;
+                    return margin?margin.left:0;
                 },
                 onSet : function(vals) {
-                    var margin = _.clone(this.model.get("style_margin"));
+                    var margin = _.clone(this.model.get("style_margin")) || {};
                     margin.left = parseInt(vals);
                     return margin;
                 }

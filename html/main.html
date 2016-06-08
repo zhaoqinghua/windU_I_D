@@ -47,22 +47,17 @@
             </div>-->
             <!--header结束--><!--content开始-->
             <div id="content" class="ub-f1 tx-l ub">
-                <div class="ub-f1">
+                <div class="" style="width:140px" id="designLeftView">
                     <div class="ub-con">
-                        <div class="col-xs-12  designer_view">
-                            <div class="widget-box widget-color-black transparent ui-sortable-handle " data-size="600" data-import="lays/template.html">
-                                <!-- #section:custom/widget-box.options -->
-
-                            </div>
-                            <div class="widget-box widget-color-black transparent ui-sortable-handle" data-size="600" data-import="lays/controls.html">
+                        <div class="col-xs-12  designer_view " style="overflow-x: auto;">
+                            <div class="widget-box widget-color-black transparent ui-sortable-handle ub ub-ver" style="height: calc(100% - 3px);"  data-size="600" data-import="lays/project.html">
                                 <!-- #section:custom/widget-box.options -->
 
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="ub-f2">
+                <div class="ub-f10">
                     <div class="ub-con">
                         <div class="col-xs-12 designer_view">
                             <div class="widget-box widget-color-black ui-sortable-handle widget-box-ui-editor"  data-import="lays/editor.html">
@@ -72,25 +67,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="ub-f1">
+                <div class=""  style="width:250px" id="designRightView">
                     <div class="ub-con">
                         <div class="col-xs-12  designer_view">
-                            <div class="widget-box widget-color-black transparent ui-sortable-handle" data-import="lays/properties.html">
-                                <!-- #section:custom/widget-box.options -->
-
-                            </div>
-                            <div class="widget-box widget-color-black transparent ui-sortable-handle" data-import="lays/custom.html">
-                                <!-- #section:custom/widget-box.options -->
-
-                            </div>
-                            <div class="widget-box widget-color-black transparent ui-sortable-handle" data-import="lays/style.html">
+                            <div class="widget-box widget-color-black transparent ui-sortable-handle ub ub-ver" data-import="lays/settings.html" style="height: calc(100% - 3px);">
                                 <!-- #section:custom/widget-box.options -->
 
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--content结束-->
 
@@ -177,7 +163,7 @@
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.content.flex.ver.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.pane.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.outsidebar.js"></script>
-
+        <script type="text/javascript" src="../assets/designer/controls/view/frame/control.mask.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.box.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.squarebox.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.input.js"></script>
@@ -196,13 +182,17 @@
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.multilistview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.grouplistview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.treeview.js"></script>
+
         <script type="text/javascript" src="../assets/designer/file.js"></script>
         <script type="text/javascript" src="../assets/designer/htmlformat.js"></script>
         <script type="text/javascript" src="../assets/designer/jsonformat.js"></script>
+        
+        <script type="text/javascript" src="../assets/designer/views/leftview.js"></script>
+        <script type="text/javascript" src="../assets/designer/views/rightview.js"></script>
         <!-- inline scripts related to this page -->
         <script>
             /*global require*/
-            
+
         </script>
         <script type="text/javascript">
             jQuery(function($) {
@@ -218,28 +208,28 @@
                 });
 
                 // scrollables
-                $('.scrollable').each(function() {
-                    var $this = $(this);
-                    $(this).ace_scroll({
-                        size : $this.attr('data-size') || 400,
-                        //styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
-                    });
-                });
-                $('.scrollable-horizontal').each(function() {
-                    var $this = $(this);
-                    $(this).ace_scroll({
-                        horizontal : true,
-                        styleClass : 'scroll-top', //show the scrollbars on top(default is bottom)
-                        size : $this.attr('data-size') || 500,
-                        mouseWheelLock : true
-                    }).css({
-                        'padding-top' : 12
-                    });
-                });
-
-                $(window).on('resize.scroll_reset', function() {
-                    $('.scrollable-horizontal').ace_scroll('reset');
-                });
+                // $('.scrollable').each(function() {
+                // var $this = $(this);
+                // $(this).ace_scroll({
+                // size : $this.attr('data-size') || 400,
+                // //styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+                // });
+                // });
+                // $('.scrollable-horizontal').each(function() {
+                // var $this = $(this);
+                // $(this).ace_scroll({
+                // horizontal : true,
+                // styleClass : 'scroll-top', //show the scrollbars on top(default is bottom)
+                // size : $this.attr('data-size') || 500,
+                // mouseWheelLock : true
+                // }).css({
+                // 'padding-top' : 12
+                // });
+                // });
+                //
+                // $(window).on('resize.scroll_reset', function() {
+                // $('.scrollable-horizontal').ace_scroll('reset');
+                // });
 
                 /**
                  //or use slimScroll plugin

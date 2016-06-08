@@ -1,229 +1,204 @@
-<div class="widget-header widget-header-small">
-    <div class="widget-toolbar widget-toolbar-left">
-        <a href="#" data-action="collapse"> <i class="ace-icon fa fa-chevron-down" data-icon-show="fa-chevron-right" data-icon-hide="fa-chevron-down"></i> </a>
-    </div>
-    <h6 class="widget-title">Style</h6>
-
-    <div class="widget-toolbar">
-        <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a>
-    </div>
-</div>
-
 <!-- /section:custom/widget-box.options -->
-<div class="widget-body">
-    <div class="widget-main control_pro " id="desUIControlsStyle">
-        <div class="row">
-            <small class="lighter white">前景色:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="bootstrap-colorpicker">
-                <!-- #section:plugins/misc.colorpicker -->
-                <input id="pro_con_style_color" type="text" class="input-small" />
-                <!-- /section:plugins/misc.colorpicker -->
+<div class="" id="desUIControlsStyle">
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            前景色:
+        </div>
+        <div class="bootstrap-colorpicker ub-f1">
+            <!-- #section:plugins/misc.colorpicker -->
+            <input id="pro_con_style_color" type="text" class="input-small" />
+            <!-- /section:plugins/misc.colorpicker -->
+        </div>
+        <a role="button" style="padding-left: 5px"><i data-for="#pro_con_style_color" data-bind="style_color" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            背景色:
+        </div>
+        <div class="bootstrap-colorpicker ub-f1">
+            <!-- #section:plugins/misc.colorpicker -->
+            <input id="pro_con_style_bgcolor" type="text" class="input-small" />
+            <!-- /section:plugins/misc.colorpicker -->
+        </div>
+        <a role="button" style="padding-left: 5px"><i data-for="#pro_con_style_bgcolor" data-bind="style_background_color" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            背景图:
+        </div>
+        <div class="ub-f1">
+            <input id="pro_con_bg_img"/>
+            <div class="uabs-r lighter black ub ub-ac" style="height:100%;padding-right: 3px">
+                <i class="ace-icon fa fa-plus blue " id="pro_button_bg_img"></i>
             </div>
         </div>
-        <div class="row">
-            <small class="lighter white">背景色:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="bootstrap-colorpicker">
-                <!-- #section:plugins/misc.colorpicker -->
-                <input id="pro_con_style_bgcolor" type="text" class="input-small" />
-                <!-- /section:plugins/misc.colorpicker -->
-            </div>
+        <a style="padding-left: 5px"><i data-bind="style_background_image" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            背景图效果:
         </div>
-        <div class="row">
-            <small class="lighter white">背景图:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <a id="pro_button_bg_img" href="" role="button" style="padding-left: 5px" class="space" data-toggle="modal"><i class="ace-icon fa fa-plus orange "></i></a>
-            <div class="ub ub-ac ub-pj">
-                <div class="ub-f1">
-                    <input id="pro_con_bg_img"/>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>背景图效果:</span>
-                </div>
-                <div class="ub-f1">
-                    <select id="pro_con_bg_img_type" class="white">
-                        <option value="">默认</option>
-                        <option value="ub-img1">覆盖</option>
-                        <option value="ub-img">包含</option>
-                    </select>
-                </div>
-            </div>
+        <div class="ub-f1">
+            <select id="pro_con_bg_img_type" class="black">
+                <option value="">默认</option>
+                <option value="ub-img1">覆盖</option>
+                <option value="ub-img">包含</option>
+            </select>
         </div>
-        <div class="row">
-            <small class="lighter white">Padding:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>上:</span>
-                </div>
-                <div class="ub-f1">
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            内边界:
+        </div>
+        <div class="ub-f1">
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>上</span></div>
                     <input id="pro_con_padding_top"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span class="tx-c"> 　右:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_padding_right"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>底:</span>
-                </div>
-                <div class="ub-f1">
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>下</span></div>
                     <input id="pro_con_padding_bottom"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span class="tx-c"> 　左:</span>
-                </div>
-                <div class="ub-f1">
+            </div>
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>左</span></div>
                     <input id="pro_con_padding_left"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>右</span></div>
+                    <input id="pro_con_padding_right"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <small class="lighter white">Margin:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>上:</span>
-                </div>
-                <div class="ub-f1">
+        <a style="padding-left: 5px" class="space"> <i data-bind="style_padding" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            外边界:
+        </div>
+        <div class="ub-f1">
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>上</span></div>
                     <input id="pro_con_margin_top"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span class="tx-c"> 　右:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_margin_right"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>底:</span>
-                </div>
-                <div class="ub-f1">
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>下</span></div>
                     <input id="pro_con_margin_bottom"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span class="tx-c"> 　左:</span>
-                </div>
-                <div class="ub-f1">
+            </div>
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>左</span></div>
                     <input id="pro_con_margin_left"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>右</span></div>
+                    <input id="pro_con_margin_right"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <small class="lighter white">边框:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>上:</span>
-                </div>
-                <div class="ub-f1">
+        <a style="padding-left: 5px" class="space"> <i data-bind="style_margin" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            边框:
+        </div>
+        <div class="ub-f1">
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>上</span></div>
                     <input id="pro_con_border_top_width"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>右:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_border_right_width"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>底:</span>
-                </div>
-                <div class="ub-f1">
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>下</span></div>
                     <input id="pro_con_border_bottom_width"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>左:</span>
-                </div>
-                <div class="ub-f1">
+            </div>
+            <div class="ub ub-ac" style="padding-bottom: 2px">
+                <div class="ub-f1" >
+                    <div class="uab label_pos ub ub-ac"><span>左</span></div>
                     <input id="pro_con_border_left_width"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">px</span>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span class="tx-c"> 　色彩:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_border_color"/>
-                </div>
-            </div>
-            <br>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc" style="min-width:2em">
-                    <span>Style:</span>
-                </div>
-                <div class="ub-f1">
-                    <select id="pro_con_border_type" class="white">
-                        <option value="none">none</option>
-                        <option value="solid">实线</option>
-                        <option value="dotted">点状边框</option>
-                        <option value="dashed">虚线</option>
-                        <option value="double">双线</option>
-                        <option value="groove">凹槽边框</option>
-                        <option value="ridge">垄状边框</option>
-                        <option value="inset"> inset 边框</option>
-                        <option value="outset">outset 边框</option>
-                    </select>
+                <div class="ub-f1" ></div>
+                <div class="ub-f1 ub ub-ac label_pos" >
+                    <div class="uab label_pos ub ub-ac"><span>右</span></div>
+                    <input id="pro_con_border_right_width"/>
+                    <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <small class="lighter white">圆角:</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="" style="padding-bottom: 4px">
-                <input id="pro_con_style_border_radius"/>
-            </div>
+        <a style="padding-left: 5px" class="space"> <i data-bind="style_border_top,style_border_bottom,style_border_left,style_border_right" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            边框色彩:
         </div>
-        <div class="row">
-            <small class="lighter white">字体大小:(em)</small><a id=""href="" role="button" style="float:right;min-height:13px;min-width:13px"  data-toggle="modal"><i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i></a>
-            <div class="" style="padding-bottom: 4px">
-                <input id="pro_con_style_font_size"/>
-            </div>
+        <div class="ub-f1">
+            <input id="pro_con_border_color"/>
         </div>
+        <a style="padding-left: 5px" class="space"> <i data-for="#pro_con_border_color" data-bind="style_border_color" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            边框样式:
+        </div>
+        <div class="ub-f1">
+            <select id="pro_con_border_type" class="black">
+                <option value="none">none</option>
+                <option value="solid">实线</option>
+                <option value="dotted">点状边框</option>
+                <option value="dashed">虚线</option>
+                <option value="double">双线</option>
+                <option value="groove">凹槽边框</option>
+                <option value="ridge">垄状边框</option>
+                <option value="inset"> inset 边框</option>
+                <option value="outset">outset 边框</option>
+            </select>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            圆角:
+        </div>
+        <div class="ub-f1">
+            <input id="pro_con_style_border_radius"/>
+            <div class="uabs-r label_pos ub ub-ac"><span>px</span></div>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i data-bind="style_border_radius" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black style_lab">
+            字体:
+        </div>
+        <div class="ub-f1">
+            <input id="pro_con_style_font_size"/>
+            <div class="uabs-r label_pos ub ub-ac"><span>em</span></div>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i data-bind="style_font_size" class="ace-icon glyphicon glyphicon-remove red  reset"></i></a>
     </div>
 </div>
+
 <div id="res-select-form" class="modal dark" tabindex="-1">
     <div class="modal-dialog" style="width:700px">
         <div class="modal-content">
@@ -258,29 +233,40 @@
         });
         $("#pro_con_style_bgcolor,#pro_con_style_color,#pro_con_border_color").on("changeColor", function(e) {
             var c = e.color.toRGB();
-            $(this).css("background-color", "rgb(" + c.r + "," + c.g + "," + c.b + ")");
+            //$(this).css("background-color", "rgb(" + c.r + "," + c.g + "," + c.b + ")");
             $(this).val("rgb(" + c.r + "," + c.g + "," + c.b + ")");
-            $(this).css("color", "rgb(" + (255 - c.r) + "," + (255 - c.g) + "," + (255 - c.b) + ")")
+            //$(this).css("color", "rgb(" + (255 - c.r) + "," + (255 - c.g) + "," + (255 - c.b) + ")")
         })
 
         $("#pro_button_bg_img").click(function() {
+            debugger;
             var Template = loadTemplate("./lays/properties/res-image.html");
             var work = $.getUrlParam("workspace");
             var res = work + "\\css\\res";
-            window.FileMgr.list(res, function(err,list) {
+            window.FileMgr.list(res, function(err, list) {
                 console.log(list);
                 var files = JSON.parse(list);
                 var relative = [];
-                for(var i in files){
-                    relative.push(files[i].replace(work+"\\","").replace(/\\/g, "/"));
+                for (var i in files) {
+                    relative.push(files[i].replace(work + "\\", "").replace(/\\/g, "/"));
                 }
-                var html = Template({files:files,relative:relative});
+                var html = Template({
+                    files : files,
+                    relative : relative
+                });
                 var img_container = $("ul", "#base-img-list");
                 img_container.html(html);
-                $("li",img_container).on("click",function(e){
+                $("li", img_container).on("click", function(e) {
+                    debugger;
                     $("#pro_con_bg_img").val($(e.target).attr("rela"));
                     $("#pro_con_bg_img").blur();
-                    $("#res-select-form").hide();
+                    $("#res-select-form").modal("toggle");
+                })
+                $(".btn-primary", "#res-select-form").on("click", function(e) {
+                    debugger;
+                    $("#pro_con_bg_img").val($(e.target).attr("rela"));
+                    $("#pro_con_bg_img").blur();
+                    $("#res-select-form").modal("toggle");
                 })
                 $("#res-select-form").modal("toggle");
             })
@@ -292,10 +278,8 @@
         // var s = base_css_rules[i].selectorText;
         // var item = {
         // id : s.split(".")[1],
-        // txt : base_css_rules[i].cssText.replace(s, "").replace("{", "").replace("}", "")
-        // };
-        // var dom = $(Template(item));
-        // css_container.append(dom);
+        // txt : base_css_rules[i].cssText.replace(s, "").replace("{", "").replace("}", "")// };
+        // var dom = $(Template(item));// css_container.append(dom);
         // }
         // }
     })

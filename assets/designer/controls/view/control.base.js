@@ -8,15 +8,15 @@ jQuery(function($) {
     }
 
     var View = Backbone.View.extend({//options...
-        getParent:function(ele){
-            if($(ele).parent().attr("data-control"))
+        getParent : function(ele) {
+            if ($(ele).parent().attr("data-control"))
                 return $(ele).parent();
             else
                 return this.getParent($(ele).parent());
         },
         initialize : function(option) {
             function toFixed(num) {
-                return num ? (num / 24).toFixed(2) + "em " : "0em ";
+                return num ? (num / 16).toFixed(2) + "em " : "0em ";
             }
 
             var self = this;
@@ -55,11 +55,15 @@ jQuery(function($) {
                             self.appendChild(ui.draggable);
                         else
                             self.$el.append(ui.draggable);
-                        
+
                         $(ui.draggable).offset(offset);
                         var pos = view.$el.position();
-                        view.model.set("offset_x", parseInt(pos.left),{silent:true});
-                        view.model.set("offset_y", parseInt(pos.top),{silent:true});
+                        view.model.set("offset_x", parseInt(pos.left), {
+                            silent : true
+                        });
+                        view.model.set("offset_y", parseInt(pos.top), {
+                            silent : true
+                        });
                     }
 
                 },
@@ -142,8 +146,7 @@ jQuery(function($) {
                 }
             });
             this.listenTo(this.model, "change:layout", function(data) {
-                var $el = $(".vector", self.$el);
-                $el = $el.length ? $el : self.$el;
+                var $el = self.$el;
                 switch (data.changed.layout) {
                 case "box":
                     $el.css("display", "");
@@ -167,16 +170,14 @@ jQuery(function($) {
                 this.model.get("on/off_draggable") && self.$el.draggable(data.changed["on/off_offset"] ? "enable" : "disable");
             });
             this.listenTo(this.model, "change:layout_pack", function(data) {
-                var $el = $(".vector", self.$el);
-                $el = $el.length ? $el : self.$el;
+                var $el = self.$el;
                 $el.removeClass("ub-pc ub-pe ub-pj");
                 $el.addClass(data.changed.layout_pack);
                 this.model.cla["ub-pc"] = this.model.cla["ub-pe"] = this.model.cla["ub-pj"] = false;
                 this.model.cla[data.changed.layout_pack] = true;
             });
             this.listenTo(this.model, "change:layout_align", function(data) {
-                var $el = $(".vector", self.$el);
-                $el = $el.length ? $el : self.$el;
+                var $el = self.$el;
                 $el.removeClass("ub-ac ub-ae");
                 $el.addClass(data.changed.layout_align);
 
@@ -184,15 +185,13 @@ jQuery(function($) {
                 this.model.cla[data.changed.layout_align] = true;
             });
             this.listenTo(this.model, "change:layout_orient", function(data) {
-                var $el = $(".vector", self.$el);
-                $el = $el.length ? $el : self.$el;
+                var $el = self.$el;
                 $el.removeClass("ub-ver");
                 $el.addClass(!data.changed.layout_orient ? "" : "ub-ver");
                 this.model.cla["ub-ver"] = !(!data.changed.layout_orient);
             })
             this.listenTo(this.model, "change:layout_dir", function(data) {
-                var $el = $(".vector", self.$el);
-                $el = $el.length ? $el : self.$el;
+                var $el = self.$el;
                 $el.removeClass("ub-rev");
                 $el.addClass(!data.changed.layout_dir ? "" : "ub-rev");
                 this.model.cla["ub-rev"] = !(!data.changed.layout_dir);
@@ -205,59 +204,68 @@ jQuery(function($) {
             })
 
             this.listenTo(this.model, "change:style_background_color", function(data) {
-                self.$el.css("background-color", data.changed.style_background_color);
+                !data.changed.style_background_color && self.$el.css("background-color", "");
+                data.changed.style_background_color && self.$el.css("background-color", data.changed.style_background_color);
                 this.model.css["background-color"] = data.changed.style_background_color;
             })
             this.listenTo(this.model, "change:style_color", function(data) {
-                self.$el.css("color", data.changed.style_color);
+                !data.changed.style_color && self.$el.css("color", "");
+                data.changed.style_color && self.$el.css("color", data.changed.style_color);
                 this.model.css["color"] = data.changed.style_color;
             })
             this.listenTo(this.model, "change:style_padding", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var padding = data.changed.style_padding;
-                var style = toFixed(padding.top) + toFixed(padding.right) + toFixed(padding.bottom) + toFixed(padding.left);
-                self.$el.css("padding", style);
+                if (padding) {
+                    var style = toFixed(padding.top) + toFixed(padding.right) + toFixed(padding.bottom) + toFixed(padding.left);
+                    self.$el.css("padding", style);
+                } else
+                    self.$el.css("padding", "");
                 this.model.css["padding"] = style;
             })
             this.listenTo(this.model, "change:style_margin", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var margin = data.changed.style_margin;
-                var style = toFixed(margin.top) + toFixed(margin.right) + toFixed(margin.bottom) + toFixed(margin.left);
-                self.$el.css("margin", style);
+                if (margin) {
+                    var style = toFixed(margin.top) + toFixed(margin.right) + toFixed(margin.bottom) + toFixed(margin.left);
+                    self.$el.css("margin", style);
+                } else {
+                    self.$el.css("margin", "");
+                }
                 this.model.css["margin"] = style;
             })
             this.listenTo(this.model, "change:style_border_top", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_top;
                 var style = border + "px ";
-                self.$el.css("border-top-width", style);
+                self.$el.css("border-top-width", border ? style : "");
                 this.model.css["border-top-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_right", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_right;
                 var style = border + "px ";
-                self.$el.css("border-right-width", style);
+                self.$el.css("border-right-width", border ? style : "");
                 this.model.css["border-right-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_bottom", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_bottom;
                 var style = border + "px ";
-                self.$el.css("border-bottom-width", style);
+                self.$el.css("border-bottom-width", border ? style : "");
                 this.model.css["border-bottom-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_left", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var border = data.changed.style_border_left;
                 var style = border + "px ";
-                self.$el.css("border-left-width", style);
+                self.$el.css("border-left-width", border ? style : "");
                 this.model.css["border-left-width"] = style;
             })
             this.listenTo(this.model, "change:style_border_color", function(data) {
                 //self.$el.css("background-color",data.changed.style_background_color);
                 var color = data.changed.style_border_color;
-                self.$el.css("border-color", color);
+                self.$el.css("border-color", color ? color : "");
                 this.model.css["border-color"] = color;
             })
             this.listenTo(this.model, "change:style_border_style", function(data) {
@@ -268,8 +276,11 @@ jQuery(function($) {
             })
             this.listenTo(this.model, "change:style_border_radius", function(data) {
                 var border = data.changed.style_border_radius;
-                var style = parseInt(border) + "px";
-                self.$el.css("border-radius", style);
+                if (border) {
+                    var style = parseInt(border) + "px";
+                    self.$el.css("border-radius", style);
+                } else
+                    self.$el.css("border-radius", "");
                 this.model.css["border-radius"] = style;
             })
             this.listenTo(this.model, "change:style_background_image", function(data) {
@@ -278,19 +289,19 @@ jQuery(function($) {
                     if (img.indexOf("http") != 0 && img.indexOf("file://") != 0) {
                         var work = $.getUrlParam("workspace");
                         var f = $.getUrlParam("path");
-                        var relative = PathModule.relative(f,work);
-                        this.model.css["background-image"] = "url(" + relative+"../"+img + ")";//because dest css file in next level directory. so that,we should add ../
+                        var relative = PathModule.relative(f, work);
+                        this.model.css["background-image"] = "url(" + relative + "../" + img + ")";
+                        //because dest css file in next level directory. so that,we should add ../
                         img = (("file:///" + work + "\\" + img).replace(/\\/g, "/"));
-                    }
-                    else
+                    } else
                         this.model.css["background-image"] = "url(" + img + ")";
                     self.$el.css("background-image", "url(" + img + ")");
-                    
+
                 } else {
                     self.$el.css("background-image", "");
                     this.model.css["background-image"] = self.$el.css("background-image");
                 }
-                
+
             })
             this.listenTo(this.model, "change:style_background_size", function(data) {
                 var imgSize = data.changed.style_background_size;

@@ -28,8 +28,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "fda89f0b-4609-440b-8339-d10fbb8dd6f7",
         name : "Footer",
-        tip : "",
-        type: "frame"
+        tip : "底部容器，用于在屏幕最底部固定一个不随屏幕滚动的区域，常用于下导航功能实现。",
+        type: "frame",
+        icon:"Footer.png"
     }, {
         View : View,
         Template : Template,

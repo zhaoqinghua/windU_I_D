@@ -9392,8 +9392,8 @@ define("orion/editor/textView", [ //$NON-NLS-0$
 				}
 				clipDiv.style.left = clipLeft + "px"; //$NON-NLS-0$
 				clipDiv.style.top = clipTop + "px"; //$NON-NLS-0$
-				clipDiv.style.right = (parentWidth - clipWidth - clipLeft) + "px"; //$NON-NLS-0$
-				clipDiv.style.bottom = (parentHeight - clipHeight - clipTop) + "px"; //$NON-NLS-0$
+				clipDiv.style.right = (parentWidth - clipWidth - clipLeft-20) + "px"; //$NON-NLS-0$
+				clipDiv.style.bottom = (parentHeight - clipHeight - clipTop-20) + "px"; //$NON-NLS-0$
 				clientDiv.style.left = clientLeft + "px"; //$NON-NLS-0$
 				clientDiv.style.top = clientTop + "px"; //$NON-NLS-0$
 				clientDiv.style.width = scrollWidth + "px"; //$NON-NLS-0$

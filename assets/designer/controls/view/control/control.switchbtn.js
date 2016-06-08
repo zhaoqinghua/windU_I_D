@@ -31,19 +31,14 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "SwitchBtn");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-        },
-        extOptions : [{
-            type : "checkbox",
-            title : "Mini Switch Btn",
-            name : "isMini"
-        }]
-
+        }
     })
 
     window.desUIControlsListViewInstance.register({
         uuid : "2dd8269c-7b32-4f11-99a5-3405cec06ffc",
         name : "SwitchBtn",
-        tip : ""
+        tip : "开关滑块按钮控件",
+        icon : "Switch.png"
     }, {
         View : View,
         Template : Template,

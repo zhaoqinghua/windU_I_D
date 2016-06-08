@@ -144,7 +144,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "0692f033-5232-4e36-8eba-81ff05727a67",
         name : "MultiListView",
-        tip : ""
+        tip : "标准多行列表控件，不支持用户自定义配置",
+        icon : "MListview.png"
     }, {
         View : View,
         Template : Template,

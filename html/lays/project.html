@@ -1,0 +1,48 @@
+<div class="widget-header widget-header-small" >
+    <div class="widget-toolbar widget-toolbar-left">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+                <div class="uabs ub-con" ></div><a data-toggle="tab" href="#con_controls" title="所有可拼装的组件" aria-expanded="false">组件</a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="widget-toolbar">
+        <!-- <a href="#" class="blue"> <i class="ace-icon fa fa-refresh" id="desUILoadBtn"></i></a> -->
+        <a href="#" class="blue"> <i class="ace-icon fa fa-save" id="desUISaveBtn" title="保存模板文件"></i></a>
+        <a href="#" class="blue"> <i class="ace-icon glyphicon glyphicon-export" id="desUICssBtn" title="通过模板输出为HTML、CSS、Javascript文件"></i></a>
+        <!-- <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a> -->
+    </div>
+</div>
+
+<!-- /section:custom/widget-box.options -->
+<div class="widget-body ub-f1" style="overflow-y: auto;overflow-x: auto">
+    <div class="uabs ub-con">
+        <div class="widget-main control_pro ">
+            <div class="tab-content control_pro">
+               
+
+                <div id="con_controls" class="tab-pane active" data-import="lays/controls.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function($) {
+        $("#desUISaveBtn").click(function() {
+            window.desUIEditorMobileViewInstance.save();
+        })
+        $("#desUILoadBtn").click(function() {
+
+        })
+        $("#desUICssBtn").click(function() {
+            window.desUIEditorMobileViewInstance.build();
+        })
+
+        $(".root-item", $("#control_tree")).click(function() {
+
+        })
+    })
+
+</script>

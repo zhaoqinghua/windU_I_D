@@ -1,0 +1,40 @@
+<div class="widget-header widget-header-small" >
+    <div class="widget-toolbar widget-toolbar-left">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+                <div class="uabs ub-con" ></div><a title="布局属性配置" data-toggle="tab" href="#con_layout" aria-expanded="true">布局</a>
+
+            </li>
+
+            <li class="">
+                <div class="uabs ub-con" ></div><a title="控件CSS样式配置" data-toggle="tab" href="#con_style" aria-expanded="false">样式</a>
+            </li>
+
+            <li>
+                <div class="uabs ub-con" ></div><a title="控件属性配置" data-toggle="tab" href="#con_custom">属性</a>
+            </li>
+            <li class="">
+                <div class="uabs ub-con" ></div><a data-toggle="tab" href="#con_template" title="组件拼装树状结构" aria-expanded="true">布局树</a>
+            </li>
+        </ul>
+    </div>
+    <div class="widget-toolbar">
+        <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a>
+    </div>
+</div>
+
+<!-- /section:custom/widget-box.options -->
+<div class="widget-body ub-f1" style="overflow-y: auto;overflow-x: hidden">
+    <div class="uabs ub-con">
+        <div class="widget-main control_pro " >
+            <div class="tab-content control_pro">
+                <div id="con_layout" class="tab-pane active" data-import="lays/properties.html"></div>
+
+                <div id="con_style" class="tab-pane" data-import="lays/style.html"></div>
+
+                <div id="con_custom" class="tab-pane" data-import="lays/custom.html"></div>
+                <div id="con_template" class="tab-pane " data-import="lays/template.html"></div>
+            </div>
+        </div>
+    </div>
+</div>

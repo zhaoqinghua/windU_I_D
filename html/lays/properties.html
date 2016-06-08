@@ -1,186 +1,145 @@
-<div class="widget-header widget-header-small">
-    <div class="widget-toolbar widget-toolbar-left">
-        <a href="#" data-action="collapse"> <i class="ace-icon fa fa-chevron-down" data-icon-show="fa-chevron-right" data-icon-hide="fa-chevron-down"></i> </a>
-    </div>
-    <h6 class="widget-title">Layout</h6>
-
-    <div class="widget-toolbar">
-        <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a>
-    </div>
-</div>
-
 <!-- /section:custom/widget-box.options -->
-<div class="widget-body">
-    <div class="widget-main control_pro " id="desUIControlsProperties">
-        <div class="row">
-            <small class="lighter white">Id: <i class="orange ace-icon glyphicon glyphicon-trash del-controls"></i></small>
-            <div class="">
-                <input class="col-sm-12" id="pro_con_name"/>
-            </div>
+<div id="desUIControlsProperties">
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab " title="控件唯一编号" >
+            Id:
         </div>
-
-        <div class="row">
-            <small class="lighter white">Flex:</small>
-            <div class="">
-                <select id="pro_con_flex" class="white">
-                    <option value="">none</option>
-                    <option value="ub-f1">1</option>
-                    <option value="ub-f2">2</option>
-                    <option value="ub-f3">3</option>
-                    <option value="ub-f4">4</option>
-                    <option value="ub-f5">5</option>
-                    <option value="ub-f6">6</option>
-                    <option value="ub-f7">7</option>
-                </select>
-            </div>
+        <div class="ub-f1">
+            <input class="col-sm-12" id="pro_con_name"/>
         </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon glyphicon glyphicon-trash del-controls"></i> </a>
+    </div>
 
-        <div class="row">
-            <small class="lighter white">Position:</small>
-            <div class="">
-                <select id="pro_con_position" class="white">
-                    <option value="">relative</option>
-                    <option value="absolute">absolute</option>
-                    <option value="fixed">fixed</option>
-                </select>
-            </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab" title="控件在弹性盒子容器中的所占份额">
+            比率:
         </div>
+        <div class="ub-f1">
+            <select id="pro_con_flex" class="black">
+                <option value="">none</option>
+                <option value="ub-f1">1</option>
+                <option value="ub-f2">2</option>
+                <option value="ub-f3">3</option>
+                <option value="ub-f4">4</option>
+                <option value="ub-f5">5</option>
+                <option value="ub-f6">6</option>
+                <option value="ub-f7">7</option>
+            </select>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div>
 
-        <div class="row">
-            <small class="lighter white">Layout:</small>
-            <div>
-                <select id="pro_con_layout" class="white">
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab" title="控件定位方式">
+            定位方式:
+        </div>
+        <div class="ub-f1">
+            <select id="pro_con_position" class="black">
+                <option value="">relative</option>
+                <option value="absolute">absolute</option>
+                <option value="fixed">fixed</option>
+            </select>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div>
+
+    <div class="row">
+        <div class="ub ub-ac">
+            <div class="lighter black pro_lab" title="控件容器子元素布局方式，是默认块状布局还是弹性盒子布局">
+                布局:
+            </div>
+            <div class="ub-f1" style="padding: 0 1px;">
+                <select id="pro_con_layout" class="black">
                     <option value="block">block</option>
                     <option value="box">box</option>
                 </select>
             </div>
-            <div class="hide box_layout " data-control-group="" data-layout-orient="">
-                <div data-toggle="buttons" class="btn-group align_dir" >
-                    <label class="btn btn-primary" id="box_align_orient">
-                        <input type="checkbox" value="ub-ver">
-                        <div class="icon-only ace-icon fa fa-arrows-h fa-1"></div> </label>
-                </div>
-                <div data-toggle="buttons" class="btn-group align_hor" data-layout-orient="">
-                    <label class="btn btn-primary">
-                        <input type="radio" value="" name="box_pack" >
-                        <div class="icon-only ace-icon iconfont icon-zuoduiqi"></div> </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" value="ub-pc" name="box_pack">
-                        <div class="icon-only ace-icon iconfont icon-chuizhijuzhongduiqi"></div> </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" value="ub-pe" name="box_pack">
-                        <div class="icon-only ace-icon iconfont icon-youduiqi"></div> </label>
-                </div>
-                <div data-toggle="buttons" class="btn-group align_ver" data-layout-orient="">
-                    <label class="btn btn-primary">
-                        <input type="radio" value="" name="box_align">
-                        <div class="icon-only ace-icon iconfont icon-shangduiqi"></div> </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" value="ub-ac"name="box_align">
-                        <div class="icon-only ace-icon iconfont icon-shuipingjuzhongduiqi"></div> </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" value="ub-ae"name="box_align">
-                        <div class="icon-only ace-icon iconfont icon-xiaduiqi"></div> </label>
+            <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+        </div>
+        <div class="ub ub-ac " style="">
+            <div class="lighter black pro_lab"></div>
+            <div class="ub-f1 box_layout hide ">
+                <div class=" " data-control-group="" data-layout-orient="">
+                    <div data-toggle="buttons" class="btn-group align_dir" >
+                        <label class="btn btn-primary" id="box_align_orient" title="纵向排布还是横向排布">
+                            <input type="checkbox" value="ub-ver">
+                            <div class="icon-only-ver ace-icon fa fa-arrows-h fa-1 blue"></div> </label>
+                    </div>
+                    <div data-toggle="buttons" class="btn-group align_hor" data-layout-orient="">
+                        <label class="btn btn-primary" title="靠左(横向布局)或靠上(纵向布局)">
+                            <input type="radio" value="" name="box_pack" >
+                            <div class="icon-only-hor ace-icon iconfont icon-zuoduiqi blue"></div> </label>
+                        <label class="btn btn-primary" title="左右居中(横向布局)或上下居中(纵向布局)">
+                            <input type="radio" value="ub-pc" name="box_pack">
+                            <div class="icon-only-hor ace-icon iconfont icon-chuizhijuzhongduiqi blue"></div> </label>
+                        <label class="btn btn-primary" title="靠右(横向布局)或靠下(纵向布局)">
+                            <input type="radio" value="ub-pe" name="box_pack">
+                            <div class="icon-only-hor ace-icon iconfont icon-youduiqi blue"></div> </label>
+                    </div>
+                    <div data-toggle="buttons" class="btn-group align_ver" data-layout-orient="">
+                        <label class="btn btn-primary" title="靠上(横向布局)或靠左(纵向布局)">
+                            <input type="radio" value="" name="box_align">
+                            <div class="icon-only-ver ace-icon iconfont icon-shangduiqi blue"></div> </label>
+                        <label class="btn btn-primary" title="上下居中(横向布局)或左右居中(纵向布局)">
+                            <input type="radio" value="ub-ac"name="box_align">
+                            <div class="icon-only-ver ace-icon iconfont icon-shuipingjuzhongduiqi blue"></div> </label>
+                        <label class="btn btn-primary" title="靠下(横向布局)或靠右(纵向布局)">
+                            <input type="radio" value="ub-ae"name="box_align">
+                            <div class="icon-only-ver ace-icon iconfont icon-xiaduiqi blue"></div> </label>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <small class="lighter white">Size: <i class="ace-icon fa fa-unlock orange lock-size"></i></small>
-            <div class="ub ub-ac  ub-pj">
-                <div class="lighter white ub ub-pc">
-                    <span>w:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_size_w"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <i class="ace-icon glyphicon glyphicon-resize-horizontal gray full-width" ></i>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <i class="ace-icon glyphicon glyphicon-remove red del-width" ></i>
-                </div>
-
-            </div>
-            <br>
-            <div class="ub ub-ac  ub-pj">
-                <div class="lighter white ub ub-pc">
-                    <span>h:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_size_h"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <i class="ace-icon glyphicon glyphicon-resize-vertical gray full-height" ></i>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <i class="ace-icon glyphicon glyphicon-remove red del-height" ></i>
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <small class="lighter white">Offset: <i class="ace-icon fa fa-unlock orange lock-offset"></i></small>
-            <div class="ub ub-ac ub-pj">
-                <div class="lighter white ub ub-pc">
-                    <span>x:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_offset_x"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <span class="tx-c">y:</span>
-                </div>
-                <div class="ub-f1">
-                    <input id="pro_con_offset_y"/>
-                </div>
-                <div class="lighter white ub ub-pc">
-                    <i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <small class="lighter white">基础样式:</small><a id="pro_btn_css"href="" role="button" style="padding-left: 5px" class="space" data-toggle="modal"><i class="ace-icon fa fa-plus orange "></i></a>
-            <div class="" style="padding-bottom: 4px">
-                <input id="pro_con_css"/>
-            </div>
-        </div>
-        <div class="row custom_properties">
-            <small class="lighter white">Control Properties: </small>
-            <div class="col-xs-12" id="pro_ext_options"></div>
+            <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
         </div>
     </div>
-</div>
-</div>
 
-<div id="fa-select-form" class="modal" tabindex="-1">
-    <div class="modal-dialog" style="width:700px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    &times;
-                </button>
-                <h4 class="blue bigger">Please Select the Font Icon</h4>
-            </div>
-
-            <div class="modal-body">
-                <div class="row" id="fa-icon-list">
-
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-sm" data-dismiss="modal">
-                    <i class="ace-icon fa fa-times"></i>
-                    Cancel
-                </button>
-
-                <button class="btn btn-sm btn-primary">
-                    <i class="ace-icon fa fa-check"></i>
-                    Confirm
-                </button>
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab">
+            大小: <i class="ace-icon fa fa-unlock blue lock-size"></i>
+        </div>
+        <div class="ub-f1">
+            <div class="uab label_pos ub ub-ac"><span>宽</span></div>
+            <input style="padding-right:3em;" id="pro_con_size_w"/>
+            <div class="uabs-r lighter black ub ub-ac" style="height:100%;padding-right: 2px">
+                <i class="ace-icon glyphicon glyphicon-resize-horizontal gray full-width" ></i>
+                <i class="ace-icon glyphicon glyphicon-remove red del-width" ></i>
             </div>
         </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+        <div class="ub-f1">
+            <div class="uab label_pos ub ub-ac"><span>高</span></div>
+            <input style="padding-right:3em;" id="pro_con_size_h"/>
+            <div class="uabs-r lighter black ub ub-ac" style="height:100%;padding-right: 2px">
+                <i class="ace-icon glyphicon glyphicon-resize-vertical gray full-height" ></i>
+                <i class="ace-icon glyphicon glyphicon-remove red del-height" ></i>
+            </div>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab">
+            位置: <i class="ace-icon fa fa-unlock blue lock-offset"></i>
+        </div>
+        <div class="ub-f1">
+            <div class="uab label_pos ub ub-ac ub-pc"><span>X</span></div>
+            <input id="pro_con_offset_x"/>
+        </div>
+        <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+        <div class="ub-f1">
+            <div class="uab label_pos ub ub-ac ub-pc"><span>Y</span></div>
+            <input id="pro_con_offset_y"/>
+        </div>
+        <a style="padding-left: 4px" class="space"> <i class="ace-icon glyphicon glyphicon-remove red  del-offset"></i> </a>
+    </div>
+    <div class="row ub ub-ac">
+        <div class="lighter black pro_lab ">
+            基础样式:
+        </div>
+        <div class="ub-f1" style="padding-bottom: 4px">
+            <input id="pro_con_css"/>
+        </div>
+        <a id="pro_btn_css" style="padding-left: 7px" class="space" data-toggle="modal"><i class="ace-icon fa fa-plus blue "></i></a>
     </div>
 </div>
 
@@ -192,6 +151,10 @@
                     &times;
                 </button>
                 <h4 class="blue bigger">Please Select the Base CSS</h4>
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
             </div>
 
             <div class="modal-body">
@@ -266,43 +229,8 @@
 
             $(options.input).blur();
             console.log(res);
-            $("#css-select-form").modal("toggle");
+            $("#css-select-form").hide();
         })
     });
-    jQuery(function($) {
-        var Template = loadTemplate("./lays/properties/fa-icon.html");
-        var fa_rules = $("#fa_css")[0].sheet.cssRules;
-        var icon_container = $("#fa-icon-list");
-        for (var i = 0; i < fa_rules.length; i++) {
-            if (fa_rules[i].type == 1) {
-                var s = fa_rules[i].selectorText.split("::before");
-                if (s.length > 1) {
-                    var c = fa_rules[i].selectorText.split("::before")[0];
-
-                    var item = {
-                        id : c.split(".")[1]
-                    };
-                    var dom = $(Template(item));
-                    icon_container.append(dom);
-                }
-            }
-        }
-        $("#fa-select-form").on("show.bs.modal", function(e) {
-            $("input", this).attr("checked", false);
-        })
-        $(".btn-primary", "#fa-select-form").on("click", function() {
-            var options = $("#fa-select-form")[0].options;
-            var checked = $("input:checked", "#fa-select-form");
-            var res = "";
-            var $tag_obj = $(options.input).data('tag');
-            for (var i = 0; i < checked.length; i++) {
-                var item = $(checked[i]);
-                $tag_obj.add(item.val());
-            }
-
-            $(options.input).blur();
-            console.log(res);
-            $("#fa-select-form").hide();
-        })
-    }); 
+    
 </script>

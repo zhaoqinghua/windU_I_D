@@ -73,8 +73,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "c80a41cc-c26b-454e-99bc-680a11c496d7",
         name : "Header",
-        tip : "",
-        type : "frame"
+        tip : "标题导航组件，用于展示标题并提供左右侧按钮，一般用于Page容器中。大部分情况一个界面仅有一个标题。",
+        type : "frame",
+        icon:"Header.png"
     }, {
         View : View,
         Template : Template,

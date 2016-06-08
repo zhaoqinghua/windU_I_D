@@ -4,33 +4,38 @@ jQuery(function($) {
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
             this.render();
-            Backbone.Designer.View.prototype.initialize.apply(this, arguments); 
-            this.model.set("size_w",70); 
+            Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            this.model.set("size_w", 70);
         },
         template : Template, //VIEW对应的模板
         render : function() {
             var self = this;
             if (this.template) {
                 this.$el = $(this.template(this.model.attributes));
-                Backbone.Designer.View.prototype.render.apply(this, arguments); 
+                Backbone.Designer.View.prototype.render.apply(this, arguments);
             }
             return this;
         },
-        appendChild:function(el){
-            $(".vector",this.$el).append(el);
+        appendChild : function(el) {
+            $($(".vector", this.$el)[0]).append(el);
         }
     });
-    
+
     var Config = Backbone.Designer.Config.extend({
-        initialize:function(options){
-            this.set("type","SquareBox");
+        initialize : function(options) {
+            this.set("type", "SquareBox");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
         }
     })
-    
+
     window.desUIControlsListViewInstance.register({
-                uuid : "54a9c730-5019-4ef0-a8f2-042bbdfb942a",
-                name : "SquareBox",
-                tip:"布局容器盒子，可以承载其他控件，也可作为独立控件使用"
-            },{View:View,Template:Template,Config:Config})
+        uuid : "54a9c730-5019-4ef0-a8f2-042bbdfb942a",
+        name : "SquareBox",
+        tip : "正方形容器控件，根据宽度自动变更高度。其他与BOX控件相同",
+        icon : "Square.png"
+    }, {
+        View : View,
+        Template : Template,
+        Config : Config
+    })
 });

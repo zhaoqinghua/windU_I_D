@@ -38,7 +38,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "2207d5e5-f168-42ad-b2a7-9b04fc329e10",
         name : "Input",
-        tip : ""
+        tip : "标准输入框控件",
+        icon : "Input.png"
     }, {
         View : View,
         Template : Template,

@@ -30,8 +30,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "fed5f05f-70dc-4a0a-b072-658640df6c18",
         name : "Page",
-        tip : "",
-        type: "frame"
+        tip : "应用最基础组件，其他组件都需要部署其中，大部分场景一个界面仅需一个。",
+        type: "frame",
+        icon:"Page.png"
     }, {
         View : View,
         Template : Template,

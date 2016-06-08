@@ -1,19 +1,22 @@
-<small class="lighter white"><%=title%>:</small><a id="pro_button_<%=name%>" href="" role="button" style="padding-left: 5px" class="space" data-toggle="modal"><i class="ace-icon fa fa-plus orange "></i></a>
-<div class="" style="padding-bottom: 4px">
-    <input id="pro_<%=name%>"/>
-</div>
-<script>
-    jQuery(function($) {
-
-        $("#pro_button_<%=name%>").click(function() {
-            var val = $("#pro_<%=name%>").val();
-            $("#fa-select-form")[0].options = {
-                val : val,
-                input : "#pro_<%=name%>"
-            };
-            $("#fa-select-form").modal();
+<div class="ub ub-ac">
+    <div class="lighter black custom_lab">
+        <%=title%>:
+    </div>
+    <div class="ub-f1" style="padding-bottom: 4px">
+        <input id="pro_<%=name%>"/>
+    </div>
+    <a id="pro_button_<%=name%>" style="padding-left: 7px" class="space" data-toggle="modal"><i class="ace-icon fa fa-plus blue "></i></a>
+    <script>
+        jQuery(function($) {
+            $("#pro_button_<%=name%>").click(function() {
+                debugger;
+                var val = $("#pro_<%=name%>").val();
+                $("#fa-select-form")[0].options = {
+                    val : val,
+                    input : "#pro_<%=name%>"
+                };
+                $("#fa-select-form").modal("toggle");
+            })
         })
-        
-    })
-</script>
-
+    </script>
+</div>

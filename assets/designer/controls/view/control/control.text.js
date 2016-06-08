@@ -51,7 +51,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "41d45be8-fca3-44e7-8f96-31e011312d0c",
         name : "Text",
-        tip : ""
+        tip : "文本标签控件，用于显示只读静态文本",
+        icon : "T.png"
     }, {
         View : View,
         Template : Template,

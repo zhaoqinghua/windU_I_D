@@ -1,15 +1,20 @@
-<small class="lighter white"><%=title%>:</small>
-<div class="" style="padding-bottom: 4px">
-    <pre class="editor" data-editor-lang="js" data-editor-show-lines-ruler="false"  id="pro_<%=name%>" 
+<div class="lighter black custom_lab">
+    <%=title%>:
+</div>
+<div class="ub ub-ac">
+    <div class="ub-f1" style="padding-bottom: 4px;min-height:300px">
+        <pre class="editor" data-editor-lang="js" data-editor-show-lines-ruler="false"
+        data-show-overview-ruler="false" data-show-folding-ruler="false"  id="pro_<%=name%>" 
         style="height:300px;width:100%;">
      </pre>
-</div>
-<script>
-var editor = null;
-    require(["orion/editor/edit"], function(edit) {
-        editor = edit({
-            className : "editor"
+    </div>
+    <script>
+        var editor = null;
+        require(["orion/editor/edit"], function(edit) {
+            editor = edit({
+                className : "editor"
+            });
+
         });
-        
-    }); 
-</script>
+    </script>
+</div>

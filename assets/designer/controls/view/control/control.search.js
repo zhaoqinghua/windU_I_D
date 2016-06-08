@@ -37,7 +37,8 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "021c646d-17c9-40ae-a351-08aa146c2714",
         name : "Search",
-        tip : ""
+        tip : "搜索框控件",
+        icon : "Search.png"
     }, {
         View : View,
         Template : Template,

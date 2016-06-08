@@ -36,8 +36,9 @@ jQuery(function($) {
     window.desUIControlsListViewInstance.register({
         uuid : "2b7d0eac-5af9-4ad2-b231-4b78152a9ed9",
         name : "ContentFlexVer",
-        tip : "弹性纵向排布容器，内部元素按照比率或大小纵向按顺序排列",
-        type : "frame"
+        tip : "弹性纵向排布容器，内部元素按照比率或大小纵向按顺序排列。主要用于不超过屏幕大小的网格化控件排版。",
+        type : "frame",
+        icon:"FlexVer.png"
     }, {
         View : View,
         Template : Template,
