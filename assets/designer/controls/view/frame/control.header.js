@@ -25,7 +25,7 @@ jQuery(function($) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
         template : Template, //VIEW对应的模板
-        jsTemplate:jsTemplate,
+        jsTemplate : jsTemplate,
         render : function() {
             var self = this;
             if (this.template) {
@@ -34,9 +34,9 @@ jQuery(function($) {
             }
             return this;
         },
-        buildHTML:function(dom){
+        buildHTML : function(dom) {
             this.model.get("nav_left_icon") && $("#nav-left > div", dom).addClass(this.model.get("nav_left_icon"));
-            this.model.get("nav_right_icon") && $("#nav-left > div", dom).addClass(this.model.get("nav_right_icon"));
+            this.model.get("nav_right_icon") && $("#nav-right > div", dom).addClass(this.model.get("nav_right_icon"));
             this.model.get("title") && $(".ut", dom).text(this.model.get("title"));
         }
     });
@@ -51,19 +51,23 @@ jQuery(function($) {
             type : "icon",
             title : "左导航按钮图标",
             name : "nav_left_icon"
-        }, {
-            type : "icon",
-            title : "左导航按钮图片",
-            name : "nav_left_pic"
-        }, {
+        }
+        //,  {
+        // type : "icon",
+        // title : "左导航按钮图片",
+        // name : "nav_left_pic"
+        // }
+        , {
             type : "icon",
             title : "右导航按钮图标",
             name : "nav_right_icon"
-        }, {
-            type : "icon",
-            title : "右导航按钮图片",
-            name : "nav_right_pic"
-        }, {
+        }
+        //,  {
+        // type : "icon",
+        // title : "右导航按钮图片",
+        // name : "nav_right_pic"
+        // }
+        , {
             type : "input",
             title : "Title",
             name : "title"
@@ -75,7 +79,7 @@ jQuery(function($) {
         name : "Header",
         tip : "标题导航组件，用于展示标题并提供左右侧按钮，一般用于Page容器中。大部分情况一个界面仅有一个标题。",
         type : "frame",
-        icon:"Header.png"
+        icon : "Header.png"
     }, {
         View : View,
         Template : Template,

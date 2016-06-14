@@ -40,7 +40,7 @@ jQuery(function($) {
                     var dx = e.pageX - _x;
                     var dy = e.pageY - _y;
                     {
-                        var w = Math.max(210,self.$el.width() - zx * dx);
+                        var w = Math.max(220,self.$el.width() - zx * dx);
                         self.$el.width(w);
                     }
                     console.log(w);

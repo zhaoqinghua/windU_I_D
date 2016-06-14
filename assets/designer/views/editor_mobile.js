@@ -21,7 +21,7 @@ jQuery(function($) {
             f = PathModule.dirname(f) + "\\css\\" + PathModule.basename(f) + ".css"
             console.log(out);
             
-            window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
+            //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
             window.FileMgr.save(f, css_format(out));
         },
         buildJS : function(f) {
@@ -29,7 +29,7 @@ jQuery(function($) {
             var out = this.items.buildJS();
             var end = "})($);";
             f = PathModule.dirname(f) + "\\js\\" + PathModule.basename(f) + ".js";
-            window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
+            //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
             window.FileMgr.save(f, js_beautify(start + out + end, 4, " ", 0));
         },
         buildHTML : function(f) {
@@ -50,7 +50,7 @@ jQuery(function($) {
             html = PathModule.dirname(f) + "\\" + PathModule.basename(f) + ".html"
             out = style_html(out, 4, " ", 1024);
             console.log(out);
-            window.FileMgr.rename(html,"{path}.{date}".format({path:html,date:new Date().format("yyyyMMddhhmmss")}));
+            //window.FileMgr.rename(html,"{path}.{date}".format({path:html,date:new Date().format("yyyyMMddhhmmss")}));
             window.FileMgr.save(html, out);
         }
     });

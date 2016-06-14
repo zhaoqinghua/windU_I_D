@@ -15,8 +15,8 @@ jQuery(function($) {
             }
             return this;
         },
-        appendChild : function(el) {
-            $(this.$el).append(el);
+        appendChild : function(el,dom) {
+            $(dom || this.$el).append(el);
         },
         verifyParent:function(view){
             var res = view.$el.attr("data-control") == "CUSTOMLISTVIEW";

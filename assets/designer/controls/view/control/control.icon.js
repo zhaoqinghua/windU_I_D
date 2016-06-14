@@ -23,8 +23,8 @@ jQuery(function($) {
             }
             return this;
         },
-        appendChild : function(el) {
-            $(this.$el).append(el);
+        appendChild : function(el,dom) {
+            $(dom || this.$el).append(el);
         },
         buildHTML:function(dom){
             this.model.get("icon") && $("i",dom).addClass(this.model.get("icon"));

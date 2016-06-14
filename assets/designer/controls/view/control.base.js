@@ -146,7 +146,8 @@ jQuery(function($) {
                 }
             });
             this.listenTo(this.model, "change:layout", function(data) {
-                var $el = self.$el;
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 switch (data.changed.layout) {
                 case "box":
                     $el.css("display", "");
@@ -163,21 +164,23 @@ jQuery(function($) {
             this.listenTo(this.model, "change:flex", function(data) {
                 self.$el.removeClass("ub-f1 ub-f2 ub-f3 ub-f4 ub-f5 ub-f6 ub-f7");
                 self.$el.addClass(data.changed.flex);
-                this.model.cla["ub-f1"] = this.model.cla["ub-f2"] = this.model.cla["ub-f3"] = this.model.cla["ub-f4"] = this.model.cla["ub-f5"] = this.model.cla["ub-f6"] = $this.model.cla["ub-f7"] = false;
+                this.model.cla["ub-f1"] = this.model.cla["ub-f2"] = this.model.cla["ub-f3"] = this.model.cla["ub-f4"] = this.model.cla["ub-f5"] = this.model.cla["ub-f6"] = this.model.cla["ub-f7"] = false;
                 this.model.cla[data.changed.flex] = true;
             });
             this.listenTo(this.model, "change:on/off_offset", function(data) {
                 this.model.get("on/off_draggable") && self.$el.draggable(data.changed["on/off_offset"] ? "enable" : "disable");
             });
             this.listenTo(this.model, "change:layout_pack", function(data) {
-                var $el = self.$el;
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-pc ub-pe ub-pj");
                 $el.addClass(data.changed.layout_pack);
                 this.model.cla["ub-pc"] = this.model.cla["ub-pe"] = this.model.cla["ub-pj"] = false;
                 this.model.cla[data.changed.layout_pack] = true;
             });
             this.listenTo(this.model, "change:layout_align", function(data) {
-                var $el = self.$el;
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-ac ub-ae");
                 $el.addClass(data.changed.layout_align);
 
@@ -185,13 +188,15 @@ jQuery(function($) {
                 this.model.cla[data.changed.layout_align] = true;
             });
             this.listenTo(this.model, "change:layout_orient", function(data) {
-                var $el = self.$el;
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-ver");
                 $el.addClass(!data.changed.layout_orient ? "" : "ub-ver");
                 this.model.cla["ub-ver"] = !(!data.changed.layout_orient);
             })
             this.listenTo(this.model, "change:layout_dir", function(data) {
-                var $el = self.$el;
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 $el.removeClass("ub-rev");
                 $el.addClass(!data.changed.layout_dir ? "" : "ub-rev");
                 this.model.cla["ub-rev"] = !(!data.changed.layout_dir);
@@ -611,7 +616,27 @@ jQuery(function($) {
             var dom = $(this.view.template(this.attributes));
             dom.attr("id", this.get("uuid"));
             for (var i in this.cla) {
-                this.cla[i] && dom.addClass(i);
+                if (this.cla[i]) {
+                    switch(i) {
+                    case "ub":
+                    case "ub-pc": 
+                    case "ub-pe":
+                    case "ub-pj":
+                    case "ub-ac":
+                    case "ub-ae":
+                    case "ub-ver":
+                    case "ub-rev":
+                        {
+                            var $el = $("[data-control-scope='" + this.get("uuid") + "']", dom);
+                            $el = $el.length ? $el : dom;
+                            $el.addClass(i);
+                        }
+                        break;
+                    default:
+                        dom.addClass(i);
+                        break;
+                    }
+                }
             }
             this.view.appendChild ? this.view.appendChild(this.items.buildHTML(), dom) : dom.append(this.items.buildHTML());
             this.view.buildHTML && this.view.buildHTML(dom);

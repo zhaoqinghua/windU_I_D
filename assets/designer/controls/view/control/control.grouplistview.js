@@ -70,8 +70,8 @@ jQuery(function($) {
 
             }
         },
-        appendChild : function(el) {
-            $(this.$el).append(el);
+        appendChild : function(el,dom) {
+            $(dom || this.$el).append(el);
         }
     });
 

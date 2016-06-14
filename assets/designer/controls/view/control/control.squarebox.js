@@ -16,8 +16,8 @@ jQuery(function($) {
             }
             return this;
         },
-        appendChild : function(el) {
-            $($(".vector", this.$el)[0]).append(el);
+        appendChild : function(el,dom) {
+            $("[data-control-scope='"+this.model.get("uuid")+"'].vector", dom || this.$el).append(el);
         }
     });
 
