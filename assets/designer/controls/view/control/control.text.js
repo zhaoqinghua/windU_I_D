@@ -25,8 +25,9 @@ jQuery(function($) {
         appendChild : function(el,dom) {
             $(dom || this.$el).append(el);
         },
-        buildHTML:function(dom){
+        buildHTML:function(dom,attr){
             this.model.get("text") && dom.text(this.model.get("text"));
+            attr["data-bind"] && dom.attr("data-bind",attr["data-bind"]);
         }
     });
 

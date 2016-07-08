@@ -9,10 +9,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
         <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="../assets/css/jquery.gritter.css" />
         <link rel="stylesheet" href="../assets/css/bootstrap.css" />
         <link rel="stylesheet" href="../assets/css/font-awesome.css" id="fa_css"/>
         <link rel="stylesheet" href="../assets/css/iconfont.css"/>
-
+        <link rel="stylesheet" href="../assets/css/colorpicker.css" /
         <!-- page specific plugin styles -->
         <link rel="stylesheet" href="../assets/css/jquery-ui.custom.css" />
 
@@ -22,7 +23,6 @@
         <!-- ace styles -->
         <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
         <link rel="stylesheet" href="../assets/css/ace-skins.css" />
-        <link rel="stylesheet" href="../assets/css/colorpicker.css " />
         <!-- inline styles related to this page -->
         <link rel="stylesheet" href="../assets/css/designer.css" />
         <link rel="stylesheet" href="../assets/css/ui-box.css" />
@@ -30,7 +30,9 @@
         <link rel="stylesheet" href="../assets/designer/controls/ui-base.css" id="base_css"/>
         <link rel="stylesheet" href="../assets/designer/controls/ui-color.css" />
         <link rel="stylesheet" href="../assets/designer/controls/appcan.control.css" />
-        <link rel="stylesheet" href="../assets/css/built-editor.css" />
+        
+        <!-- <link rel="stylesheet" href="../assets/css/built-editor.css" /> -->
+        
         <!-- ace settings handler -->
         <script src="../assets/js/ace-extra.js"></script>
 
@@ -67,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=""  style="width:220px" id="designRightView">
+                <div class=""  style="width:233px" id="designRightView">
                     <div class="ub-con">
                         <div class="col-xs-12  designer_view">
                             <div class="widget-box widget-color-black transparent ui-sortable-handle ub ub-ver" data-import="lays/settings.html" style="height: calc(100% - 3px);">
@@ -113,7 +115,8 @@
         <script src="../assets/js/jquery.ui.touch-punch.js"></script>
         <script src="../assets/js/bootstrap-tag.js"></script>
         <script src="../assets/js/bootbox.js"></script>
-        <script src="../assets/js/editor/built-editor.js"></script>
+        <script src="../assets/js/jquery.gritter.js"></script>
+        <!-- <script src="../assets/js/editor/built-editor.js"></script> -->
         <!-- ace scripts -->
         <script src="../assets/js/ace/elements.scroller.js"></script>
         <script src="../assets/js/ace/elements.colorpicker.js"></script>
@@ -138,7 +141,11 @@
         <script src="../assets/js/ace/ace.searchbox-autocomplete.js"></script>
         <script src="../assets/js/lazyload.js"></script>
         <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/editor/ace.js"></script>
         <script src="../assets/js/template.import.js"></script>
+        
+        
+        
         <script src="../assets/designer/controls/deps/appcan.js"></script>
         <script src="../assets/designer/controls/deps/appcan.control.js"></script>
         <script src="../assets/designer/controls/deps/appcan.tab.js"></script>
@@ -158,6 +165,7 @@
 
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.page.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.header.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/frame/control.header.box.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.footer.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.content.scroll.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/frame/control.content.flex.ver.js"></script>
@@ -177,16 +185,20 @@
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.text.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.icon.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.custom.listview.js"></script>
-        <script type="text/javascript" src="../assets/designer/controls/view/control/control.custom.listitem.js"></script>
+        <!-- <script type="text/javascript" src="../assets/designer/controls/view/control/control.custom.listitem.js"></script> -->
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.listview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.multilistview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.grouplistview.js"></script>
         <script type="text/javascript" src="../assets/designer/controls/view/control/control.treeview.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/mvvm/service.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/mvvm/model.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/mvvm/collection.js"></script>
+        <script type="text/javascript" src="../assets/designer/controls/view/mvvm/viewmodel.js"></script>
 
         <script type="text/javascript" src="../assets/designer/file.js"></script>
         <script type="text/javascript" src="../assets/designer/htmlformat.js"></script>
         <script type="text/javascript" src="../assets/designer/jsonformat.js"></script>
-        
+
         <script type="text/javascript" src="../assets/designer/views/leftview.js"></script>
         <script type="text/javascript" src="../assets/designer/views/rightview.js"></script>
         <!-- inline scripts related to this page -->

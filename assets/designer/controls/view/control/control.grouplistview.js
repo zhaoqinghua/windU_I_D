@@ -70,7 +70,7 @@ jQuery(function($) {
 
             }
         },
-        appendChild : function(el,dom) {
+        appendChild : function(el, dom) {
             $(dom || this.$el).append(el);
         }
     });
@@ -157,6 +157,11 @@ jQuery(function($) {
             type : "textarea",
             title : "List Data",
             name : "listdata"
+        }, {
+            type : "select",
+            title : "数据集合",
+            name : "collection",
+            options : mvvm.getCollections
         }]
     })
 

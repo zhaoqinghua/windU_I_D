@@ -42,7 +42,7 @@ jQuery(function($) {
 
             }
         },
-        appendChild : function(el,dom) {
+        appendChild : function(el, dom) {
             $(dom || this.$el).append(el);
         }
     });
@@ -52,7 +52,7 @@ jQuery(function($) {
             this.set("type", "TreeView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
             this.set("size_h", "70");
-            this.set("dep", "appcan.treeview.js"); 
+            this.set("dep", "appcan.treeview.js,appcan.listview.js");
             this.set("treedata", JSONProcess(JSON.stringify([{
                 header : "LEVEL 1 - 0",
                 name : "ITEM",
@@ -71,12 +71,17 @@ jQuery(function($) {
                     name : "listview",
                 }]
             }])))
-            
+
         },
         extOptions : [{
             type : "textarea",
             title : "Tree Data",
             name : "treedata"
+        }, {
+            type : "select",
+            title : "数据集合",
+            name : "collection",
+            options : mvvm.getCollections
         }]
     })
 

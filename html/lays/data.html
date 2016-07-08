@@ -1,0 +1,49 @@
+<!-- /section:custom/widget-box.options -->
+<div class="" id="">
+    <!-- <div class="row ub ub-ac">
+    <div class="lighter black style_lab">
+    输入选择:
+    </div>
+    <div class="ub-f1" class="input_select " >
+    <input id="mvvm_handler" class="uabs" style="width:calc(100% - 1.5em)">
+    <select id="" class="black " onchange="" for="#mvvm_handler">
+    <option value="none">none</option>
+    <option value="solid">实线</option>
+    <option value="dotted">点状边框</option>
+    <option value="dashed">虚线</option>
+    <option value="double">双线</option>
+    <option value="groove">凹槽边框</option>
+    <option value="ridge">垄状边框</option>
+    <option value="inset"> inset 边框</option>
+    <option value="outset">outset 边框</option>
+    </select>
+    </div>
+    <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    </div> -->
+    <div class="lighter black custom_lab" title=''>
+        数据绑定:
+    </div>
+    <div class="ub ub-ac">
+        <div class="ub-f1" style="padding-bottom: 4px;">
+            <pre class="editor pro_databind" id="pro_databind" style="min-height:200px;width:100%;"></pre>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    {
+        var editor = ace.edit("pro_databind");
+        editor.session.setMode("ace/mode/text");
+        editor.setTheme("ace/theme/tomorrow");
+    }
+</script>
+<!-- <script>
+$('[for="#mvvm_handler"]').on("change", function(e) {
+debugger;
+$($('[for="#mvvm_handler"]').attr("for")).val($(e.target).val());
+//.options[e.target.selectedIndex].value);
+})
+
+</script> -->
+

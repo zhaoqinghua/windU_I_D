@@ -29,9 +29,9 @@ jQuery(function($) {
         },
         instantiation : function(e) {
             var view = new this.model.classes.View({
-                model : new this.model.classes.Config()
+                model : new this.model.classes.Config({},{register:this.model.toJSON()})
             });
-            window.desUIEditorMobileViewInstance.insert(view);
+            window.desUIEditorMobileViewInstance.insert(view,this.model);
         }
     });
 
@@ -52,13 +52,17 @@ jQuery(function($) {
             var view = new desUIControlView({
                 model : model
             });
-            if(model.get("type") == "frame")
-                $(".frame",this.$el).append(view.$el);
+            if (model.get("type") == "frame")
+                $(".frame", this.$el).append(view.$el);
+            else if (model.get("type") == "mvvm")
+                $(".mvvm", this.$el).append(view.$el);
             else
-                $(".controls",this.$el).append(view.$el);
+                $(".controls", this.$el).append(view.$el);
         },
-        getUIControl:function(type){
-            return this.collection.findWhere({name:type});
+        getUIControl : function(type) {
+            return this.collection.findWhere({
+                name : type
+            });
         }
     });
     window.desUIControlsListViewInstance = new desUIControlsListView();

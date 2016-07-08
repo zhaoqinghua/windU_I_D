@@ -128,6 +128,11 @@ jQuery(function($) {
             type : "textarea",
             title : "List Data",
             name : "listdata"
+        }, {
+            type : "select",
+            title : "数据集合",
+            name : "collection",
+            options : mvvm.getCollections
         }]
     })
 

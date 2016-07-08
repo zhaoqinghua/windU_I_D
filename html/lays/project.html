@@ -12,7 +12,28 @@
     <div class="widget-toolbar">
         <!-- <a href="#" class="blue"> <i class="ace-icon fa fa-refresh" id="desUILoadBtn"></i></a> -->
         <a href="#" class="blue"> <i class="ace-icon fa fa-save" id="desUISaveBtn" title="保存模板文件"></i></a>
-        <a href="#" class="blue"> <i class="ace-icon glyphicon glyphicon-export" id="desUICssBtn" title="通过模板输出为HTML、CSS、Javascript文件"></i></a>
+        <div class="widget-menu">
+            <a href="#" data-action="" data-toggle="dropdown" aria-expanded="false"> <i class=" blue ace-icon fa fa-bars"></i> </a>
+
+            <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+                <li>
+                    <a data-toggle="tab" id="desUIAllBtn" title="通过模板输出为HTML、CSS、Javascript文件">导出全部</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" id="desUIHtmlCssBtn" title="通过模板输出HTML、CSS文件">导出HTML和CSS</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" id="desUIHtmlBtn" title="通过模板输出HTML文件">导出HTML</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" id="desUICssBtn" title="通过模板输出CSS文件">导出CSS</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" id="desUIJsBtn" title="通过模板输出Javascript文件">导出Javascript</a>
+                </li>
+            </ul>
+        </div>
+        <!-- <a href="#" class="blue"> <i class="ace-icon glyphicon glyphicon-export" id="desUICssBtn" title="通过模板输出为HTML、CSS、Javascript文件"></i></a> -->
         <!-- <a href="#" data-action="fullscreen" class="blue"> <i class="ace-icon fa fa-expand"></i> </a> -->
     </div>
 </div>
@@ -38,8 +59,20 @@
         $("#desUILoadBtn").click(function() {
 
         })
-        $("#desUICssBtn").click(function() {
+        $("#desUIAllBtn").click(function() {
             window.desUIEditorMobileViewInstance.build();
+        })
+        $("#desUIHtmlCssBtn").click(function() {
+            window.desUIEditorMobileViewInstance.build({html:true,css:true});
+        })
+        $("#desUIHtmlBtn").click(function() {
+            window.desUIEditorMobileViewInstance.build({html:true});
+        })
+        $("#desUICssBtn").click(function() {
+            window.desUIEditorMobileViewInstance.build({css:true});
+        })
+        $("#desUIJsBtn").click(function() {
+            window.desUIEditorMobileViewInstance.build({js:true});
         })
 
         $(".root-item", $("#control_tree")).click(function() {

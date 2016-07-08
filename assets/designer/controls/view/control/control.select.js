@@ -29,8 +29,9 @@ jQuery(function($) {
                 $("select", dom || this.$el).append($('<option value="' + items[i].val + '">' + items[i].lab + '</option>'));
             }
         },
-        buildHTML : function(dom) {
+        buildHTML : function(dom,attr) {
             this.update(dom);
+            attr["data-bind"] && $("select", dom).attr("data-bind",attr["data-bind"]);
         }
     });
 

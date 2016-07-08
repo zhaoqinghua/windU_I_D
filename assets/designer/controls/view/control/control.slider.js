@@ -8,7 +8,6 @@ jQuery(function($) {
                 this.update();
             })
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
-            this.model.set("size_h",120); 
         },
         template : Template, //VIEW对应的模板
         jsTemplate : jsTemplate, //VIEW对应的JS模板
@@ -32,7 +31,7 @@ jQuery(function($) {
                 this.$sv = appcan.slider({
                     selector : $slider,
                     aspectRatio : extOptions.aspectRatio || 6 / 16,
-                    hasLabel : extOptions.hasCheckbox || true,
+                    hasLabel : extOptions.hasCheckbox,
                     index : 0
                 });
                 var data = JSON.parse(this.model.get("images"));
@@ -41,7 +40,7 @@ jQuery(function($) {
 
             }
         },
-        appendChild : function(el,dom) {
+        appendChild : function(el, dom) {
             $(dom || this.$el).append(el);
         }
     });
@@ -50,10 +49,9 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "Slider");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("size_h", "70");
             this.set("dep", "appcan.slider.js");
-            this.set("aspectRatio",(6/16).toFixed(2));
-            this.set("hasLabel",true);
+            this.set("aspectRatio", (6 / 16).toFixed(2));
+            this.set("hasLabel", true);
             this.set("images", JSONProcess(JSON.stringify([{
                 img : "http://img1.3lian.com/img13/c2/32/77.jpg",
                 label : "图片"
@@ -76,14 +74,19 @@ jQuery(function($) {
             type : "input",
             title : "aspectRatio",
             name : "aspectRatio"
-        },{
+        }, {
             type : "checkbox",
             title : "hasLabel",
             name : "hasLabel"
-        },{
+        }, {
             type : "textarea",
             title : "Images",
             name : "images"
+        }, {
+            type : "select",
+            title : "数据模型",
+            name : "model",
+            options : mvvm.getModels
         }]
     })
 

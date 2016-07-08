@@ -22,8 +22,9 @@ jQuery(function($) {
             }
             return this;
         },
-        buildHTML : function(dom) {
+        buildHTML : function(dom,attr) {
             $(dom).addClass("utra");
+            attr["data-bind"] && dom.attr("data-bind",attr["data-bind"]);
         }
     });
 

@@ -1,0 +1,89 @@
+<div class="lighter black custom_lab ub" title='<%if(tip) print(tip)%>'>
+    <div class="ub-f1">
+        <%=title%>:<span class="small blue"><%=scope%></span>
+    </div>
+    <div>
+        <a href="#" data-action="" data-toggle="dropdown" aria-expanded="false"> <i class=" blue ace-icon fa fa-bars"></i> </a>
+        <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer"  data-bind-handler="bindingHandler">
+            <li>
+                <a data-toggle="attr" id="db_attr" title="建立DOM对象属性和数据模型属性的只读单向绑定">attr</a>
+            </li>
+            <li>
+                <a data-toggle="checked" id="db_checked" title="建立单选、复选对象Value属性和数据模型属性的双向绑定">checked</a>
+            </li>
+            <li>
+                <a data-toggle="classes" id="db_classes" title="建立DOM对象Class属性和数据模型属性的只读单向绑定">classes</a>
+            </li>
+            <li>
+                <a data-toggle="css" id="db_css" title="建立DOM对象Style属性和数据模型属性的只读单向绑定">css</a>
+            </li>
+            <li>
+                <a data-toggle="disabled" id="db_disabled" title="建立表单输入控件对象disabled属性和数据模型属性的只读单向绑定">disabled</a>
+            </li>
+            <li>
+                <a data-toggle="enabled" id="db_enabled" title="建立表单输入控件对象disabled属性和数据模型属性的只读单向绑定">enabled</a>
+            </li>
+            <li>
+                <a data-toggle="html" id="db_html" title="建立DOM对象Html属性和数据模型属性的只读单向绑定">html</a>
+            </li>
+            <li>
+                <a data-toggle="text" id="db_text" title="建立DOM对象Text属性和数据模型属性的双向绑定">text</a>
+            </li>
+            <li>
+                <a data-toggle="toggle" id="db_toggle" title="建立DOM对象是否显示和数据模型属性的只读单向绑定">toggle</a>
+            </li>
+            <li>
+                <a data-toggle="value" id="db_value" title="建立DOM对象Input, Select, Textarea属性和数据模型属性的双向绑定">value</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="ub ub-ac">
+    <div class="ub-f1" style="padding-bottom: 4px;">
+        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="min-height:200px;width:100%;"></pre>
+    </div>
+    <script>
+        {
+            var editor = ace.edit("pro_<%=name%>");
+            editor.session.setMode("ace/mode/text");
+            editor.setTheme("ace/theme/tomorrow");
+        }
+        $('[data-bind-handler="bindingHandler"] li a').on("click", function() {
+            debugger;
+            var handler = $(this).attr("data-toggle");
+            switch(handler) {
+            case "attr":
+                $("#db-attr-form").modal("toggle");
+                break;
+            case "checked":
+                $("#db-checked-form").modal("toggle");
+                break;
+            case "classes":
+                $("#db-classes-form").modal("toggle");
+                break;
+            case "css":
+                $("#db-css-form").modal("toggle");
+                break;
+            case "disabled":
+                $("#db-disabled-form").modal("toggle");
+                break;
+            case "enabled":
+                $("#db-enabled-form").modal("toggle");
+                break;
+            case "html":
+                $("#db-html-form").modal("toggle");
+                break;
+            case "text":
+                $("#db-text-form").modal("toggle");
+                break;
+            case "toggle":
+                $("#db-toggle-form").modal("toggle");
+                break;
+            case "value":
+                $("#db-value-form").modal("toggle");
+                break;
+            }
+        })
+    </script>
+</div>

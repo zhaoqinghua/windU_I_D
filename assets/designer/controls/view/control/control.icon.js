@@ -26,8 +26,9 @@ jQuery(function($) {
         appendChild : function(el,dom) {
             $(dom || this.$el).append(el);
         },
-        buildHTML:function(dom){
-            this.model.get("icon") && $("i",dom).addClass(this.model.get("icon"));
+        buildHTML:function(dom,attr){
+            this.model.get("icon") && $(".fa",dom).addClass(this.model.get("icon"));
+            attr["data-bind"] && $(".fa",dom).attr("data-bind",attr["data-bind"]);
         }
     });
 

@@ -229,7 +229,7 @@
 <script>
     jQuery(function($) {
         $('#pro_con_style_bgcolor,#pro_con_style_color,#pro_con_border_color').colorpicker({
-            format : "rgb"
+            format : "rgba"
         });
         $("#pro_con_style_bgcolor,#pro_con_style_color,#pro_con_border_color").on("changeColor", function(e) {
             var c = e.color.toRGB();

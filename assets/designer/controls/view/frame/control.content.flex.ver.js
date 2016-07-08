@@ -38,7 +38,7 @@ jQuery(function($) {
         name : "ContentFlexVer",
         tip : "弹性纵向排布容器，内部元素按照比率或大小纵向按顺序排列。主要用于不超过屏幕大小的网格化控件排版。",
         type : "frame",
-        icon:"FlexVer.png"
+        icon : "FlexVer.png"
     }, {
         View : View,
         Template : Template,

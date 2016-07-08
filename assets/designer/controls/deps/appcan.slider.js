@@ -38,7 +38,7 @@ appcan.define("slider", function($, exports, module) {
         self.ele = $(self.option.selector);
         self.ele.css({'-webkit-transform':'translateZ(0)','transform':'translateZ(0)'});
         if(self.option.aspectRatio){
-            self.ele.css("height",self.ele.offset().width*self.option.aspectRatio);
+            self.ele.css("height",self.ele.width()*self.option.aspectRatio);
         }
         if (self.option.data) {
             self.set(data);
@@ -86,10 +86,10 @@ appcan.define("slider", function($, exports, module) {
                     self.isReset = true;
                 });
             }
-            var w=(-(self.option.index+1)*self.ele.offset().width);
+            var w=(-(self.option.index+1)*self.ele.width());
             self.container.css("-webkit-transform", "translateX("+w+"px)");
             if(self.option.hasIndicator){
-                var width = self.ele.offset().width / self.option.itemCount;
+                var width = self.ele.width() / self.option.itemCount;
                 self.focus.css("-webkit-transform", "translateX("+self.option.index * width+"px)");
             }
             if(self.option.hasLabel){
@@ -112,7 +112,7 @@ appcan.define("slider", function($, exports, module) {
         },
         drag:function(d){
             var self = this;
-            var w=(-(self.option.index+1)*self.ele.offset().width)+d;
+            var w=(-(self.option.index+1)*self.ele.width())+d;
             self.container.css("-webkit-transform", "translateX("+w+"px)");
             self.isReset = false;
         },
@@ -138,7 +138,7 @@ appcan.define("slider", function($, exports, module) {
             }
             self.ele.append(self.container);
             
-            var width = self.ele.offset().width / self.option.itemCount;
+            var width = self.ele.width() / self.option.itemCount;
             if(self.option.hasLabel){
                 self.label = self.label || $('<div class="uinn1 ulev-1 ut-s label sc-text-hint"></div>');
                 self.ele.append(self.label);

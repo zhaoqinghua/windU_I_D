@@ -37,6 +37,591 @@
     </div>
 </div>
 
+<div id="db-attr-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="attr">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象属性数据绑定</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">attr:{[DOM属性]:[过滤器]([数据属性])}</span>
+                            <h6 class="">DOM属性名称：</h6>
+                            <input type="text" placeholder="请输入DOM对象需要绑定的属性或计算属性名称 Example:(type、data-name、...)"  id="data-bind-attr-name">
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+
+                            <span class="help-block">输出范例:attr:{'data-order':format("%1 or %2",attr1,attr2)}</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-checked-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="checked">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置单选复选控件选中属性数据绑定</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">checked:[过滤器]([数据属性])</span>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:checked:not(attr1)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-classes-form" class="modal data-bind-form" tabindex="-1"data-mvvm-handler="classes">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象Class属性数据绑定</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">classes:{[css类]:[过滤器]([数据属性])}</span>
+                            <h6 class="">CSS类名称：</h6>
+                            <input type="text" placeholder="请输入DOM对象需要绑定的Class类名称 Example:(active、...)" id="data-bind-attr-name">
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:classes:{'active':any(attr1,attr2)}</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-css-form" class="modal data-bind-form" tabindex="-1"data-mvvm-handler="css">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象Style属性数据绑定</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">css:{[css样式]:[过滤器]([数据属性])}</span>
+                            <h6 class="">CSS样式属性名称：</h6>
+                            <input type="text" placeholder="请输入DOM对象需要绑定的CSS样式名称 Example:(color、...)" id="data-bind-attr-name">
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:css:{'color':format("#%1%2%3",r,g,b)}</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-disabled-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="disabled">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置表单输入控件是否禁用的数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <span class="help-block">disabled:[过滤器]([数据属性])</span>
+                        <fieldset>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:disabled:none(attr1,attr2)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-enabled-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="enabled">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置表单输入控件是否起用的数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <span class="help-block">enabled:[过滤器]([数据属性])</span>
+                        <fieldset>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:enabled:none(attr1,attr2)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-html-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="html">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象HTML属性的数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <div>
+                                <span class="help-block">html:[过滤器]([数据属性])</span>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:html:format("$%1",attr1)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-text-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="text">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象Text属性的双向数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">text:[过滤器]([数据属性])</span>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:text:format("$%1",attr1)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-toggle-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="toggle">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置DOM对象是否显示的数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">toggle:[过滤器]([数据属性])</span>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:toggle:not(attr1,attr2)</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="db-value-form" class="modal data-bind-form" tabindex="-1" data-mvvm-handler="value">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置Input、Select、Texterea控件对象value属性的双向数据绑定</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">value:[过滤器]([数据属性])</span>
+                            <div>
+                                <h6 for="data-bind-filter-name">过滤器</h6>
+                                <select class="form-control" id="data-bind-filter-name">
+                                    <option value=""></option>
+                                    <option value="all">all</option>
+                                    <option value="any">any</option>
+                                    <option value="csv">csv</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="format">format</option>
+                                    <option value="integer">integer</option>
+                                    <option value="length">length</option>
+                                    <option value="none">none</option>
+                                    <option value="select">select</option>
+                                </select>
+                            </div>
+                            <h6 class="">数据属性：</h6>
+                            <input type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-bind-data-name">
+                            <span class="help-block">输出范例:value:attr1</span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="eb-add-form" class="modal data-events-form" tabindex="-1">
+    <div class="modal-dialog" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h6 class="blue bigger">请配置控件对象事件和对应操作</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <span class="help-block">事件 对象:操作</span>
+                            <div>
+                                <h6 for="data-bind-filter-name">事件</h6>
+                                <select class="form-control" id="data-events-name">
+                                    <option value=""></option>
+                                    <option value="tap">tap</option>
+                                    <option value="change">change</option>
+                                    <option value="blur">blur</option>
+                                </select>
+                            </div>
+                            <h6 class="">选择控件对象：</h6>
+                            <select type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-events-dom"></select>
+                            <h6 class="">设定事件对应操作：</h6>
+                            <pre class="editor " id="data-events-operation" style="min-height:200px;width:100%;"></pre>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancel
+                </button>
+
+                <button class="btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-check"></i>
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        {
+            var editor = ace.edit("data-events-operation");
+            editor.session.setMode("ace/mode/text");
+            editor.setTheme("ace/theme/tomorrow");
+        }
+    </script>
+</div>
 <script>
     jQuery(function($) {
         var tag_input = $("#pro_con_css");
@@ -120,6 +705,53 @@
             $(options.input).blur();
             console.log(res);
             $("#fa-select-form").modal("toggle");
+        })
+    });
+    jQuery(function($) {
+        $(".btn-primary", ".data-bind-form").on("click", function() {
+            debugger;
+            var dlg = $(this).parent().parent().parent().parent();
+            var i = dlg.attr("id");
+            var attr = $("#data-bind-attr-name", dlg).length ? $("#data-bind-attr-name", dlg).val() : undefined;
+            var filter = $("#data-bind-filter-name", dlg).val();
+            var data = $("#data-bind-data-name", dlg).val();
+
+            var handler = dlg.attr("data-mvvm-handler");
+            var res = "";
+            switch(handler) {
+            case "checked":
+            case "disabled":
+            case "enabled":
+            case "html":
+            case "text":
+            case "toggle":
+            case "value":
+                {
+                    if (filter)
+                        res = handler + ":" + filter + "(" + data + ")";
+                    else
+                        res = handler + ":" + data;
+                }
+                break;
+            case "attr":
+            case "classes":
+            case "css": {
+                if (filter)
+                    res = handler + ":{" + attr + ":" + filter + "(" + data + ")}";
+                else
+                    res = handler + ":{" + attr + ":" + data + "}";
+                break;
+            }
+            default:
+
+                break;
+            }
+            var val = $("#pro_data-bind")[0].env.editor.getValue();
+            if (val.lastIndexOf("\r\n") != val.length - 2)
+                $("#pro_data-bind")[0].env.editor.insert("\r\n");
+            $("#pro_data-bind")[0].env.editor.insert(res + "\r\n");
+            $("#pro_data-bind").blur();
+            dlg.modal("toggle");
         })
     }); 
 </script>

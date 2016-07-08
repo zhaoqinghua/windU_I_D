@@ -19,6 +19,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.fa-empty{
+    opacity: 0;
+}
 .fa-stroke {
     -webkit-text-stroke: 1px rgba(0,0,0,1);
     color: rgba(0,0,0,0) !important;

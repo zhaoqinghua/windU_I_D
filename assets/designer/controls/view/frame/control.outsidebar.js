@@ -22,7 +22,7 @@ jQuery(function($) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
         template : Template, //VIEW对应的模板
-        jsTemplate:jsTemplate,
+        jsTemplate : jsTemplate,
         render : function() {
             var self = this;
             if (this.template) {

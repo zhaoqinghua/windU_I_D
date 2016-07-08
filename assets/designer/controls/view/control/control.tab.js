@@ -65,16 +65,14 @@ jQuery(function($) {
         initialize : function(options) {
             this.set("type", "Tab");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            if (!options) {
-                this.set("hasLabel", true);
-                this.set("hasAnim", false);
-                this.set("hasBadge", false);
-                this.set("hasIcon", true);
-                this.set("index", 0);
-                this.set("lables", "首页,个人,分类,搜索");
-                this.set("icons", "fa-home,fa-user,fa-list,fa-search");
-            }
-            this.set("dep","appcan.tab.js");
+            this.set("hasLabel", true);
+            this.set("hasAnim", false);
+            this.set("hasBadge", false);
+            this.set("hasIcon", true);
+            this.set("index", 0);
+            this.set("lables", "首页,个人,分类,搜索");
+            this.set("icons", "fa-home,fa-user,fa-list,fa-search");
+            this.set("dep", "appcan.tab.js");
         },
         extOptions : [{
             type : "checkbox",
@@ -104,6 +102,11 @@ jQuery(function($) {
             type : "icon",
             title : "图标",
             name : "icons"
+        }, {
+            type : "select",
+            title : "数据模型",
+            name : "model",
+            options : mvvm.getModels
         }]
     })
 

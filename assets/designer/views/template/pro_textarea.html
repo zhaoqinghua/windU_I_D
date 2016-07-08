@@ -1,20 +1,8 @@
-<div class="lighter black custom_lab">
+<div class="lighter black custom_lab" title='<%if(tip) print(tip)%>'>
     <%=title%>:
 </div>
 <div class="ub ub-ac">
-    <div class="ub-f1" style="padding-bottom: 4px;min-height:300px">
-        <pre class="editor" data-editor-lang="js" data-editor-show-lines-ruler="false"
-        data-show-overview-ruler="false" data-show-folding-ruler="false"  id="pro_<%=name%>" 
-        style="height:300px;width:100%;">
-     </pre>
+    <div class="ub-f1" style="padding-bottom: 4px;">
+        <textarea class="editor pro_<%=name%>" id="pro_<%=name%>" style="min-height:200px;width:100%;"></textarea>
     </div>
-    <script>
-        var editor = null;
-        require(["orion/editor/edit"], function(edit) {
-            editor = edit({
-                className : "editor"
-            });
-
-        });
-    </script>
 </div>

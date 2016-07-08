@@ -6473,9 +6473,10 @@ appcan && appcan.define('request', function($, exports, module) {
 
     module.exports = {
         ajax : function() {
-            if (window.uexXmlHttpMgr) {
-                ajax.apply(null, arguments);
-            } else {
+            // if (window.uexXmlHttpMgr) {
+                // ajax.apply(null, arguments);
+            // } else 
+            {
                 Zepto.ajax.apply(null, arguments);
             }
         },
@@ -11691,3 +11692,6 @@ appcan.define('widgetOne', function($, exports, module) {
     $.fn[eventName] = function(callback){ return this.on(eventName, callback) }
   })
 })($)
+
+
+

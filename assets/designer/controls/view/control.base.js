@@ -282,7 +282,7 @@ jQuery(function($) {
             this.listenTo(this.model, "change:style_border_radius", function(data) {
                 var border = data.changed.style_border_radius;
                 if (border) {
-                    var style = parseInt(border) + "px";
+                    var style = border + (isNum(border) ? "px" : "");
                     self.$el.css("border-radius", style);
                 } else
                     self.$el.css("border-radius", "");
@@ -326,6 +326,13 @@ jQuery(function($) {
                     this.model.css["font-size"] = fontSize + "em";
                 }
 
+            })
+            this.listenTo(this.model, "change:data-bind", function(data) {
+                var arr=this.model.get("data-bind");
+                if (arr)
+                    self.$el.attr("data-bind",arr.join(","));
+                else
+                    self.$el.attr("data-bind","");
             })
         },
         template : Template, //VIEW对应的模板
@@ -512,7 +519,8 @@ jQuery(function($) {
     });
 
     var Config = Backbone.Model.extend({
-        initialize : function() {
+        initialize : function(options) {
+            this.register = arguments[1].register;
             this.css = {};
             this.cla = {};
             var uuid = this.get("uuid");
@@ -581,6 +589,15 @@ jQuery(function($) {
             this.set("on/off_custom", true);
             Backbone.Model.prototype.initialize.apply(this, arguments);
             this.items = new Items();
+            if (!this.extOptions.some(function(item) {
+                return item.type == "data-bind";
+            }) && !(this.register.type == "mvvm")) {
+                this.extOptions.push({
+                    type : "data-bind",
+                    title : "数据绑定",
+                    name : "data-bind"
+                })
+            }
         },
         idAttribute : "uuid",
         extOptions : [],
@@ -588,6 +605,15 @@ jQuery(function($) {
             var control = this.toJSON();
             control.items = this.items.export();
             return control;
+        },
+        scopeViewModel : function() {
+            if (!this.parentView || !this.parentView.model)
+                return "";
+            var vm = this.parentView.model.get("viewModelName");
+            if (!vm) {
+                vm = this.parentView.model.scopeViewModel();
+            }
+            return vm;
         },
         buildCSS : function() {
             var out = [];
@@ -613,13 +639,17 @@ jQuery(function($) {
             return out.join("\r\n");
         },
         buildHTML : function() {
-            var dom = $(this.view.template(this.attributes));
+            var attr = {};
+            $.extend(true, attr, this.attributes);
+            if (attr["data-bind"])
+                attr["data-bind"] = attr["data-bind"].join(",");
+            var dom = $(this.view.template(attr));
             dom.attr("id", this.get("uuid"));
             for (var i in this.cla) {
                 if (this.cla[i]) {
                     switch(i) {
                     case "ub":
-                    case "ub-pc": 
+                    case "ub-pc":
                     case "ub-pe":
                     case "ub-pj":
                     case "ub-ac":
@@ -638,17 +668,21 @@ jQuery(function($) {
                     }
                 }
             }
+            this.view.buildHTML && this.view.buildHTML(dom, attr);
+            !this.view.buildHTML && dom.attr("data-bind", attr["data-bind"]);
             this.view.appendChild ? this.view.appendChild(this.items.buildHTML(), dom) : dom.append(this.items.buildHTML());
-            this.view.buildHTML && this.view.buildHTML(dom);
             return dom;
         },
         getDep : function(deps) {
-            if (this.get("dep"))
-                deps[this.get("dep")] = true;
+            if (this.get("dep")) {
+                var arr = this.get("dep").split(",");
+                for (var i in arr) {
+                    deps[arr[i]] = true;
+                }
+            }
             this.items.getDeps(deps);
         }
     })
-
     var Items = Backbone.Collection.extend({
         model : Config,
         initialize : function() {
@@ -671,9 +705,11 @@ jQuery(function($) {
                 var view = new controlModel.classes.View({
                     model : new controlModel.classes.Config({
                         uuid : item.uuid
+                    }, {
+                        register : controlModel.toJSON()
                     })
                 });
-                window.desUIEditorMobileViewInstance.insert(view);
+                window.desUIEditorMobileViewInstance.insert(view, controlModel);
                 view.model.set(col);
                 view.focus();
                 view.model.items.import(item.items, view);
@@ -700,7 +736,11 @@ jQuery(function($) {
             var con = $("<div></div>");
             for (var i = 0; i < this.length; i++) {
                 var m = this.at(i);
-                con.append(m.buildHTML());
+                var reg = m.get("register");
+                if (reg && reg.type == "mvvm") {
+                    continue;
+                } else
+                    con.append(m.buildHTML());
             }
             return con.children();
         },
@@ -722,3 +762,4 @@ jQuery(function($) {
         Items : Items
     };
 });
+

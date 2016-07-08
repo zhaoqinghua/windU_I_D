@@ -34,10 +34,11 @@ jQuery(function($) {
             }
             return this;
         },
-        buildHTML : function(dom) {
+        buildHTML : function(dom,attr) {
             this.model.get("nav_left_icon") && $("#nav-left > div", dom).addClass(this.model.get("nav_left_icon"));
             this.model.get("nav_right_icon") && $("#nav-right > div", dom).addClass(this.model.get("nav_right_icon"));
             this.model.get("title") && $(".ut", dom).text(this.model.get("title"));
+            attr["data-bind"] && $(".ut", dom).attr("data-bind",attr["data-bind"]);
         }
     });
 

@@ -17,8 +17,9 @@ jQuery(function($) {
             }
             return this;
         },
-        buildHTML : function(dom) {
+        buildHTML : function(dom,attr) {
             this.model.get("placeholder") && $("input", dom).addClass(this.model.get("placeholder"));
+            attr["data-bind"] && $("input", dom).attr("data-bind",attr["data-bind"]);
         }
     });
 

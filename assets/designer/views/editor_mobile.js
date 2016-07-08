@@ -13,7 +13,7 @@ jQuery(function($) {
         load : function(f) {
             var self = this;
             window.FileMgr.load(f, function(err, data) {
-                err || (data && self.items.import(JSON.parse(data), this));
+                err || (data && self.items.import(JSON.parse(data), window.desUIEditorMobileViewInstance));
             })
         },
         buildCSS : function(f) {
@@ -104,10 +104,17 @@ jQuery(function($) {
             this.onwheel = true;
             return true;
         },
-        insert : function(view) {
+        insert : function(view,option) {
+            if(option && option.get("type") == "mvvm"){
+                $(".ui_model .vector").append(view.$el);
+                this.model.items.add(view.model);
+                return;
+            }
+            
             if (view.verifyParent && !view.verifyParent(this.$current)) {
                 return;
             }
+            
             if (this.$current) {
                 if (this.$current.appendChild)
                     this.$current.appendChild(view.$el);
@@ -116,9 +123,61 @@ jQuery(function($) {
                 this.$current.model.items.add(view.model);
             }
         },
+        getServices:function(){
+            var res = [];
+            this.model.items.each(function(item){
+                var reg = item.register;
+                if(reg && reg.type =="mvvm" && reg.name == "Service"){
+                    res.push(item);
+                }
+            })
+            return res;  
+        },
+        getModels:function(){
+            var res = [];
+            this.model.items.each(function(item){
+                var reg = item.register;
+                if(reg && reg.type =="mvvm" && reg.name == "Model"){
+                    res.push(item);
+                }
+            })
+            return res;  
+        },
+        getCollections:function(){
+            var res = [];
+            this.model.items.each(function(item){
+                var reg = item.register;
+                if(reg && reg.type =="mvvm" && reg.name == "Collection"){
+                    res.push(item);
+                }
+            })
+            return res;  
+        },
+        getViewModels:function(){
+            var res = [];
+            this.model.items.each(function(item){
+                var reg = item.register;
+                if(reg && reg.type =="mvvm" && reg.name == "ViewModel"){
+                    res.push(item);
+                }
+            })
+            return res;  
+        },
+        getDoms:function(model,items){
+            var self = this;
+            var res = items || [];
+            (model || this.model).items.each(function(item){
+                var reg = item.register;
+                if(reg && reg.type =="frame"){
+                    res.push(item);
+                    self.getDoms(item,res);
+                }
+            })
+            return res;  
+        },
         focus : function() {
             $("[data-control-focus]").removeAttr("data-control-focus");
-            event.stopPropagation()
+            event && event.stopPropagation()
             window.desUIEditorMobileViewInstance.$current = this;
         },
         removeItem : function(item) {
@@ -142,11 +201,12 @@ jQuery(function($) {
             var f = $.getUrlParam("path");
             this.model.load(f);
         },
-        build : function() {
+        build : function(type) {
             var f = $.getUrlParam("path");
-            this.model.buildCSS(f);
-            this.model.buildJS(f);
-            this.model.buildHTML(f);
+            type = type || {html:true,css:true,js:true};
+            type.css && this.model.buildCSS(f);
+            type.js && this.model.buildJS(f);
+            type.html && this.model.buildHTML(f);
         }
     });
     window.desUIEditorMobileViewInstance = new desUIEditorMobileView();

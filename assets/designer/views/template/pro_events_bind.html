@@ -1,0 +1,28 @@
+<div class="lighter black custom_lab ub" title='<%if(tip) print(tip)%>'>
+    <div class="ub-f1">
+        <%=title%>:
+    </div>
+    <div>
+        <a href="#" data-action="" data-events-bind="add"> <i class=" blue ace-icon fa fa-plus"></i> </a>
+    </div>
+</div>
+
+<div class="ub ub-ac">
+    <div class="ub-f1" style="padding-bottom: 4px;">
+        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="height:auto;width:100%;" contenteditable="true"></pre>
+    </div>
+    <script>
+        {
+            debugger;
+            var editor = ace.edit("pro_<%=name%>");
+            editor.session.setMode("ace/mode/text");
+            editor.setTheme("ace/theme/tomorrow");
+            editor.resize();
+            editor.setAutoScrollEditorIntoView(true);
+        }
+        $('[data-events-bind="add"]').on("click", function() {
+            debugger;
+            $("#eb-add-form").modal("toggle");
+        })
+    </script>
+</div>

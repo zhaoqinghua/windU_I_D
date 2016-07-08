@@ -4,10 +4,11 @@
     </div>
     <div class="ub-f1">
         <select id="pro_<%=name%>" class="black">
-            <%for(var i in options){%>
-            <option value="<%=options[i].val%>"><%=options[i].lab%></option>
+            <%var opts = _.isArray(options)?options:options();
+            for(var i in opts){%>
+            <option value="<%=opts[i].val%>"><%=opts[i].lab%></option>
             <%}%>
         </select>
     </div>
-    <a style="padding-left: 5px" class="space"> <i class="blue ace-icon fa fa-unlock font-empty"></i> </a>
+    <a style="padding-left: 5px" class="action space" data-custom-action="<%=name%>"> <i class="blue ace-icon fa <%if(icon) print(icon); else print('fa-unlock fa-empty');%>"></i> </a>
 </div>
