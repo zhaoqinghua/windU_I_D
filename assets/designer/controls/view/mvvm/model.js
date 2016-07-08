@@ -227,7 +227,7 @@ jQuery(function($) {
             options : getServices
         },{
             type : "text",
-            title : "返回数据",
+            title : "原始返回数据",
             tip : "",
             name : "result"
         }]

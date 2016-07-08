@@ -2,6 +2,7 @@
     <%=title%>:
     <a href="#" data-action="" data-code-format="javascript"> JS </a>
     <a href="#" data-action="" data-code-format="html"> <i class=" blue ace-icon fa fa-html5"></i> </a>
+    <a href="#" data-action="" data-code-format="clear"> <i class=" blue ace-icon fa fa-eraser"></i> </a>
 </div>
 <div class="ub ub-ac">
     <div class="ub-f1" style="padding-bottom: 4px;">
@@ -16,6 +17,7 @@
         editor.setAutoScrollEditorIntoView(true);
         editor.setOption("maxLines", 100);
         editor.setOption("minLines", 5);
+        editor.setReadOnly(true);
         $('[data-code-format="javascript"]').on("click", function() {
             debugger;
             var editor = $("#pro_<%=name%>")[0].env.editor;
@@ -24,6 +26,7 @@
                 str = js_beautify(str, 4, " ", 0);
                 editor.setValue(str);
             }
+            $("#pro_<%=name%>").blur();
         })
         $('[data-code-format="html"]').on("click", function() {
             var editor = $("#pro_<%=name%>")[0].env.editor;
@@ -31,6 +34,12 @@
             if (str) {
                 editor.setValue(style_html(str, 4, " ", 1024))
             }
+            $("#pro_<%=name%>").blur();
+        })
+        $('[data-code-format="clear"]').on("click", function() {
+            var editor = $("#pro_<%=name%>")[0].env.editor;
+            var str = editor.setValue("");
+            $("#pro_<%=name%>").blur();
         })
     }
 </script>
