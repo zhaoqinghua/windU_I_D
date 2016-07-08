@@ -582,20 +582,24 @@
                     <form>
                         <!-- <legend>Form</legend> -->
                         <fieldset>
-                            <span class="help-block">事件 对象:操作</span>
                             <div>
+                                <h6 class="">选择控件对象：</h6>
+                                <select type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-events-dom"></select>
                                 <h6 for="data-bind-filter-name">事件</h6>
                                 <select class="form-control" id="data-events-name">
                                     <option value=""></option>
                                     <option value="tap">tap</option>
+                                    <option value="longtap">long tap</option>
+                                    <option value="input">input</option>
                                     <option value="change">change</option>
+                                    <option value="search">search</option>
+                                    <option value="focus">focus</option>
                                     <option value="blur">blur</option>
                                 </select>
+                                <h6 class="">设定事件对应操作：</h6>
+                                <pre class="editor " id="data-events-operation" style="min-height:200px;width:100%;"></pre>
                             </div>
-                            <h6 class="">选择控件对象：</h6>
-                            <select type="text" placeholder="请输入数据模型需要绑定的属性或计算属性名称或过滤器所需参数 " id="data-events-dom"></select>
-                            <h6 class="">设定事件对应操作：</h6>
-                            <pre class="editor " id="data-events-operation" style="min-height:200px;width:100%;"></pre>
+
                         </fieldset>
                     </form>
                 </div>
@@ -617,8 +621,11 @@
     <script>
         {
             var editor = ace.edit("data-events-operation");
-            editor.session.setMode("ace/mode/text");
+            editor.session.setMode("ace/mode/javascript");
             editor.setTheme("ace/theme/tomorrow");
+            editor.setAutoScrollEditorIntoView(true);
+            editor.setOption("maxLines", 100);
+            editor.setOption("minLines", 10);
         }
     </script>
 </div>

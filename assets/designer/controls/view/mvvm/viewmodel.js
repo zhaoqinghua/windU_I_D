@@ -13,39 +13,54 @@ jQuery(function($) {
             this.MVVMViewModel = new MVVM.ViewModel({
                 $el : this.$el
             });
-            function applyBindings(){
-                try{
-                self.MVVMViewModel.applyBindings();
-                }
-                catch(e){
+            function applyBindings() {
+                try {
+                    self.MVVMViewModel.applyBindings();
+                } catch(e) {
                     console.log(e);
                 }
             }
+
+
             this.listenTo(this.model, "change:modelName", function(data) {
                 var models = window.desUIEditorMobileViewInstance.getModels();
                 _.each(models, function(model) {
-                    if(model.get("uuid") == data.changed.modelName){
-                        if(self.MVVMViewModel.model)
+                    if (model.get("uuid") == data.changed.modelName) {
+                        if (self.MVVMViewModel.model)
                             self.MVVMViewModel.stopListening(self.MVVMViewModel.model);
                         self.MVVMViewModel.model = model.view.MVVMModel;
-                        self.MVVMViewModel.listenTo(self.MVVMViewModel.model,"change",function(data){
+                        self.MVVMViewModel.listenTo(self.MVVMViewModel.model, "change", function(data) {
                             applyBindings();
                         })
                         applyBindings();
                     }
                 })
-                
             })
             this.listenTo(this.model, "change:viewName", function(data) {
                 var views = window.desUIEditorMobileViewInstance.getDoms();
                 _.each(views, function(view) {
-                    if(view.get("uuid") == data.changed.viewName){
-                        self.MVVMViewModel.$el.view && self.MVVMViewModel.$el.view.model.set("viewModelName","");
-                        view.view.$el[0].view.model.set("viewModelName",self.model.get("uuid"));
+                    if (view.get("uuid") == data.changed.viewName) {
+                        self.MVVMViewModel.$el.view && self.MVVMViewModel.$el.view.model.set("viewModelName", "");
+                        view.view.$el[0].view.model.set("viewModelName", self.model.get("uuid"));
                         self.MVVMViewModel.setElement(view.view.$el)
                         applyBindings();
                     }
                 })
+            })
+            this.listenTo(this.model, "change:events", function(data) {
+                self.MVVMViewModel.undelegateEvents();
+                var out = js_beautify("var events = {" + data.changed.events + "}", 4, " ", 0);
+                try {
+                    eval(out);
+                    self.MVVMViewModel.delegateEvents(events);
+                } catch(e) {
+                    $.gritter.add({
+                        title : '视图交互事件设定异常',
+                        text : e,
+                        class_name : 'gritter-info gritter-center gritter-light'
+                    });
+                }
+
             })
         },
         template : Template, //VIEW对应的模板
@@ -83,8 +98,8 @@ jQuery(function($) {
             type : "select",
             title : "网页视图",
             name : "viewName",
-            options : mvvm.getDoms
-        },{
+            options : mvvm.getFrames
+        }, {
             type : "events-bind",
             title : "视图交互事件",
             name : "events"

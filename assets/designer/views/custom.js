@@ -9,6 +9,7 @@ jQuery(function($) {
         "label" : loadTemplate("../assets/designer/views/template/pro_label.html"),
         "data-bind" : loadTemplate("../assets/designer/views/template/pro_data_bind.html"),
         "events-bind" : loadTemplate("../assets/designer/views/template/pro_events_bind.html"),
+        "text" : loadTemplate("../assets/designer/views/template/pro_text.html"),
         "none": loadTemplate("../assets/designer/views/template/pro_none.html")
     }
     var desUIControlsCustomPropertiesView = Backbone.View.extend({
@@ -60,6 +61,18 @@ jQuery(function($) {
                         "getVal" : function($el, event, options) {
                             options.updateModel = true;
                             return $el[0].env.editor.getValue();
+                        },
+                        "update" : function($el, val, model, options) {
+                            $el[0].env.editor.setValue(val, 1);
+                        }
+                    });
+                    break;
+                case "textarea":
+                    this.addBinding(null, "#pro_" + option.name, {
+                        "observe" : option.name,
+                        "events" : ["blur"],
+                        "getVal" : function($el, event, options) {
+                            return "";
                         },
                         "update" : function($el, val, model, options) {
                             $el[0].env.editor.setValue(val, 1);
@@ -225,6 +238,21 @@ jQuery(function($) {
         },
         getDoms : function() {
             var doms = window.desUIEditorMobileViewInstance.getDoms();
+            var res = [{
+                val : "",
+                lab : ""
+            }];
+            _.each(doms, function(dom) {
+                var item = {
+                    val : dom.get("uuid"),
+                    lab : dom.get("uuid")
+                };
+                res.push(item);
+            })
+            return res;
+        },
+        getFrames : function() {
+            var doms = window.desUIEditorMobileViewInstance.getFrames();
             var res = [{
                 val : "",
                 lab : ""

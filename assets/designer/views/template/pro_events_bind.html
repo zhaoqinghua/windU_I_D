@@ -9,20 +9,36 @@
 
 <div class="ub ub-ac">
     <div class="ub-f1" style="padding-bottom: 4px;">
-        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="height:auto;width:100%;" contenteditable="true"></pre>
+        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="min-height:100px;width:100%;" contenteditable="true"></pre>
     </div>
     <script>
         {
-            debugger;
             var editor = ace.edit("pro_<%=name%>");
-            editor.session.setMode("ace/mode/text");
+            editor.session.setMode("ace/mode/javascript");
             editor.setTheme("ace/theme/tomorrow");
-            editor.resize();
             editor.setAutoScrollEditorIntoView(true);
+            editor.setOption("maxLines", 100);
+            editor.setOption("minLines", 5);
+
+            $('[data-events-bind="add"]').on("click", function() {
+                debugger;
+                var doms = mvvm.getDoms();
+                var $sel = $("#data-events-dom", "#eb-add-form");
+                $sel.empty();
+                for (var i in doms) {
+                    $sel.append("<option value='" + doms[i].val + "'>" + doms[i].lab + "</option>");
+                }
+                $("#eb-add-form").modal("toggle");
+            })
+            $(".btn-primary", "#eb-add-form").off("click").on("click", function() {
+                debugger;
+                var dom = $("#data-events-dom", "#eb-add-form").val();
+                var ev = $("#data-events-name", "#eb-add-form").val();
+                var func = $("#data-events-operation", "#eb-add-form")[0].env.editor.getValue();
+                editor.insert("\"" + ev + " #" + dom + "\":function(){" + func + "},\r\n");
+                $("#pro_<%=name%>").blur();
+                $("#eb-add-form").modal("toggle");
+            })
         }
-        $('[data-events-bind="add"]').on("click", function() {
-            debugger;
-            $("#eb-add-form").modal("toggle");
-        })
     </script>
 </div>

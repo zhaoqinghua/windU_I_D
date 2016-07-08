@@ -41,13 +41,16 @@
 
 <div class="ub ub-ac">
     <div class="ub-f1" style="padding-bottom: 4px;">
-        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="min-height:200px;width:100%;"></pre>
+        <pre class="editor pro_<%=name%>" id="pro_<%=name%>" style="min-height:100px;width:100%;"></pre>
     </div>
     <script>
         {
             var editor = ace.edit("pro_<%=name%>");
-            editor.session.setMode("ace/mode/text");
+            editor.session.setMode("ace/mode/javascript");
             editor.setTheme("ace/theme/tomorrow");
+            editor.setAutoScrollEditorIntoView(true);
+            editor.setOption("maxLines", 100);
+            editor.setOption("minLines", 5);
         }
         $('[data-bind-handler="bindingHandler"] li a').on("click", function() {
             debugger;

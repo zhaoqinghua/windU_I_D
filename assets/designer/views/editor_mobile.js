@@ -163,12 +163,24 @@ jQuery(function($) {
             })
             return res;  
         },
-        getDoms:function(model,items){
+        getFrames:function(model,items){
             var self = this;
             var res = items || [];
             (model || this.model).items.each(function(item){
                 var reg = item.register;
                 if(reg && reg.type =="frame"){
+                    res.push(item);
+                    self.getFrames(item,res);
+                }
+            })
+            return res;  
+        },
+        getDoms:function(model,items){
+            var self = this;
+            var res = items || [];
+            (model || this.model).items.each(function(item){
+                var reg = item.register;
+                if(reg){
                     res.push(item);
                     self.getDoms(item,res);
                 }
