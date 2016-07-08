@@ -1,9 +1,7 @@
 <div class="lighter black custom_lab" title='<%if(tip) print(tip)%>'>
     <%=title%>:
-    <div>
-        <a href="#" data-action="" data-events-bind="add"> <i class=" blue ace-icon fa fa-plus"></i> </a>
-        <a href="#" data-action="" data-events-bind="add"> <i class=" blue ace-icon fa fa-plus"></i> </a>
-    </div>
+    <a href="#" data-action="" data-code-format="javascript"> JS </a>
+    <a href="#" data-action="" data-code-format="html"> <i class=" blue ace-icon fa fa-html5"></i> </a>
 </div>
 <div class="ub ub-ac">
     <div class="ub-f1" style="padding-bottom: 4px;">
@@ -18,5 +16,21 @@
         editor.setAutoScrollEditorIntoView(true);
         editor.setOption("maxLines", 100);
         editor.setOption("minLines", 5);
+        $('[data-code-format="javascript"]').on("click", function() {
+            debugger;
+            var editor = $("#pro_<%=name%>")[0].env.editor;
+            var str = editor.getValue();
+            if (str) {
+                str = js_beautify(str, 4, " ", 0);
+                editor.setValue(str);
+            }
+        })
+        $('[data-code-format="html"]').on("click", function() {
+            var editor = $("#pro_<%=name%>")[0].env.editor;
+            var str = editor.getValue();
+            if (str) {
+                editor.setValue(style_html(str, 4, " ", 1024))
+            }
+        })
     }
 </script>

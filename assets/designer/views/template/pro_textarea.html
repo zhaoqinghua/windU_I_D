@@ -1,5 +1,5 @@
 <div class="lighter black custom_lab" title='<%if(tip) print(tip)%>'>
-    <%=title%>:
+    <%=title%>:<a href="#" data-action="" data-code-format="javascript <%=name%>"> JS </a>
 </div>
 <div class="ub ub-ac">
     <div class="ub-f1" style="padding-bottom: 4px;">
@@ -14,5 +14,14 @@
         editor.setAutoScrollEditorIntoView(true);
         editor.setOption("maxLines", 100);
         editor.setOption("minLines", 5);
+        $('[data-code-format="javascript <%=name%>"]').on("click", function() {
+            debugger;
+            var editor = $("#pro_<%=name%>")[0].env.editor;
+            var str = editor.getValue();
+            if (str) {
+                str = js_beautify(str, 4, " ", 0);
+                editor.setValue(str);
+            }
+        })
     }
 </script>

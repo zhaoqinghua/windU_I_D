@@ -3,6 +3,7 @@
         <%=title%>:
     </div>
     <div>
+        <a href="#" data-action="" data-code-format="javascript <%=name%>"> JS </a>
         <a href="#" data-action="" data-events-bind="add"> <i class=" blue ace-icon fa fa-plus"></i> </a>
     </div>
 </div>
@@ -19,6 +20,15 @@
             editor.setAutoScrollEditorIntoView(true);
             editor.setOption("maxLines", 100);
             editor.setOption("minLines", 5);
+            $('[data-code-format="javascript <%=name%>"]').on("click", function() {
+                debugger;
+                var editor = $("#pro_<%=name%>")[0].env.editor;
+                var str = editor.getValue();
+                if (str) {
+                    str = js_beautify(str, 4, " ", 0);
+                    editor.setValue(str);
+                }
+            })
 
             $('[data-events-bind="add"]').on("click", function() {
                 debugger;
@@ -35,7 +45,8 @@
                 var dom = $("#data-events-dom", "#eb-add-form").val();
                 var ev = $("#data-events-name", "#eb-add-form").val();
                 var func = $("#data-events-operation", "#eb-add-form")[0].env.editor.getValue();
-                editor.insert("\"" + ev + " #" + dom + "\":function(){" + func + "},\r\n");
+                editor.insert("\"" + ev + " #" + dom + "\":function(){\r\n" + func + "\r\n},\r\n");
+                //editor.setValue(js_beautify(editor.getValue(), 4, " ", 0));
                 $("#pro_<%=name%>").blur();
                 $("#eb-add-form").modal("toggle");
             })

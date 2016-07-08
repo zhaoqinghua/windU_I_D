@@ -77,10 +77,10 @@ jQuery(function($) {
                         var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g,"&lt").replace(/>/g,"&gt");
                         $.gritter.add({
                             title : '数据请求成功',
-                            text : "<pre style='overflow:scroll;height:400px'>" + v + "</pre>",
+                            text : "",
                             class_name : 'gritter-info gritter-center gritter-light'
                         });
-                        //self.model.set("attributes",js_beautify(_.isObject(resp)?JSON.stringify(resp):resp, 4, " ", 0));
+                        self.model.set("result",js_beautify(_.isObject(resp)?JSON.stringify(resp):resp, 4, " ", 0));
                     },
                     error : function(model, error, options) {
                         $.gritter.add({
@@ -225,6 +225,11 @@ jQuery(function($) {
             name : "del",
             icon : "fa-cloud-download",
             options : getServices
+        },{
+            type : "text",
+            title : "返回数据",
+            tip : "",
+            name : "result"
         }]
     })
 

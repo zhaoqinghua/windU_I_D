@@ -67,12 +67,12 @@ jQuery(function($) {
                         }
                     });
                     break;
-                case "textarea":
+                case "text":
                     this.addBinding(null, "#pro_" + option.name, {
                         "observe" : option.name,
                         "events" : ["blur"],
                         "getVal" : function($el, event, options) {
-                            return "";
+                            return $el[0].env.editor.getValue();
                         },
                         "update" : function($el, val, model, options) {
                             $el[0].env.editor.setValue(val, 1);
