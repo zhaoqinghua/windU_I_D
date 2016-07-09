@@ -72,6 +72,7 @@ jQuery(function($) {
                         "observe" : option.name,
                         "events" : ["blur"],
                         "getVal" : function($el, event, options) {
+                            options.updateModel = true;
                             return $el[0].env.editor.getValue();
                         },
                         "update" : function($el, val, model, options) {

@@ -4,18 +4,113 @@ jQuery(function($) {
     var jsTemplate = loadTemplate("../assets/designer/controls/template/mvvm/collection.js");
     var View = Backbone.Designer.View.extend({//options...
         initialize : function(option) {
+            var self = this;
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
             this.model.set("defaults", js_beautify("{  }", 4, " ", 0));
             this.model.set("computeds", "{}");
             this.model.set("idAttribute", "");
-            this.model.set("initialize", js_beautify("function(){ return; }", 4, " ", 0));
-            this.model.set("parse", js_beautify("function(data){return data;}", 4, " ", 0));
+            this.model.set("initialize", js_beautify("{ return; }", 4, " ", 0));
+            this.model.set("parse", js_beautify("{return data;}", 4, " ", 0));
             this.model.set("read", "");
             this.model.set("update", "");
             this.model.set("create", "");
             this.model.set("patch", "");
             this.model.set("del", "");
+
+            var item_model = MVVM.Model.extend({defaults:{}});
+            item_model.prototype.sync = function(method, model, options) {
+                var serviceName = self.model.get(method == "delete" ? "del" : method);
+                var services = window.desUIEditorMobileViewInstance.getServices();
+                _.each(services, function(service) {
+                    if (service.get("uuid") == serviceName) {
+                        switch(method) {
+                        case "patch":
+                            service.view.MVVMService.request(options.attrs, options);
+                            break;
+                        default:
+                            service.view.MVVMService.request(model.toJSON(), options);
+                            break;
+                        }
+                    }
+                })
+            }
+            this.MVVMCollection = new MVVM.Collection([],{
+                model : item_model
+            });
+            this.listenTo(this.model, "change:parse", function(data) {
+                try {
+                    this.MVVMCollection.parse = new Function("data", data.changed.parse);
+                } catch(e) {
+
+                }
+            });
+            this.listenTo(this.model, "change:initialize", function(data) {
+                try {
+                    this.MVVMCollection.initialize = new Function(data.changed.initialize);
+                } catch(e) {
+
+                }
+            });
+            this.listenTo(this.model, "change:defaults", function(data) {
+                try {
+                    this.MVVMCollection.model.prototype.defaults = JSON.parse(data.changed.defaults);
+                } catch(e) {
+
+                }
+            })
+            
+            this.listenTo(this.model, "change:computeds", function(data) {
+                try {
+                    var out = js_beautify("var computeds =" + data.changed.computeds , 4, " ", 0);
+                    eval(out);
+                    this.MVVMCollection.model.prototype.computeds = computeds;
+                } catch(e) {
+                    $.gritter.add({
+                        title : '计算属性设定异常',
+                        text : e,
+                        class_name : 'gritter-info gritter-center gritter-light'
+                    });
+                }
+            })
+            
+            this.MVVMCollection.sync = function(method, model, options) {
+                var serviceName = self.model.get(method == "delete" ? "del" : method);
+                var services = window.desUIEditorMobileViewInstance.getServices();
+                _.each(services, function(service) {
+                    if (service.get("uuid") == serviceName) {
+                        switch(method) {
+                        case "read":
+                            service.view.MVVMService.request({}, options);
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+                })
+            }
+            
+            this.on("action:read", function() {
+                this.MVVMCollection.reset(null);
+                this.MVVMCollection.fetch({
+                    success : function(model, resp, options) {
+                        var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g, "&lt").replace(/>/g, "&gt");
+                        $.gritter.add({
+                            title : '数据请求成功',
+                            text : "",
+                            class_name : 'gritter-info gritter-center gritter-light'
+                        });
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
+                    },
+                    error : function(model, error, options) {
+                        $.gritter.add({
+                            title : '数据请求失败',
+                            text : error,
+                            class_name : 'gritter-info gritter-center gritter-light'
+                        });
+                    }
+                })
+            })
         },
         template : Template, //VIEW对应的模板
         jsTemplate : jsTemplate,
@@ -54,20 +149,26 @@ jQuery(function($) {
             type : "label",
             title : "集合属性设定:",
             name : "",
-        },{
+        }, {
             type : "textarea",
             title : "集合初始化<br>function initialize()",
             name : "initialize"
-        },  {
+        }, {
             type : "select",
             title : "获取集合数据",
             name : "read",
+            icon : "fa-cloud-download",
             options : getServices
-        },{
+        }, {
             type : "textarea",
             title : "返回数据处理<br>function parse(data)",
             name : "parse"
-        },{
+        }, {
+            type : "text",
+            title : "原始返回数据",
+            tip : "",
+            name : "result"
+        }, {
             type : "label",
             title : "集合条目属性设定:",
             name : "",
@@ -79,7 +180,7 @@ jQuery(function($) {
             type : "textarea",
             title : "模型默认值",
             name : "defaults"
-        },   {
+        }, {
             type : "textarea",
             title : "模型计算属性",
             tip : "范例:\r\n" + js_beautify('{fullName: function() {return this.get("firstName") +" "+ this.get("lastName");}}', 4, " ", 0),

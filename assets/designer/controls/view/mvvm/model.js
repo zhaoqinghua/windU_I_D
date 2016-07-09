@@ -31,14 +31,20 @@ jQuery(function($) {
 
                 }
             });
-            this.listenTo(this.model, "change:attributes", function(data) {
-                try {
-                    this.MVVMModel.set(JSON.parse(data.changed.attributes));
-                } catch(e) {
 
+            this.listenTo(this.model, "change:computeds", function(data) {
+                try {
+                    var out = js_beautify("var computeds = " + data.changed.computeds , 4, " ", 0);
+                    eval(out);
+                    this.MVVMModel.computeds = computeds;
+                } catch(e) {
+                    $.gritter.add({
+                        title : '计算属性设定异常',
+                        text : e,
+                        class_name : 'gritter-info gritter-center gritter-light'
+                    });
                 }
             })
-
             this.MVVMModel.sync = function(method, model, options) {
                 var serviceName = self.model.get(method == "delete" ? "del" : method);
                 var services = window.desUIEditorMobileViewInstance.getServices();
@@ -74,13 +80,13 @@ jQuery(function($) {
             this.on("action:read", function() {
                 this.MVVMModel.fetch({
                     success : function(model, resp, options) {
-                        var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g,"&lt").replace(/>/g,"&gt");
+                        var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g, "&lt").replace(/>/g, "&gt");
                         $.gritter.add({
                             title : '数据请求成功',
                             text : "",
                             class_name : 'gritter-info gritter-center gritter-light'
                         });
-                        self.model.set("result",js_beautify(_.isObject(resp)?JSON.stringify(resp):resp, 4, " ", 0));
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
                     error : function(model, error, options) {
                         $.gritter.add({
@@ -225,7 +231,7 @@ jQuery(function($) {
             name : "del",
             icon : "fa-cloud-download",
             options : getServices
-        },{
+        }, {
             type : "text",
             title : "原始返回数据",
             tip : "",
