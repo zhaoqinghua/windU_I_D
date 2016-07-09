@@ -11,7 +11,7 @@ jQuery(function($) {
             this.model.set("modelName", "");
             this.model.set("collectionName", "");
             this.MVVMViewModel = new MVVM.ViewModel({
-                $el : this.$el
+                $el : null
             });
             function applyBindings() {
                 try {
@@ -43,6 +43,21 @@ jQuery(function($) {
                         self.MVVMViewModel.$el.view && self.MVVMViewModel.$el.view.model.set("viewModelName", "");
                         view.view.$el[0].view.model.set("viewModelName", self.model.get("uuid"));
                         self.MVVMViewModel.setElement(view.view.$el)
+                        applyBindings();
+                    }
+                })
+            })
+            this.listenTo(this.model, "change:collectionName", function(data) {
+                var cols = window.desUIEditorMobileViewInstance.getCollections();
+                _.each(cols, function(col) {
+                    if (col.get("uuid") == data.changed.collectionName) {
+                        self.MVVMViewModel.collection = col.view.MVVMCollection;
+                        var html = $('[data-control="CUSTOMLISTVIEW"]>li',self.MVVMViewModel.$el)).prop("outerHTML");
+                        if(!html) return;
+                        var itemView = MVVM.ViewModel.extend({
+                            el : html || "li"
+                        });
+                        self.MVVMViewModel.itemView = itemView;
                         applyBindings();
                     }
                 })
