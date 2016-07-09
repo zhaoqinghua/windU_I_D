@@ -5,6 +5,7 @@ jQuery(function($) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
             this.model.set("size_h", 70);
+            this.model.set("data-bind",['collection:$collection']);
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -25,12 +26,7 @@ jQuery(function($) {
             this.set("type", "CustomListView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
             this.set("size_h", "70");
-        },extOptions:[{
-            type : "select",
-            title : "视图模型",
-            name : "viewmodel",
-            options : mvvm.getViewModels
-        }]
+        }
     })
 
     window.desUIControlsListViewInstance.register({
