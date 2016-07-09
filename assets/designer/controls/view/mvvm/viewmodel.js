@@ -47,6 +47,15 @@ jQuery(function($) {
                     }
                 })
             })
+            this.listenTo(this.model, "change:collectionName", function(data) {
+                var cols = window.desUIEditorMobileViewInstance.getCollections();
+                _.each(cols, function(col) {
+                    if (col.get("uuid") == data.changed.collectionName) {
+                        self.MVVMViewModel.collection = col.view.MVVMCollection;
+                        applyBindings();
+                    }
+                })
+            })
             this.listenTo(this.model, "change:events", function(data) {
                 self.MVVMViewModel.undelegateEvents();
                 var out = js_beautify("var events = {" + data.changed.events + "}", 4, " ", 0);
