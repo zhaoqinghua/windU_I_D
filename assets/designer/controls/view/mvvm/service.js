@@ -106,6 +106,9 @@ jQuery(function($) {
             title : "响应类型",
             name : "datatype",
             options : [{
+                val : "",
+                lab : ""
+            },{
                 val : "json",
                 lab : "json"
             }, {

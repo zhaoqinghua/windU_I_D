@@ -22,7 +22,7 @@ var Model_<%=uuid%> = MVVM.Model.extend({
     }
 })
 
-var <%=uuid%> = new MVVM.Collection({
+var <%=uuid%> = new (MVVM.Collection.extend({
     <%if(initialize) {print("initialize:function()");print(initialize);print(",")}%>
     <%if(parse) {print("parse:function(data)");print(parse);print(",")}%>
     model:Model_<%=uuid%>,
@@ -35,4 +35,4 @@ var <%=uuid%> = new MVVM.Collection({
             break;
         }
     }
-})
+}))();
