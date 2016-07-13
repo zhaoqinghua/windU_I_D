@@ -9,9 +9,11 @@ jQuery(function($) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
             this.model.set("initialize", js_beautify("{ return; }", 4, " ", 0));
             this.model.set("modelName", "");
+            this.model.set("viewName", "");
             this.model.set("collectionName", "");
+            this.model.set("events", "{}");
             this.MVVMViewModel = new MVVM.ViewModel({
-                $el : this.$el
+                $el : null
             });
             function applyBindings() {
                 try {
@@ -52,6 +54,13 @@ jQuery(function($) {
                 _.each(cols, function(col) {
                     if (col.get("uuid") == data.changed.collectionName) {
                         self.MVVMViewModel.collection = col.view.MVVMCollection;
+                        var html = $('[data-control="CUSTOMLISTVIEW"]>li', self.MVVMViewModel.$el).prop("outerHTML");
+                        if (!html)
+                            return;
+                        var itemView = MVVM.ViewModel.extend({
+                            el : html || "li"
+                        });
+                        self.MVVMViewModel.itemView = itemView;
                         applyBindings();
                     }
                 })
@@ -70,6 +79,47 @@ jQuery(function($) {
                     });
                 }
 
+            })
+            this.on("action:modelName", function() {
+                var models = window.desUIEditorMobileViewInstance.getModels();
+                _.each(models, function(model) {
+                    if (model.get("uuid") == self.model.get("modelName")) {
+                        if (self.MVVMViewModel.model)
+                            self.MVVMViewModel.stopListening(self.MVVMViewModel.model);
+                        self.MVVMViewModel.model = model.view.MVVMModel;
+                        self.MVVMViewModel.listenTo(self.MVVMViewModel.model, "change", function(data) {
+                            applyBindings();
+                        })
+                        applyBindings();
+                    }
+                })
+            })
+            this.on("action:collectionName", function() {
+                var cols = window.desUIEditorMobileViewInstance.getCollections();
+                _.each(cols, function(col) {
+                    if (col.get("uuid") == self.model.get("collectionName")) {
+                        self.MVVMViewModel.collection = col.view.MVVMCollection;
+                        var html = $('[data-control="CUSTOMLISTVIEW"]>li', self.MVVMViewModel.$el).prop("outerHTML");
+                        if (!html)
+                            return;
+                        var itemView = MVVM.ViewModel.extend({
+                            el : html || "li"
+                        });
+                        self.MVVMViewModel.itemView = itemView;
+                        applyBindings();
+                    }
+                })
+            })
+            this.on("action:viewName", function() {
+                var views = window.desUIEditorMobileViewInstance.getDoms();
+                _.each(views, function(view) {
+                    if (view.get("uuid") == self.model.get("viewName")) {
+                        self.MVVMViewModel.$el.view && self.MVVMViewModel.$el.view.model.set("viewModelName", "");
+                        view.view.$el[0].view.model.set("viewModelName", self.model.get("uuid"));
+                        self.MVVMViewModel.setElement(view.view.$el)
+                        applyBindings();
+                    }
+                })
             })
         },
         template : Template, //VIEW对应的模板
@@ -97,16 +147,19 @@ jQuery(function($) {
             type : "select",
             title : "数据模型",
             name : "modelName",
+            icon : "fa-refresh",
             options : mvvm.getModels
         }, {
             type : "select",
             title : "数据集合",
             name : "collectionName",
+            icon : "fa-refresh",
             options : mvvm.getCollections
         }, {
             type : "select",
             title : "网页视图",
             name : "viewName",
+            icon : "fa-refresh",
             options : mvvm.getFrames
         }, {
             type : "events-bind",

@@ -5,7 +5,6 @@ jQuery(function($) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
             this.model.set("size_h", 70);
-            this.model.set("data-bind",['collection:$collection']);
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -17,7 +16,7 @@ jQuery(function($) {
             return this;
         },
         appendChild : function(el,dom) {
-            $(dom || this.$el).append(el);
+            $("li:nth-child(1)",dom || this.$el).append(el);
         }
     });
 

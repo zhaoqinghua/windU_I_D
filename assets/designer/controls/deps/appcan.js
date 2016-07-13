@@ -11547,6 +11547,8 @@ appcan.define('widgetOne', function($, exports, module) {
   }
 
   function isPrimaryTouch(event){
+      if(window.navigator.platform == "Win32") return true;
+    if(!('ontouchstart' in window)) return true;
     if(!('ontouchstart' in window)) return true;
     return (event.pointerType == 'touch' ||
       event.pointerType == event.MSPOINTER_TYPE_TOUCH)
@@ -11554,10 +11556,14 @@ appcan.define('widgetOne', function($, exports, module) {
   }
   
   function isWindows(){
+      if(window.navigator.platform == "Win32") return true;
+    if(!('ontouchstart' in window)) return true;
     if(!('ontouchstart' in window)) return true;
   }
     
   function isPointerEventType(e, type){
+      if(window.navigator.platform == "Win32") return true;
+    if(!('ontouchstart' in window)) return true;
     if(!('ontouchstart' in window)) return true;
     return (e.type == 'pointer'+type ||
       e.type.toLowerCase() == 'mspointer'+type)

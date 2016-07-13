@@ -23,8 +23,8 @@ var Model_<%=uuid%> = MVVM.Model.extend({
 })
 
 var <%=uuid%> = new MVVM.Collection({
-    <%if(initialize) {print("initialize:");print(initialize);print(",")}%>
-    <%if(parse) {print("parse:");print(parse);print(",")}%>
+    <%if(initialize) {print("initialize:function()");print(initialize);print(",")}%>
+    <%if(parse) {print("parse:function(data)");print(parse);print(",")}%>
     model:Model_<%=uuid%>,
     sync : function(method, collection, options) {
         switch(method) {

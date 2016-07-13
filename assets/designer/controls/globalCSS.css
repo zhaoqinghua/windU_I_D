@@ -365,11 +365,8 @@ ul, li {
 }
 
 [data-control="CUSTOMLISTVIEW"] {
-
-}
-[data-control="CUSTOMLISTITEM"] {
-    min-height: 10px;
-    position: relative;
+	min-height:10px;
+	position:relative;
 }
 
 [data-control="ICON"] {

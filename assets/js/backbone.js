@@ -3207,7 +3207,8 @@
                 var parserFunct = bindingCache[declarations] || (bindingCache[declarations] = new Function('$f', '$c', 'with($f){with($c){return{' + declarations + '}}}'));
                 var bindings = parserFunct(filters, context);
             } catch (error) {
-                throw ('Error parsing bindings: "' + declarations + '"\n>> ' + error);
+                console.log ('Error parsing bindings: "' + declarations + '"\n>> ' + error);
+                return;
             }
 
             // Format the 'events' option:

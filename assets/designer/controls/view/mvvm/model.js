@@ -31,7 +31,12 @@ jQuery(function($) {
 
                 }
             });
-
+            this.listenTo(this.model, "change:attributes", function(data) {
+                try {
+                    this.MVVMModel.set(JSON.parse(data.changed.attributes))
+                } catch(e) {
+                }
+            })
             this.listenTo(this.model, "change:computeds", function(data) {
                 try {
                     var out = js_beautify("var computeds = " + data.changed.computeds , 4, " ", 0);
