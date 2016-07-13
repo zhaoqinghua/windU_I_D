@@ -11,7 +11,7 @@ jQuery(function($) {
             this.model.set("modelName", "");
             this.model.set("viewName", "");
             this.model.set("collectionName", "");
-            this.model.set("events", "{}");
+            this.model.set("events", "");
             this.MVVMViewModel = new MVVM.ViewModel({
                 $el : null
             });

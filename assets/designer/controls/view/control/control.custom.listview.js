@@ -5,6 +5,10 @@ jQuery(function($) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
             this.model.set("size_h", 70);
+            this.listenTo(this.model,"change:isBig",function(data){
+                !data.changed.isBig && $("li:nth-child(1)", this.$el).removeClass("col2");
+                data.changed.isBig && $("li:nth-child(1)", this.$el).addClass("col2");
+            })
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -15,8 +19,8 @@ jQuery(function($) {
             }
             return this;
         },
-        appendChild : function(el,dom) {
-            $("li:nth-child(1)",dom || this.$el).append(el);
+        appendChild : function(el, dom) {
+            $("li:nth-child(1)", dom || this.$el).append(el);
         }
     });
 
@@ -25,7 +29,12 @@ jQuery(function($) {
             this.set("type", "CustomListView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
             this.set("size_h", "70");
-        }
+        },
+        extOptions : [{
+            type : "checkbox",
+            title : "双列列表",
+            name : "isBig"
+        }]
     })
 
     window.desUIControlsListViewInstance.register({
@@ -38,4 +47,4 @@ jQuery(function($) {
         Template : Template,
         Config : Config
     })
-}); 
+});

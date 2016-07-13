@@ -380,7 +380,7 @@ body {
     /*position:absolute;
      right:1px;
      top:calc((100% - 1em)/2);*/
-
+    min-width: 12px;
 }
 
 .control_pro select {

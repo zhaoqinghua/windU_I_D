@@ -45,6 +45,8 @@ jQuery(function($) {
         {
             type : "input",
             title : "Line Count",
+            tip:"限制行数需要设定TEXT组件为box模式，且为纵向排列。否则此参数无效",
+            icon:"fa-question",
             name : "line"
         }]
     })

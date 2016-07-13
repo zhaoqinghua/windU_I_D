@@ -151,7 +151,7 @@ ul, li {
     background-position: center;
 }
 
-.uc-tl, .uc-tr, .uc-bl, .uc-br, .uc-t, .uc-b, .uc-r, .uc-l, .uc-a, .uc-n, .uc-tl1, .uc-tr1, .uc-bl1, .uc-br1, .uc-t1, .uc-b1, .uc-r1, .uc-l1, .uc-a1, .uc-a2,          , .uc-a3 {
+.uc-tl, .uc-tr, .uc-bl, .uc-br, .uc-t, .uc-b, .uc-r, .uc-l, .uc-a, .uc-n, .uc-tl1, .uc-tr1, .uc-bl1, .uc-br1, .uc-t1, .uc-b1, .uc-r1, .uc-l1, .uc-a1, .uc-a2,           , .uc-a3 {
     -webkit-background-clip: padding-box;
     background-clip: padding-box
 }
@@ -365,10 +365,16 @@ ul, li {
 }
 
 [data-control="CUSTOMLISTVIEW"] {
-	min-height:10px;
-	position:relative;
+    min-height: 10px;
+    position: relative;
 }
 
+[data-control="CUSTOMLISTVIEW"] li.col2 {
+    width: 49%;
+    margin-right: 0.5%;
+    float: left;
+    position: relative;
+}
 [data-control="ICON"] {
 
 }
@@ -451,21 +457,21 @@ ul, li {
     display: none;
 }
 
-[data-mvvm="MODEL"],[data-mvvm="SERVICE"],[data-mvvm="COLLECTION"],[data-mvvm="VIEWMODEL"]  {
+[data-mvvm="MODEL"], [data-mvvm="SERVICE"], [data-mvvm="COLLECTION"], [data-mvvm="VIEWMODEL"] {
     width: 35px;
     height: 35px;
     background-size: cover;
     margin: 2px;
 }
-[data-mvvm="VIEWMODEL"]{
+[data-mvvm="VIEWMODEL"] {
     background-image: url(template/img/viewmodel.png)
 }
-[data-mvvm="COLLECTION"]{
+[data-mvvm="COLLECTION"] {
     background-image: url(template/img/collection.png)
 }
-[data-mvvm="MODEL"]{
+[data-mvvm="MODEL"] {
     background-image: url(template/img/model.png)
 }
-[data-mvvm="SERVICE"]{
+[data-mvvm="SERVICE"] {
     background-image: url(template/img/service.png)
 }

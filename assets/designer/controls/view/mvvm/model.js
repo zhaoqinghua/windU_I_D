@@ -83,63 +83,58 @@ jQuery(function($) {
             this.model.set("del", "");
 
             this.on("action:read", function() {
+                self.model.set("result","");
                 this.MVVMModel.fetch({
                     success : function(model, resp, options) {
-                        var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g, "&lt").replace(/>/g, "&gt");
-                        $.gritter.add({
-                            title : '数据请求成功',
-                            text : "",
-                            class_name : 'gritter-info gritter-center gritter-light'
-                        });
                         self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
                     error : function(model, error, options) {
-                        $.gritter.add({
-                            title : '数据请求失败',
-                            text : error,
-                            class_name : 'gritter-info gritter-center gritter-light'
-                        });
+                        self.model.set("result", error);
                     }
                 })
             })
             this.on("action:update", function() {
+                self.model.set("result","");
                 this.MVVMModel.save(JSON.parse(this.model.get("attributes")), {
-                    success : function(resp, options) {
-                        console.log(resp, options);
+                    success : function(model, resp, options) {
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
-                    error : function(error, options) {
-                        console.log(error, options);
+                    error : function(model, error, options) {
+                        self.model.set("result", error);
                     }
                 })
             })
             this.on("action:patch", function() {
+                self.model.set("result","");
                 this.MVVMModel.save(JSON.parse(this.model.get("attributes")), {
-                    success : function(resp, options) {
-                        console.log(resp, options);
+                    success : function(model, resp, options) {
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
-                    error : function(error, options) {
-                        console.log(error, options);
+                    error : function(model, error, options) {
+                        self.model.set("result", error);
                     },
                     patch : true
                 })
             })
             this.on("action:create", function() {
+                self.model.set("result","");
                 this.MVVMModel.save(JSON.parse(this.model.get("attributes")), {
-                    success : function(resp, options) {
-                        console.log(resp, options);
+                    success : function(model, resp, options) {
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
-                    error : function(error, options) {
-                        console.log(error, options);
+                    error : function(model, error, options) {
+                        self.model.set("result", error);
                     }
                 })
             })
             this.on("action:del", function() {
+                self.model.set("result","");
                 this.MVVMModel.destroy({
-                    success : function(resp, options) {
-                        console.log(resp, options);
+                    success : function(model, resp, options) {
+                        self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
-                    error : function(error, options) {
-                        console.log(error, options);
+                    error : function(model, error, options) {
+                        self.model.set("result", error);
                     }
                 })
             })

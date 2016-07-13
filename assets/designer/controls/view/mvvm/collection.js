@@ -91,23 +91,14 @@ jQuery(function($) {
             }
             
             this.on("action:read", function() {
+                self.model.set("result","");
                 this.MVVMCollection.reset(null);
                 this.MVVMCollection.fetch({
                     success : function(model, resp, options) {
-                        var v = (_.isObject(resp) ? JSON.stringify(resp) : resp).replace(/</g, "&lt").replace(/>/g, "&gt");
-                        $.gritter.add({
-                            title : '数据请求成功',
-                            text : "",
-                            class_name : 'gritter-info gritter-center gritter-light'
-                        });
                         self.model.set("result", js_beautify(_.isObject(resp) ? JSON.stringify(resp) : resp, 4, " ", 0));
                     },
                     error : function(model, error, options) {
-                        $.gritter.add({
-                            title : '数据请求失败',
-                            text : error,
-                            class_name : 'gritter-info gritter-center gritter-light'
-                        });
+                        self.model.set("result", _.isObject(error) ? JSON.stringify(error) : error);
                     }
                 })
             })
