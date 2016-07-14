@@ -5,6 +5,9 @@ jQuery(function($) {
             this.listenTo(this.model, "change:placeholder", function(data) {
                 $("input", this.$el).attr("placeholder", data.changed.placeholder);
             })
+            this.listenTo(this.model, "change:inputtype", function(data) {
+                $("input", this.$el).attr("type", data.changed.inputtype);
+            })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
         },
@@ -27,11 +30,32 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "Input");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
+            this.set("inputtype", "text");
         },
         extOptions : [{
             type : "input",
             title : "PlaceHolder",
             name : "placeholder"
+        },{
+            type : "select",
+            title : "输入框类型",
+            name : "inputtype",
+            options : [{
+                val : "text",
+                lab : "text"
+            }, {
+                val : "password",
+                lab : "password"
+            }, {
+                val : "number",
+                lab : "number"
+            }, {
+                val : "email",
+                lab : "email"
+            }, {
+                val : "url",
+                lab : "url"
+            }]
         }]
 
     })
