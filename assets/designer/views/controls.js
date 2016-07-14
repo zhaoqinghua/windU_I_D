@@ -42,6 +42,7 @@ jQuery(function($) {
         collection : new desUIControlList(),
         el : '#desUIControlsViewControls',
         register : function(options, classes) {
+            options.type= options.type || "control"; 
             var model = new desUIControl(options);
             model.classes = classes;
             this.collection.add(model, {

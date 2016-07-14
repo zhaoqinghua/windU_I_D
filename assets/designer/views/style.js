@@ -8,7 +8,7 @@ jQuery(function($) {
                 var bind = $(e.target).data("bind");
                 var arr = bind.split(",");
                 for(var i in arr){
-                    this.model.unset(arr[i]);
+                    this.model.set(arr[i],undefined);
                 }
             }
         },

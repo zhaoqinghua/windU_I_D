@@ -79,7 +79,7 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "GroupListView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("size_h", "70");
+
             this.set("hasAngle", false);
             this.set("hasIcon", false);
             this.set("hasRadiobox", false);
@@ -157,11 +157,6 @@ jQuery(function($) {
             type : "textarea",
             title : "List Data",
             name : "listdata"
-        }, {
-            type : "select",
-            title : "数据集合",
-            name : "collection",
-            options : mvvm.getCollections
         }]
     })
 

@@ -6473,9 +6473,9 @@ appcan && appcan.define('request', function($, exports, module) {
 
     module.exports = {
         ajax : function() {
-            // if (window.uexXmlHttpMgr) {
-                // ajax.apply(null, arguments);
-            // } else 
+            if (window.uexXmlHttpMgr) {
+                ajax.apply(null, arguments);
+            } else 
             {
                 Zepto.ajax.apply(null, arguments);
             }

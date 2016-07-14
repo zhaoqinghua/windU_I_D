@@ -6,10 +6,10 @@ jQuery(function($) {
         el : '#desUIControlsProperties',
         events : {
             "click .del-width" : function(e) {
-                this.model.unset("size_w");
+                this.model.set("size_w",undefined);
             },
             "click .del-height" : function(e) {
-                this.model.unset("size_h");
+                this.model.set("size_h",undefined);
             },
             "click .full-width" : function(e) {
                 this.model.set("size_w", "100%");
@@ -18,8 +18,8 @@ jQuery(function($) {
                 this.model.set("size_h", "100%");
             },
             "click .del-offset" : function(e) {
-                this.model.unset("offset_x");
-                this.model.unset("offset_y");
+                this.model.set("offset_x",undefined);
+                this.model.set("offset_y",undefined);
             },
             "click .lock-size" : function(e) {
                 var val = !this.model.get("on/off_size");

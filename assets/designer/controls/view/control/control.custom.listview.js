@@ -4,8 +4,7 @@ jQuery(function($) {
         initialize : function(option) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
-            this.model.set("size_h", 70);
-            
+
             this.listenTo(this.model,"change:isBig",function(data){
                 !data.changed.isBig && $("li:nth-child(1)", this.$el).removeClass("col2");
                 data.changed.isBig && $("li:nth-child(1)", this.$el).addClass("col2");
@@ -29,7 +28,6 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "CustomListView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("size_h", "70");
             this.set("isBig",false);
         },
         extOptions : [{

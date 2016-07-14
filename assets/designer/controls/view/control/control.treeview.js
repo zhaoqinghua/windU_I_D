@@ -51,7 +51,7 @@ jQuery(function($) {
         initialize : function() {
             this.set("type", "TreeView");
             Backbone.Designer.Config.prototype.initialize.apply(this, arguments);
-            this.set("size_h", "70");
+
             this.set("dep", "appcan.treeview.js,appcan.listview.js");
             this.set("treedata", JSONProcess(JSON.stringify([{
                 header : "LEVEL 1 - 0",
@@ -77,11 +77,6 @@ jQuery(function($) {
             type : "textarea",
             title : "Tree Data",
             name : "treedata"
-        }, {
-            type : "select",
-            title : "数据集合",
-            name : "collection",
-            options : mvvm.getCollections
         }]
     })
 

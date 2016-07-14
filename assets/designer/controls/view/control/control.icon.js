@@ -11,8 +11,7 @@ jQuery(function($) {
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
-            this.model.set("size_w",30);
-            this.model.set("size_h",30);
+
         },
         template : Template, //VIEW对应的模板
         render : function() {

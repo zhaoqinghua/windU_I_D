@@ -1,6 +1,6 @@
 jQuery(function($) {
     var Template = loadTemplate("../assets/designer/views/template/output/out.html");
-    
+
     var desRootControl = Backbone.Model.extend({
         initialize : function() {
 
@@ -20,32 +20,42 @@ jQuery(function($) {
             var out = this.items.buildCSS();
             f = PathModule.dirname(f) + "\\css\\" + PathModule.basename(f) + ".css"
             console.log(out);
-            
+
             //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
             window.FileMgr.save(f, css_format(out));
         },
         buildJS : function(f) {
             var start = "(function($) {";
-            var out = this.items.buildJS();
+            var out = this.items.buildJS({"mvvm":false,"frame":true,"control":true});
             var end = "})($);";
-            f = PathModule.dirname(f) + "\\js\\" + PathModule.basename(f) + ".js";
+            var dest = PathModule.dirname(f) + "\\js\\" + PathModule.basename(f) + ".js";
             //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
-            window.FileMgr.save(f, js_beautify(start + out + end, 4, " ", 0));
+            window.FileMgr.save(dest, js_beautify(start + out + end, 4, " ", 0)); 
+            {
+                var start = "";
+                var out = this.items.buildJS({"mvvm":true,"frame":false,"control":false});
+                var end = "";
+                var dest = PathModule.dirname(f) + "\\assets\\mvvm\\" + PathModule.basename(f) + ".js";
+                //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
+                window.FileMgr.save(dest, js_beautify(start + out + end, 4, " ", 0));
+            }
         },
         buildHTML : function(f) {
             var work = $.getUrlParam("workspace");
-            var relative = PathModule.relative(f,work);
+            var relative = PathModule.relative(f, work);
             var out = $("<div></div>").append(this.items.buildHTML());
             var jspath = "./js/" + PathModule.basename(f) + ".js";
+            var mvvmpath = "./assets/mvvm/" + PathModule.basename(f) + ".js";
             var csspath = "./css/" + PathModule.basename(f) + ".css";
             var jsdep = {};
             this.items.getDeps(jsdep);
             out = Template({
                 relative : relative,
                 html : out.prop("innerHTML"),
+                mvvm:mvvmpath,
                 css : csspath,
                 js : jspath,
-                jsdep:jsdep
+                jsdep : jsdep
             });
             html = PathModule.dirname(f) + "\\" + PathModule.basename(f) + ".html"
             out = style_html(out, 4, " ", 1024);
@@ -104,17 +114,17 @@ jQuery(function($) {
             this.onwheel = true;
             return true;
         },
-        insert : function(view,option) {
-            if(option && option.get("type") == "mvvm"){
+        insert : function(view, option) {
+            if (option && option.get("type") == "mvvm") {
                 $(".ui_model .vector").append(view.$el);
                 this.model.items.add(view.model);
                 return;
             }
-            
+
             if (view.verifyParent && !view.verifyParent(this.$current)) {
                 return;
             }
-            
+
             if (this.$current) {
                 if (this.$current.appendChild)
                     this.$current.appendChild(view.$el);
@@ -123,69 +133,69 @@ jQuery(function($) {
                 this.$current.model.items.add(view.model);
             }
         },
-        getServices:function(){
+        getServices : function() {
             var res = [];
-            this.model.items.each(function(item){
+            this.model.items.each(function(item) {
                 var reg = item.register;
-                if(reg && reg.type =="mvvm" && reg.name == "Service"){
+                if (reg && reg.type == "mvvm" && reg.name == "Service") {
                     res.push(item);
                 }
             })
-            return res;  
+            return res;
         },
-        getModels:function(){
+        getModels : function() {
             var res = [];
-            this.model.items.each(function(item){
+            this.model.items.each(function(item) {
                 var reg = item.register;
-                if(reg && reg.type =="mvvm" && reg.name == "Model"){
+                if (reg && reg.type == "mvvm" && reg.name == "Model") {
                     res.push(item);
                 }
             })
-            return res;  
+            return res;
         },
-        getCollections:function(){
+        getCollections : function() {
             var res = [];
-            this.model.items.each(function(item){
+            this.model.items.each(function(item) {
                 var reg = item.register;
-                if(reg && reg.type =="mvvm" && reg.name == "Collection"){
+                if (reg && reg.type == "mvvm" && reg.name == "Collection") {
                     res.push(item);
                 }
             })
-            return res;  
+            return res;
         },
-        getViewModels:function(){
+        getViewModels : function() {
             var res = [];
-            this.model.items.each(function(item){
+            this.model.items.each(function(item) {
                 var reg = item.register;
-                if(reg && reg.type =="mvvm" && reg.name == "ViewModel"){
+                if (reg && reg.type == "mvvm" && reg.name == "ViewModel") {
                     res.push(item);
                 }
             })
-            return res;  
+            return res;
         },
-        getFrames:function(model,items){
+        getFrames : function(model, items) {
             var self = this;
             var res = items || [];
-            (model || this.model).items.each(function(item){
+            (model || this.model).items.each(function(item) {
                 var reg = item.register;
-                if(reg && reg.type =="frame"){
+                if (reg && reg.type == "frame") {
                     res.push(item);
-                    self.getFrames(item,res);
+                    self.getFrames(item, res);
                 }
             })
-            return res;  
+            return res;
         },
-        getDoms:function(model,items){
+        getDoms : function(model, items) {
             var self = this;
             var res = items || [];
-            (model || this.model).items.each(function(item){
+            (model || this.model).items.each(function(item) {
                 var reg = item.register;
-                if(reg){
+                if (reg) {
                     res.push(item);
-                    self.getDoms(item,res);
+                    self.getDoms(item, res);
                 }
             })
-            return res;  
+            return res;
         },
         focus : function() {
             $("[data-control-focus]").removeAttr("data-control-focus");
@@ -215,7 +225,11 @@ jQuery(function($) {
         },
         build : function(type) {
             var f = $.getUrlParam("path");
-            type = type || {html:true,css:true,js:true};
+            type = type || {
+                html : true,
+                css : true,
+                js : true
+            };
             type.css && this.model.buildCSS(f);
             type.js && this.model.buildJS(f);
             type.html && this.model.buildHTML(f);

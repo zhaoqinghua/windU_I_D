@@ -5,7 +5,7 @@ jQuery(function($) {
         initialize : function(option) {
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
-            this.model.set("size_h", 70);
+
         },
         template : Template, //VIEW对应的模板
         render : function() {
@@ -29,6 +29,7 @@ jQuery(function($) {
         uuid : "f7c65e62-c7c3-4f6b-ae3e-fff385b590ba",
         name : "Box",
         tip : "布局容器盒子，可以承载其他控件，也可作为独立控件使用。作为最常用组件，主要用于在界面基础布局情况下实现二级元素的布局",
+        type : "control",
         icon : "Box.png"
     }, {
         View : View,

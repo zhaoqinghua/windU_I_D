@@ -28,6 +28,7 @@ jQuery(function($) {
         uuid : "5287fad8-f593-11e5-9ce9-5e5517507c66",
         name : "Button",
         tip : "按键控件，用于实现用户点击的交互。",
+        type : "control",
         icon : "Button.png"
     }, {
         View : View,

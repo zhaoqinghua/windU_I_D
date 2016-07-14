@@ -329,10 +329,12 @@ jQuery(function($) {
             })
             this.listenTo(this.model, "change:data-bind", function(data) {
                 var arr=this.model.get("data-bind");
+                var $el = $("[data-control-scope='" + this.model.get("uuid") + "']", self.$el);
+                $el = $el.length ? $el : self.$el;
                 if (arr)
-                    self.$el.attr("data-bind",arr.join(","));
+                    $el.attr("data-bind",arr.join(","));
                 else
-                    self.$el.attr("data-bind","");
+                    $el.attr("data-bind","");
             })
         },
         template : Template, //VIEW对应的模板
@@ -628,14 +630,14 @@ jQuery(function($) {
             return out.join("\r\n");
 
         },
-        buildJS : function() {
+        buildJS : function(type) {
             var out = [];
             if (this.view.buildJS) {
                 out.push(this.view.buildJS());
             } else if (this.view.jsTemplate) {
                 out.push(this.view.jsTemplate(this.attributes));
             }
-            out.push(this.items.buildJS());
+            out.push(this.items.buildJS(type));
             return out.join("\r\n");
         },
         buildHTML : function() {
@@ -724,11 +726,13 @@ jQuery(function($) {
             }
             return css.join("\r\n");
         },
-        buildJS : function() {
+        buildJS : function(type) {
             var js = [];
             for (var i = 0; i < this.length; i++) {
                 var m = this.at(i);
-                js.push(m.buildJS());
+                var reg = m.register;
+                if(type[reg.type || "control"])
+                    js.push(m.buildJS(type));
             }
             return js.join("\r\n");
         },
@@ -736,7 +740,7 @@ jQuery(function($) {
             var con = $("<div></div>");
             for (var i = 0; i < this.length; i++) {
                 var m = this.at(i);
-                var reg = m.get("register");
+                var reg = m.register;
                 if (reg && reg.type == "mvvm") {
                     continue;
                 } else
