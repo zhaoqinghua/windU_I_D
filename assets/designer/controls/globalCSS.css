@@ -438,6 +438,11 @@ ul, li {
     opacity: 0.6;
 }
 
+[data-control="IMAGE"]{
+    min-height: 10px;
+    min-width: 10px;
+}
+
 .nav-btn > div {
     min-width: 1em;
     min-height: 1em;
