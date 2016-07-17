@@ -1,5 +1,5 @@
 $.scrollbox($("body")).on("releaseToReload", function() {//After Release or call reload function,we reset the bounce
-    this.reset();
+    $("#<%=uuid%>").trigger("reload",this);
 }).on("onReloading", function(a) {//if onreloading status, drag will trigger this event
     
 }).on("dragToReload", function() {//drag over 30% of bounce height,will trigger this event

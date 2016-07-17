@@ -2,6 +2,7 @@ var <%=uuid%> = new MVVM.Service({
     pretreatment:function(data,option)<%=pretreatment%>,
     dosuccess:function(data,option)<%=success%>,
     doerror:function(e,error,option)<%=error%>,
+    validate:function(data,option)<%=validate%>,
     ajaxCall : function(data, option) {
         var self=this;
         appcan.request.ajax({
@@ -11,7 +12,11 @@ var <%=uuid%> = new MVVM.Service({
             dataType:"<%=datatype%>",
             contentType:"<%=contenttype%>",
             success : function(data) {
-                option.success(self.dosuccess(data,option));
+                var res = self.validate(data, option);
+                if (!res)
+                    option.success(self.dosuccess(data, option));
+                else
+                    option.error(self.doerror(data, res, option));
             },
             error : function(e, err) {
                 option.error(self.doerror(e,err,option));

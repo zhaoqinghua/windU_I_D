@@ -204,6 +204,15 @@
         <!-- inline scripts related to this page -->
         <script>
             /*global require*/
+            jQuery(function($) {
+                var work = $.getUrlParam("workspace");
+                var head = document.getElementsByTagName('head')[0];
+                var link = document.createElement('link');
+                link.href = work + "\\css\\ui-color.css";
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            });
 
         </script>
         <script type="text/javascript">

@@ -17,7 +17,11 @@ jQuery(function($) {
                     dataType : self.model.get("datatype"),
                     contentType : self.model.get("contenttype"),
                     success : function(data) {
-                        option.success(service.dosuccess ? service.dosuccess(data, option) : data);
+                        var res = service.validate(data,option);
+                        if(!res)
+                            option.success(service.dosuccess ? service.dosuccess(data, option) : data);
+                        else
+                            option.error(service.doerror ? service.doerror(data, res, option) : res,data,option);
                     },
                     error : function(e, err) {
                         option.error(service.doerror ? service.doerror(e, err, option) : err,e,option);
@@ -45,9 +49,17 @@ jQuery(function($) {
 
                 }
             });
+            this.listenTo(this.model, "change:validate", function(data) {
+                try {
+                    this.MVVMService.validate = new Function("data","options", data.changed.validate);
+                } catch(e) {
+
+                }
+            });
             this.model.set("pretreatment", js_beautify("{ return data; }", 4, " ", 0));
             this.model.set("success", js_beautify("{ return data; }", 4, " ", 0));
             this.model.set("error", js_beautify("{ return err; }", 4, " ", 0));
+            this.model.set("validate", js_beautify("{ return 0; }", 4, " ", 0));
             this.model.set("method", "GET");
             this.model.set("url", "");
             this.model.set("datatype", "");
@@ -130,6 +142,10 @@ jQuery(function($) {
             type : "textarea",
             title : "响应处理函数<br>function(data,option)",
             name : "success"
+        }, {
+            type : "textarea",
+            title : "响应校验<br>function(data,option)",
+            name : "validate"
         }, {
             type : "textarea",
             title : "异常处理函数<br>function(e,err,option)",

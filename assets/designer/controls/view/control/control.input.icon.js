@@ -17,6 +17,7 @@ jQuery(function($) {
             })
             this.render();
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
+            this.model.set("icons","fa-qrcode");
         },
         template : Template, //VIEW对应的模板
         render : function() {
