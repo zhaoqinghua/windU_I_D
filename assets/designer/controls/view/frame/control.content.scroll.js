@@ -17,9 +17,7 @@ jQuery(function($) {
                 $.scrollbox(this.$el).on("releaseToReload", function() {//After Release,we reset the bounce
                     var self = this;
                     console.log("releaseToReload");
-                    setTimeout(function() {
-                        self.reset();
-                    }, 2000);
+                    this.$el.trigger("reload", this);
                 }).on("onReloading", function(a) {//if onreloading status, drag will trigger this event
                     console.log("onReloading", a);
                 }).on("dragToReload", function() {//drag over 30% of bounce height,will trigger this event
@@ -28,7 +26,8 @@ jQuery(function($) {
                     console.log("draging", percent);
                 }).on("scrollbottom", function() {//on scroll bottom,this event will be triggered.you should get data from server
                     console.log("scrollbottom");
-                }).reload();
+                    this.$el.trigger("more", this);
+                });
             }
             return this;
         },

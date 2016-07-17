@@ -12,6 +12,7 @@ jQuery(function($) {
             this.model.set("viewName", "");
             this.model.set("collectionName", "");
             this.model.set("events", "");
+            this.model.set("subEvents", "");
             this.MVVMViewModel = new MVVM.ViewModel({
                 $el : null
             });
@@ -60,7 +61,15 @@ jQuery(function($) {
                         var itemView = MVVM.ViewModel.extend({
                             el : html || "li"
                         });
+                        self.MVVMViewModel.itemView && self.MVVMViewModel.itemView.undelegateEvents();
                         self.MVVMViewModel.itemView = itemView;
+                        var out = js_beautify("var subEvents = {" + self.model.get("subEvents") + "}", 4, " ", 0);
+                        try {
+                            eval(out);
+                            self.MVVMViewModel.itemView && self.MVVMViewModel.itemView.prototype.events=subEvents;
+                        } catch(e) {
+                            
+                        }
                         applyBindings();
                     }
                 })
@@ -74,6 +83,20 @@ jQuery(function($) {
                 } catch(e) {
                     $.gritter.add({
                         title : '视图交互事件设定异常',
+                        text : e,
+                        class_name : 'gritter-info gritter-center gritter-light'
+                    });
+                }
+
+            })
+            this.listenTo(this.model, "change:subEvents", function(data) {
+                var out = js_beautify("var subEvents = {" + data.changed.subEvents + "}", 4, " ", 0);
+                try {
+                    eval(out);
+                    self.MVVMViewModel.itemView && (self.MVVMViewModel.itemView.prototype.events=subEvents);
+                } catch(e) {
+                    $.gritter.add({
+                        title : '列表子视图交互事件设定异常',
                         text : e,
                         class_name : 'gritter-info gritter-center gritter-light'
                     });
@@ -106,6 +129,13 @@ jQuery(function($) {
                             el : html || "li"
                         });
                         self.MVVMViewModel.itemView = itemView;
+                        var out = js_beautify("var subEvents = {" + self.model.get("subEvents") + "}", 4, " ", 0);
+                        try {
+                            eval(out);
+                            self.MVVMViewModel.itemView && (self.MVVMViewModel.itemView.prototype.events=subEvents);
+                        } catch(e) {
+                            
+                        }
                         applyBindings();
                     }
                 })
@@ -165,6 +195,10 @@ jQuery(function($) {
             type : "events-bind",
             title : "视图交互事件",
             name : "events"
+        }, {
+            type : "events-bind",
+            title : "列表子视图交互事件",
+            name : "subEvents"
         }]
     })
 

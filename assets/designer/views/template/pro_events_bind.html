@@ -4,7 +4,7 @@
     </div>
     <div>
         <a href="#" data-action="" data-code-format="javascript <%=name%>"> JS </a>
-        <a href="#" data-action="" data-events-bind="add"> <i class=" blue ace-icon fa fa-plus"></i> </a>
+        <a href="#" data-action="" data-events-bind="add <%=name%>"> <i class=" blue ace-icon fa fa-plus"></i> </a>
     </div>
 </div>
 
@@ -15,6 +15,7 @@
     <script>
         {
             var editor = ace.edit("pro_<%=name%>");
+            debugger;
             editor.session.setMode("ace/mode/javascript");
             editor.setTheme("ace/theme/tomorrow");
             editor.setAutoScrollEditorIntoView(true);
@@ -30,7 +31,7 @@
                 }
             })
 
-            $('[data-events-bind="add"]').on("click", function() {
+            $('[data-events-bind="add <%=name%>"]').on("click", function() {
                 debugger;
                 var doms = mvvm.getDoms();
                 var $sel = $("#data-events-dom", "#eb-add-form");
@@ -38,18 +39,20 @@
                 for (var i in doms) {
                     $sel.append("<option value='" + doms[i].val + "'>" + doms[i].lab + "</option>");
                 }
+                $(".btn-primary", "#eb-add-form").off("click").on("click", function() {
+                    debugger;
+                    var dom = $("#data-events-dom", "#eb-add-form").val();
+                    var ev = $("#data-events-name", "#eb-add-form").val();
+                    var func = $("#data-events-operation", "#eb-add-form")[0].env.editor.getValue();
+                    var editor = $("#pro_<%=name%>")[0].env.editor;
+                    editor.insert("\"" + ev + (dom?(" #" + dom):"") + "\":function(ev,param){\r\n" + func + "\r\n},\r\n");
+                    //editor.setValue(js_beautify(editor.getValue(), 4, " ", 0));
+                    $("#pro_<%=name%>").blur();
+                    $("#eb-add-form").modal("toggle");
+                })
                 $("#eb-add-form").modal("toggle");
             })
-            $(".btn-primary", "#eb-add-form").off("click").on("click", function() {
-                debugger;
-                var dom = $("#data-events-dom", "#eb-add-form").val();
-                var ev = $("#data-events-name", "#eb-add-form").val();
-                var func = $("#data-events-operation", "#eb-add-form")[0].env.editor.getValue();
-                editor.insert("\"" + ev + (dom?(" #" + dom):"") + "\":function(){\r\n" + func + "\r\n},\r\n");
-                //editor.setValue(js_beautify(editor.getValue(), 4, " ", 0));
-                $("#pro_<%=name%>").blur();
-                $("#eb-add-form").modal("toggle");
-            })
+            
         }
     </script>
 </div>

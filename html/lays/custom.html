@@ -588,13 +588,15 @@
                                 <h6 for="data-bind-filter-name">事件</h6>
                                 <select class="form-control" id="data-events-name">
                                     <option value=""></option>
-                                    <option value="tap">tap</option>
-                                    <option value="longTap">long Tap</option>
-                                    <option value="input">input</option>
-                                    <option value="change">change</option>
-                                    <option value="search">search</option>
-                                    <option value="focus">focus</option>
-                                    <option value="blur">blur</option>
+                                    <option value="tap">单击事件</option>
+                                    <option value="longTap">长按事件</option>
+                                    <option value="input">输入框控件输入内容事件</option>
+                                    <option value="change">输入框控件内容变更事件</option>
+                                    <option value="search">搜索框控件触发搜索事件</option>
+                                    <option value="focus">输入框控件获取焦点事件</option>
+                                    <option value="blur">输入框控件失去焦点事件</option>
+                                    <option value="reload">滚动容器下拉刷新事件</option>
+                                    <option value="more">滚动容器滚动加载新数据事件</option>
                                 </select>
                                 <h6 class="">设定事件对应操作：</h6>
                                 <pre class="editor " id="data-events-operation" style="min-height:200px;width:100%;"></pre>
@@ -626,6 +628,18 @@
             editor.setAutoScrollEditorIntoView(true);
             editor.setOption("maxLines", 100);
             editor.setOption("minLines", 10);
+            
+            $("#data-events-name").on("change",function(val){//add example code here;
+                var e = $(event.target).val();
+                switch(e){
+                    case "reload":
+                    break;
+                    case "more":
+                    break;
+                    default:
+                    break;
+                }
+            })
         }
     </script>
 </div>
