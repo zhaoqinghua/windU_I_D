@@ -372,14 +372,23 @@ ul, li {
 
 [data-control="CUSTOMLISTVIEW"]>ul {
     /*display: table;*/
+    width:100%;
 }
 
-[data-control="CUSTOMLISTVIEW"] li.col2 {
-    width: 49%;
-    margin-right: 0.5%;
-    float: left;
-    position: relative;
+[data-control="CUSTOMLISTVIEW"].col2>li {
+    width: 50%;
 }
+
+[data-control="CUSTOMLISTVIEW"].col2>ul {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 0px;
+}
+
+[data-control="CUSTOMLISTVIEW"].col2>ul li {
+    display: inline-block;
+    width: 100%;
+}
+
 [data-control="ICON"] {
     min-height:10px;
     min-width:10px;

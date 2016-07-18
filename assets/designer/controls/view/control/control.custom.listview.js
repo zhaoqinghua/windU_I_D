@@ -6,8 +6,8 @@ jQuery(function($) {
             Backbone.Designer.View.prototype.initialize.apply(this, arguments);
 
             this.listenTo(this.model,"change:isBig",function(data){
-                !data.changed.isBig && $("li:nth-child(1)", this.$el).removeClass("col2");
-                data.changed.isBig && $("li:nth-child(1)", this.$el).addClass("col2");
+                !data.changed.isBig && this.$el.removeClass("col2");
+                data.changed.isBig && this.$el.addClass("col2");
             })
         },
         template : Template, //VIEW对应的模板
