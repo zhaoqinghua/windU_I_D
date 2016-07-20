@@ -1,7 +1,7 @@
 var <%=uuid%> = new MVVM.Service({
     pretreatment:function(data,option)<%=pretreatment%>,
     dosuccess:function(data,option)<%=success%>,
-    doerror:function(e,error,option)<%=error%>,
+    doerror:function(e,err,option)<%=error%>,
     validate:function(data,option)<%=validate%>,
     ajaxCall : function(data, option) {
         var self=this;

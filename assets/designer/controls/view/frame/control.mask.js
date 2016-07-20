@@ -40,7 +40,7 @@ jQuery(function($) {
                 })
                 this.$el.on("tap", function(e) {
                     e.preventDefault();
-                    this.$el.toggleClass("active")
+                    self.$el.toggleClass("active")
                 })
                 Backbone.Designer.View.prototype.render.apply(this, arguments);
             }
@@ -66,7 +66,7 @@ jQuery(function($) {
         name : "Mask",
         tip : "遮盖层，不能插入任何子元素。用于遮盖窗口元素。通常情况直接插入到的BODY下",
         type : "frame",
-        icon : "FlexVer.png"
+        icon : "Mask.png"
     }, {
         View : View,
         Template : Template,

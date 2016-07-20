@@ -29,7 +29,7 @@ jQuery(function($) {
         name : "HeaderBox",
         tip : "顶部容器，用于在屏幕最顶部固定一个不随屏幕滚动的区域，常用于自定义导航功能实现。",
         type : "frame",
-        icon : "Header.png"
+        icon : "HeaderBox.png"
     }, {
         View : View,
         Template : Template,
