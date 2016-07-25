@@ -19,7 +19,6 @@
         editor.setOption("minLines", 5);
         editor.setReadOnly(true);
         $('[data-code-format="javascript"]').on("click", function() {
-            debugger;
             var editor = $("#pro_<%=name%>")[0].env.editor;
             var str = editor.getValue();
             if (str) {

@@ -15,14 +15,12 @@
     <script>
         {
             var editor = ace.edit("pro_<%=name%>");
-            debugger;
             editor.session.setMode("ace/mode/javascript");
             editor.setTheme("ace/theme/tomorrow");
             editor.setAutoScrollEditorIntoView(true);
             editor.setOption("maxLines", 100);
             editor.setOption("minLines", 5);
             $('[data-code-format="javascript <%=name%>"]').on("click", function() {
-                debugger;
                 var editor = $("#pro_<%=name%>")[0].env.editor;
                 var str = editor.getValue();
                 if (str) {
@@ -32,7 +30,6 @@
             })
 
             $('[data-events-bind="add <%=name%>"]').on("click", function() {
-                debugger;
                 var doms = mvvm.getDoms();
                 var $sel = $("#data-events-dom", "#eb-add-form");
                 $sel.empty();
@@ -40,7 +37,6 @@
                     $sel.append("<option value='" + doms[i].val + "'>" + doms[i].lab + "</option>");
                 }
                 $(".btn-primary", "#eb-add-form").off("click").on("click", function() {
-                    debugger;
                     var dom = $("#data-events-dom", "#eb-add-form").val();
                     var ev = $("#data-events-name", "#eb-add-form").val();
                     var func = $("#data-events-operation", "#eb-add-form")[0].env.editor.getValue();

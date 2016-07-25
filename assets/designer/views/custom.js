@@ -14,16 +14,33 @@ jQuery(function($) {
     }
     var desUIControlsCustomPropertiesView = Backbone.View.extend({
         initialize : function() {
+            this.items = [];
         },
         el : '#desUIControlsCustomProperties',
         events : {
         },
         bindings : {
         },
+        clearItems:function(){
+            _.each(this.items,function(item){
+                switch(item.type){
+                    case "textarea":
+                    case "text": 
+                    case "events-bind":
+                    case "data-bind":
+                        $("pre",item.el)[0].env && $("pre",item.el)[0].env.editor.destroy();
+                    default:
+                        break;
+                }
+                item.el.remove();
+            })  
+            this.items = [];
+        },
         bind : function(control) {
             this.unstickit();
-            var $ext = $("#pro_ext_options", this.$el);
-            $ext.empty();
+            // var $ext = $("#pro_ext_options", this.$el);
+            // $ext.empty();
+            this.clearItems();
             this.model = control.model;
             this.stickit();
             this.custom();
@@ -44,6 +61,7 @@ jQuery(function($) {
                         self.model.view.trigger("action:"+$(this).attr("data-custom-action"),{});
                     })
                 }
+                self.items.push({type:option.type,el:$pro_el});
                 $ext.append($pro_el);
                 switch(option.type) {
                 case "none":

@@ -15,7 +15,6 @@
         editor.setOption("maxLines", 100);
         editor.setOption("minLines", 5);
         $('[data-code-format="javascript <%=name%>"]').on("click", function() {
-            debugger;
             var editor = $("#pro_<%=name%>")[0].env.editor;
             var str = editor.getValue();
             if (str) {
