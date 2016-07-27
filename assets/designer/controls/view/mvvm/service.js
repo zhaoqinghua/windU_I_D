@@ -136,19 +136,19 @@ jQuery(function($) {
             name : "url"
         }, {
             type : "textarea",
-            title : "发送数据预处理函数<BR>function(data,option)",
+            title : "发送数据预处理函数<BR>function pretreatment(data,option)",
             name : "pretreatment"
         }, {
             type : "textarea",
-            title : "响应处理函数<br>function(data,option)",
+            title : "响应处理函数<br>function success(data,option)",
             name : "success"
         }, {
             type : "textarea",
-            title : "响应校验<br>function(data,option)",
+            title : "响应校验<br>function validate(data,option)",
             name : "validate"
         }, {
             type : "textarea",
-            title : "异常处理函数<br>function(e,err,option)",
+            title : "异常处理函数<br>function error(e,err,option)",
             name : "error"
         }]
     })
