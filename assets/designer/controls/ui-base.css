@@ -337,5 +337,5 @@
 }
 
 .ufix {    
-    position: fixed;
+    position: absolute;
 }
