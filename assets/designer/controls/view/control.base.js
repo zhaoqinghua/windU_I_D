@@ -135,13 +135,24 @@ jQuery(function($) {
                 switch (data.changed.position) {
                 case "absolute":
                     self.$el.css("position", "");
+                    self.$el.removeClass("ufix");
                     self.$el.addClass("uab");
                     this.model.cla["uab"] = true;
+                    this.model.cla["ufix"] = false;
+                    break;
+                case "fixed":
+                    self.$el.css("position", "");
+                    self.$el.removeClass("uab");
+                    self.$el.addClass("ufix");
+                    this.model.cla["ufix"] = true;
+                    this.model.cla["uab"] = false;
                     break;
                 default:
                     self.$el.css("position", "");
                     self.$el.removeClass("uab");
+                    self.$el.removeClass("ufix");
                     this.model.cla["uab"] = false;
+                    this.model.cla["ufix"] = false;
                     break;
                 }
             });
