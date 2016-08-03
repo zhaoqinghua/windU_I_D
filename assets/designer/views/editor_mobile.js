@@ -22,22 +22,24 @@ jQuery(function($) {
             console.log(out);
 
             //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
-            window.FileMgr.save(f, css_format(out));
+            var h = "/*Auto generate by UI designer */\r\n"
+            window.FileMgr.save(f, h + css_format(out));
         },
         buildJS : function(f) {
+            var h = "/*Auto generate by UI designer */\r\n"
             var start = "(function($) {";
             var out = this.items.buildJS({"mvvm":false,"frame":true,"control":true});
             var end = "})($);";
             var dest = PathModule.dirname(f) + "\\js\\" + PathModule.basename(f) + ".js";
             //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
-            window.FileMgr.save(dest, js_beautify(start + out + end, 4, " ", 0)); 
+            window.FileMgr.save(dest, h + js_beautify(start + out + end, 4, " ", 0)); 
             {
                 var start = "";
                 var out = this.items.buildJS({"mvvm":true,"frame":false,"control":false});
                 var end = "";
                 var dest = PathModule.dirname(f) + "\\assets\\mvvm\\" + PathModule.basename(f) + ".js";
                 //window.FileMgr.rename(f,"{path}.{date}".format({path:f,date:new Date().format("yyyyMMddhhmmss")}));
-                window.FileMgr.save(dest, js_beautify(start + out + end, 4, " ", 0));
+                window.FileMgr.save(dest, h + js_beautify(start + out + end, 4, " ", 0));
             }
         },
         buildHTML : function(f) {
